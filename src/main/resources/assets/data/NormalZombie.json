@@ -1,0 +1,40 @@
+{
+  "hp": 3600,
+  "reward": 30,
+  "moveSpeed": 10,
+  "width": 98,
+  "height": 130,
+  "preview": "zombie/NormalZombie/NormalZombie.png",
+  "bboxData": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 43
+  },
+  "animationData": [
+    {
+      "status": "right",
+      "imageName": "zombie/NormalZombie/Zombie/Zombie_%d.png",
+      "width": 98,
+      "height": 130,
+      "channelDuration": 3.0,
+      "FrameNumber": 22
+    },
+    {
+      "status": "left",
+      "imageName": "zombie/NormalZombie/Zombie/Zombie_%d.png",
+      "width": 98,
+      "height": 130,
+      "channelDuration": 3.0,
+      "FrameNumber": 22
+    },
+    {
+      "status": "die",
+      "imageName": "zombie/NormalZombie/ZombieDie/ZombieDie_%d.png",
+      "width": 240,
+      "height": 96,
+      "channelDuration": 0.25,
+      "FrameNumber": 10
+    }
+  ]
+}

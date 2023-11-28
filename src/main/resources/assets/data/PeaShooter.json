@@ -1,0 +1,30 @@
+{
+  "name": "PeaShooter",
+  "icon": "plant/PeaShooter/PeaShooter.png",
+  "width": 71,
+  "height": 71,
+  "cost": 100,
+  "attackRate": 1.4,
+  "animationData": {
+    "status": "run",
+    "imageName": "plant/PeaShooter/PeaShooter_%d.png",
+    "width": 71,
+    "height": 71,
+    "channelDuration": 1.4,
+    "FrameNumber": 13
+  },
+  "bulletData": {
+    "imageName": "plant/PeaShooter/PeaNormal.png",
+    "width": 56,
+    "height": 34,
+    "attackDamage": 38,
+    "range": 350,
+    "speed": 600,
+    "effectData": {
+      "name": "群攻",
+      "imgName": "tower/arrow/effect.png",
+      "desc": "群攻: 同时攻击多个敌人",
+      "descEn": "Group Attack."
+  }
+}
+}
