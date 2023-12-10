@@ -1,6 +1,7 @@
 package com.zrt.pvz.components;
 
 import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.dsl.components.HealthIntComponent;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.component.Component;
@@ -9,10 +10,7 @@ import com.almasb.fxgl.texture.AnimationChannel;
 import com.almasb.fxgl.time.LocalTimer;
 import com.zrt.pvz.EntityType;
 import com.zrt.pvz.PVZApp;
-import com.zrt.pvz.data.AnimationData;
-import com.zrt.pvz.data.BulletData;
-import com.zrt.pvz.data.ConfigData;
-import com.zrt.pvz.data.PlantData;
+import com.zrt.pvz.data.*;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
@@ -36,11 +34,23 @@ public class PlantComponent extends Component {
     private Duration attackRate;
     private Point2D plantPosition;
     private BulletData bulletData;
+    private int row;
+    private int column;
+    private LocalTimer timer;  //用来控制持续掉血的计时器
+    private Duration damageDuration;  //记录多久掉血一次
+    private int attackedDamage;  //一次掉血多少
+    private boolean attacked;  //是否被攻击
+    private HealthIntComponent hp;
+    private boolean dead;
 
     @Override
     public void onAdded() {
         plantData = entity.getObject("plantData");
+        hp=new HealthIntComponent(plantData.hp());
+        timer = FXGL.newLocalTimer();
         plantName = plantData.name();
+        row=entity.getComponent(PositionComponent.class).getRow();
+        column=entity.getComponent(PositionComponent.class).getColumn();
         attackRate = Duration.seconds(plantData.attackRate());
         ArrayList<Image> imageArrayList=new ArrayList<>();
         for(int i=0;i<plantData.animationData().FrameNumber();i++){
@@ -60,20 +70,45 @@ public class PlantComponent extends Component {
 
     @Override
     public void onUpdate(double tpf) {
+        if(attacked){
+            if (timer.elapsed(damageDuration)) {
+                hp.damage(attackedDamage);
+                timer.capture();
+            }
+            if (hp.isZero()) {
+                dead = true;
+                entity.removeFromWorld();
+            }
+        }
         if (!shootTimer.elapsed(attackRate)) {
             return;
         }
-        if ("Arrow Tower".equalsIgnoreCase(plantName)) {
-            arrowTowerAttack();
-        } else {
             attack();
-        }
+    }
+
+    public void attacked(ZombieData zombieData){
+        timer.capture();
+        this.attackedDamage=zombieData.getAttackDamage();
+        this.damageDuration=Duration.seconds(zombieData.getDamageDuration());
+        this.attacked=true;
+    }
+
+
+    public void unAttacked(){
+        this.attackedDamage=0;
+        this.damageDuration=Duration.ZERO;
+        this.attacked=false;
+    }
+
+    public boolean isDead(){
+        return dead;
     }
 
 
     private void attack() {
         FXGL.getGameWorld().getClosestEntity(entity,
-                        e -> e.isType(EntityType.PLANT)
+                        e -> e.isType(EntityType.ZOMBIE)
+                                && e.getComponent(PositionComponent.class).getRow()==row
                                 && e.getPosition().distance(plantPosition) < bulletData.range()
                 )
                 .ifPresent(enemy -> {
@@ -104,9 +139,9 @@ public class PlantComponent extends Component {
     }
 
     private void shootBullet(Entity enemy) {
-        Point2D dir = enemy.getPosition().subtract(plantPosition);
+        Point2D dir = new Point2D(1,0); //发射子弹方向，可调
         FXGL.spawn("bullet", new SpawnData(
-                entity.getCenter().subtract(bulletData.width() / 2.0, bulletData.height() / 2.0))
+                entity.getCenter().subtract(0, bulletData.height())) //生成子弹的位置，可调
                 .put("bulletData", bulletData)
                 .put("dir", dir)
         );

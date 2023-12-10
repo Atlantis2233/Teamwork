@@ -13,6 +13,24 @@ public class ZombieData {
 	private int width;
 	private BboxData bboxData;
 	private int height;
+	private int attackDamage;
+	private double damageDuration;
+
+	public int getAttackDamage() {
+		return attackDamage;
+	}
+
+	public void setAttackDamage(int attackDamage) {
+		this.attackDamage = attackDamage;
+	}
+
+	public double getDamageDuration() {
+		return damageDuration;
+	}
+
+	public void setDamageDuration(double damageDuration) {
+		this.damageDuration = damageDuration;
+	}
 
 	public int getReward(){
 		return reward;

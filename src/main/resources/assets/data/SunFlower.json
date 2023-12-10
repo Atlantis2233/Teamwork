@@ -1,6 +1,7 @@
 {
   "name": "SunFlower",
   "icon": "plant/SunFlower/SunFlower.png",
+  "hp": 400,
   "width": 73,
   "height": 74,
   "cost": 50,

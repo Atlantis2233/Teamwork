@@ -31,7 +31,7 @@ import java.util.List;
  */
 public class ZombieComponent extends Component {
     private AnimatedTexture texture;
-    private AnimationChannel animWalkRight, animWalkLeft,  animDie;
+    private AnimationChannel animWalkRight, animWalkLeft,  animDie,animAttack;
     private boolean dead;
     private ProgressBar hpBar;
     private Texture slowDownTexture;
@@ -64,6 +64,9 @@ public class ZombieComponent extends Component {
             }
              else if (at.status().equalsIgnoreCase("die")) {
                 animDie = initAc(at);
+            }
+            else if (at.status().equalsIgnoreCase("attack")) {
+                animAttack = initAc(at);
             }
         }
         texture = new AnimatedTexture(animWalkLeft);
@@ -140,11 +143,22 @@ public class ZombieComponent extends Component {
         if (hp.isZero()) {
             dead = true;
             FXGL.inc("kill", 1);
-            FXGL.inc("gold", zombieData.getReward());
             entity.getViewComponent().removeChild(hpBar);
+            entity.getBoundingBoxComponent().clearHitBoxes();
             texture.playAnimationChannel(animDie);
             texture.setOnCycleFinished(() -> entity.removeFromWorld());
         }
+    }
+
+    public void attack(){
+        moveSpeedTemp = moveSpeed;
+        moveSpeed = 0;
+        texture.loopAnimationChannel(animAttack);
+    }
+
+    public void unAttack(){
+        moveSpeed = moveSpeedTemp;
+        texture.loopAnimationChannel(animWalkLeft);
     }
 
     private AnimationChannel initAc(AnimationData at) {

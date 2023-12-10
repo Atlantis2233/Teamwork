@@ -40,9 +40,9 @@ public class PlantButtonComponent extends Component {
         btn.setStyle("-fx-background-color: #0000;");
         this.plantData = entity.getObject("plantData");
         entity.getViewComponent().addChild(btn);
-//        btn.setDisable(FXGL.geti("gold") < towerData.cost());
-//        FXGL.getip("gold").addListener((ob, ov, nv) -> {
-//            btn.setDisable(FXGL.geti("gold") < towerData.cost());
+//        btn.setDisable(FXGL.geti("sunhine") < towerData.cost());
+//        FXGL.getip("sunshine").addListener((ob, ov, nv) -> {
+//            btn.setDisable(FXGL.geti("sunshine") < towerData.cost());
 //        });
 
         btn.selectedProperty().addListener((ob, ov, nv) -> {

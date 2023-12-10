@@ -1,6 +1,7 @@
 {
   "name": "PeaShooter",
   "icon": "plant/PeaShooter/PeaShooter.png",
+  "hp": 400,
   "width": 71,
   "height": 71,
   "cost": 100,
@@ -15,11 +16,11 @@
   },
   "bulletData": {
     "imageName": "plant/PeaShooter/PeaNormal.png",
-    "width": 56,
-    "height": 34,
-    "attackDamage": 38,
-    "range": 350,
-    "speed": 600,
+    "width": 25,
+    "height": 15,
+    "attackDamage": 20,
+    "range": 1000,
+    "speed": 400,
     "effectData": {
       "name": "群攻",
       "imgName": "tower/arrow/effect.png",

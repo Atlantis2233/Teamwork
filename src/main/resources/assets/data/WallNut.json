@@ -1,6 +1,7 @@
 {
   "name": "WallNut",
   "icon": "plant/WallNut/WallNut.png",
+  "hp": 1000,
   "width": 65,
   "height": 73,
   "cost": 50,

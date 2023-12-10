@@ -10,6 +10,7 @@ public record PlantData(
 	int width,
 	BulletData bulletData,
 	double attackRate,
-	int height
+	int height,
+	int hp
 ) {
 }
