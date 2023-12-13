@@ -37,13 +37,14 @@ public class GameEntityFactory implements EntityFactory {
     private static TranslateTransition tt;
 
     private static ArrayList<Image> imageArrayList=new ArrayList<>();
-    @Spawns("bg")
-    public Entity newBg(SpawnData data){
-        ScrollingBackgroundView bg=new ScrollingBackgroundView(FXGL.image("map/map1.jpg",1232,533),
-                1232,533, Orientation.HORIZONTAL);
 
+    //地图背景
+    @Spawns("map")
+    public Entity newMap(SpawnData data){
+        LevelData levelData=data.get("levelData");
+        ScrollingBackgroundView bg=new ScrollingBackgroundView(FXGL.image(levelData.map() , levelData.width(), FXGL.getAppHeight()),
+                levelData.width(),FXGL.getAppHeight() ,Orientation.HORIZONTAL);
 //        Texture bg=new Texture(FXGL.image("map/map1.jpg",1232,533));
-
 
         return FXGL.entityBuilder(data)
                 .view(bg)
@@ -86,8 +87,10 @@ public class GameEntityFactory implements EntityFactory {
         tt.setToX(x);
         tt.play();
         return FXGL.entityBuilder(data)
+                .type(EntityType.WEEDER)
                 .view(weederTexture)
-                .bbox(BoundingShape.box(weederTexture.getWidth(), weederTexture.getHeight()))
+                .bbox(BoundingShape.box(120, 50))//由于一开始移动过weeder位置，所以要设大一点bbox，可调
+                .collidable()
                 .build();
     }
     
@@ -146,7 +149,6 @@ public class GameEntityFactory implements EntityFactory {
     public Entity newEmpty(SpawnData data) {
         return FXGL.entityBuilder(data)
                 .type(EntityType.EMPTY)
-                .view(new Rectangle(2,2,Color.BLACK))
                 .zIndex(Integer.MAX_VALUE)
                 .collidable()
                 .neverUpdated()
@@ -257,6 +259,28 @@ public class GameEntityFactory implements EntityFactory {
                 .zIndex(Integer.MAX_VALUE)
                 .bbox(BoundingShape.box(10,10))
                 .collidable()
+                .build();
+    }
+    
+    @Spawns("shovel")
+    public Entity newShovel(SpawnData data){
+        Texture texture=FXGL.texture("shovel/shovelBg.png");
+        return entityBuilder(data)
+                .with(new IrremovableComponent())
+                .view(texture)
+                .with(new ShovelComponent())
+                .build();
+    }
+
+    @Spawns("reward")
+    public Entity newReward(SpawnData data){
+        PlantData plantData=data.get("plantData");
+        Texture texture = FXGL.texture("ui/choose/"+plantData.name()+".png",45,60);
+
+        return entityBuilder(data)
+                .view(texture)
+                .with(new MoveComponent())
+                .with(new RewardComponent())
                 .build();
     }
 }

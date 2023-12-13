@@ -50,7 +50,12 @@ public class BuildIndicatorComponent extends Component {
             return;
         }
         lastPlantName = plantName;
-        texture.setImage(FXGL.image("plant/"+plantName+"/"+plantName+".png"));
+        if(plantName.equals("shovel")){
+            texture.setImage(FXGL.image("shovel/shovel.png"));
+        }
+        else{
+            texture.setImage(FXGL.image("plant/"+plantName+"/"+plantName+".png"));
+        }
         //entity.getBoundingBoxComponent().clearHitBoxes();
         //entity.getBoundingBoxComponent().addHitBox(
         //        new HitBox(BoundingShape.box(texture.getWidth(), texture.getHeight())));

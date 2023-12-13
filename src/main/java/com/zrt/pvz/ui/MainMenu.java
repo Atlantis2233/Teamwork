@@ -47,7 +47,7 @@ public class MainMenu extends FXGLMenu {
     protected void onUpdate(double tpf) {
     }
 
-    public void startNewGame(){
+    public void startNewGame() {
         Image image=FXGL.image("ui/mainMenu/ZombieHand.png");
 
         AnimatedTexture at=new AnimatedTexture(new AnimationChannel(image
@@ -57,7 +57,7 @@ public class MainMenu extends FXGLMenu {
         });
         at.play();
         Pane pane=new Pane(at);
-        getContentRoot().getChildren().addAll(pane);
+        getContentRoot().getChildren().addAll(at);
         getController().startNewGame();
     }
 }

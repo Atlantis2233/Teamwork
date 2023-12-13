@@ -21,7 +21,7 @@ public class MoveComponent extends Component {
     private double aTime = 1d;
     private boolean speedXAdd;
     private boolean speedYAdd;
-    private Point2D endPoint;
+    private Point2D endPoint=new Point2D(0,0);
     private final Point2D mulPointX=new Point2D(1,0);
     private final Point2D mulPointY=new Point2D(0,1);
     @Override
@@ -139,16 +139,16 @@ public class MoveComponent extends Component {
 
     public void moveFromTo(Point2D start, Point2D end, Duration time){
         endPoint=end;
-        speedX=(end.getX()-start.getX())/(double)time.toSeconds();
-        speedY=(end.getY()-start.getY())/(double)time.toSeconds();
+        speedX=(end.getX()-start.getX())/end.distance(start)/(double)time.toSeconds();
+        speedY=(end.getY()-start.getY())/end.distance(start)/(double)time.toSeconds();
         speedXAdd=true;
         speedYAdd=true;
     }
 
     public void moveFromTo(Point2D start, Point2D end, double speedValue){
         endPoint=end;
-        speedX=(end.getX()-start.getX())*speedValue;
-        speedY=(end.getY()-start.getY())*speedValue;
+        speedX=(end.getX()-start.getX())/end.distance(start)*speedValue;
+        speedY=(end.getY()-start.getY())/end.distance(start)*speedValue;
         speedXAdd=true;
         speedYAdd=true;
     }

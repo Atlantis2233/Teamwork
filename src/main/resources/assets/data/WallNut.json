@@ -6,14 +6,17 @@
   "height": 73,
   "cost": 50,
   "attackRate": 24.0,
-  "animationData": {
-    "status": "run",
+  "components": [
+    "ShootComponent"
+  ],
+  "animationData": [{
+    "status": "normal",
     "imageName": "plant/WallNut/WallNut/WallNut_%d.png",
     "width": 65,
     "height": 73,
     "channelDuration": 1.5,
     "FrameNumber": 16
-  },
+  }],
   "bulletData": {
  }
 }

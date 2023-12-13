@@ -5,15 +5,20 @@
   "width": 73,
   "height": 74,
   "cost": 50,
-  "attackRate": 24.0,
-  "animationData": {
-    "status": "run",
-    "imageName": "plant/SunFlower/SunFlower_%d.png",
+  "attackRate": 10.0,
+  "components": [
+    "ProduceSunshineComponent"
+  ],
+  "animationData": [{
+    "status": "normal",
+    "imageName": "plant/SunFlower/SunFlower/SunFlower_%d.png",
     "width": 73,
     "height": 74,
     "channelDuration": 2.0,
     "FrameNumber": 18
-  },
+  }],
   "bulletData": {
+    "attackDamage": 20,
+    "speed": 400
   }
 }

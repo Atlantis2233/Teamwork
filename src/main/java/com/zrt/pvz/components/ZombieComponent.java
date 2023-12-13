@@ -48,6 +48,13 @@ public class ZombieComponent extends Component {
 
     public void setDead(boolean dead) {
         this.dead = dead;
+        FXGL.inc("kill", 1);
+        PVZApp app=(PVZApp)FXGL.getApp();
+        app.setLastZombieDiePoint(entity.getPosition());
+        entity.getViewComponent().removeChild(hpBar);
+        entity.getBoundingBoxComponent().clearHitBoxes();
+        texture.playAnimationChannel(animDie);
+        texture.setOnCycleFinished(() -> entity.removeFromWorld());
     }
 
     @Override
@@ -141,12 +148,7 @@ public class ZombieComponent extends Component {
         hp.damage(damage);
 
         if (hp.isZero()) {
-            dead = true;
-            FXGL.inc("kill", 1);
-            entity.getViewComponent().removeChild(hpBar);
-            entity.getBoundingBoxComponent().clearHitBoxes();
-            texture.playAnimationChannel(animDie);
-            texture.setOnCycleFinished(() -> entity.removeFromWorld());
+            setDead(true);
         }
     }
 

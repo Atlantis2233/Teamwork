@@ -32,6 +32,7 @@ public class PlantButtonComponent extends Component {
 
     @Override
     public void onAdded() {
+        //挡板变暗效果
         Color transparentBlack = Color.web("#00000090");
         Rectangle rectangle=new Rectangle(45,60,transparentBlack);
         rectangle.setVisible(false);

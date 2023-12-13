@@ -6,14 +6,17 @@
   "height": 71,
   "cost": 100,
   "attackRate": 1.4,
-  "animationData": {
-    "status": "run",
+  "components": [
+    "ShootComponent"
+  ],
+  "animationData": [{
+    "status": "normal",
     "imageName": "plant/PeaShooter/PeaShooter_%d.png",
     "width": 71,
     "height": 71,
     "channelDuration": 1.4,
     "FrameNumber": 13
-  },
+  }],
   "bulletData": {
     "imageName": "plant/PeaShooter/PeaNormal.png",
     "width": 25,

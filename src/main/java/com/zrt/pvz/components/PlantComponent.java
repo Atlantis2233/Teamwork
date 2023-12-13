@@ -12,6 +12,8 @@ import com.zrt.pvz.EntityType;
 import com.zrt.pvz.PVZApp;
 import com.zrt.pvz.data.*;
 import javafx.geometry.Point2D;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -26,14 +28,12 @@ import java.util.List;
  * 植物组件, 攻击进入射程范围的敌人
  */
 public class PlantComponent extends Component {
-    private LocalTimer shootTimer;
+
     private AnimationChannel ac;
     private AnimatedTexture at;
     private PlantData plantData;
     private String plantName;
-    private Duration attackRate;
     private Point2D plantPosition;
-    private BulletData bulletData;
     private int row;
     private int column;
     private LocalTimer timer;  //用来控制持续掉血的计时器
@@ -51,20 +51,20 @@ public class PlantComponent extends Component {
         plantName = plantData.name();
         row=entity.getComponent(PositionComponent.class).getRow();
         column=entity.getComponent(PositionComponent.class).getColumn();
-        attackRate = Duration.seconds(plantData.attackRate());
         ArrayList<Image> imageArrayList=new ArrayList<>();
-        for(int i=0;i<plantData.animationData().FrameNumber();i++){
-            imageArrayList.add(FXGL.image(String.format(plantData.animationData().imageName(),i)));
+        List<AnimationData> animationData = plantData.animationData();
+        for (AnimationData ad : animationData) {
+            if (ad.status().equalsIgnoreCase("normal")) {
+                for(int i=0;i<ad.FrameNumber();i++){
+                    imageArrayList.add(FXGL.image(String.format(ad.imageName(),i)));
+                }
+                ac=new AnimationChannel(imageArrayList,Duration.seconds(ad.channelDuration()));
+                at=new AnimatedTexture(ac);
+            }
         }
-        ac=new AnimationChannel(imageArrayList,Duration.seconds(plantData.animationData().channelDuration()));
-        at=new AnimatedTexture(ac);
-
         plantPosition = entity.getPosition();
-        bulletData = plantData.bulletData();
         entity.getViewComponent().addChild(at);
         at.loop();
-        shootTimer = FXGL.newLocalTimer();
-        shootTimer.capture();
 
     }
 
@@ -80,10 +80,7 @@ public class PlantComponent extends Component {
                 entity.removeFromWorld();
             }
         }
-        if (!shootTimer.elapsed(attackRate)) {
-            return;
-        }
-            attack();
+
     }
 
     public void attacked(ZombieData zombieData){
@@ -105,46 +102,29 @@ public class PlantComponent extends Component {
     }
 
 
-    private void attack() {
-        FXGL.getGameWorld().getClosestEntity(entity,
-                        e -> e.isType(EntityType.ZOMBIE)
-                                && e.getComponent(PositionComponent.class).getRow()==row
-                                && e.getPosition().distance(plantPosition) < bulletData.range()
-                )
-                .ifPresent(enemy -> {
-                    shootBullet(enemy);
-                    shootTimer.capture();
-                });
-    }
 
-    private void arrowTowerAttack() {
-        List<Entity> es = FXGL.getGameWorld().getEntitiesByType(EntityType.PLANT);
-        int bulletNum = 0;
-        boolean flag = false;
-        for (Entity enemy : es) {
-            if (bulletNum > ConfigData.MAX_BULLET_AMOUNT) {
-                break;
-            }
-            Point2D ep = enemy.getPosition();
-            //判断是否在射程之内 ; TODO 用 enemy.distanceBBox(tower) 这样判断其实更精确
-            if (ep.distance(plantPosition) <= bulletData.range()) {
-                flag = true;
-                bulletNum++;
-                shootBullet(enemy);
-            }
-        }
-        if (flag) {
-            shootTimer.capture();
-        }
-    }
 
-    private void shootBullet(Entity enemy) {
-        Point2D dir = new Point2D(1,0); //发射子弹方向，可调
-        FXGL.spawn("bullet", new SpawnData(
-                entity.getCenter().subtract(0, bulletData.height())) //生成子弹的位置，可调
-                .put("bulletData", bulletData)
-                .put("dir", dir)
-        );
-    }
+//    private void arrowTowerAttack() {
+//        List<Entity> es = FXGL.getGameWorld().getEntitiesByType(EntityType.PLANT);
+//        int bulletNum = 0;
+//        boolean flag = false;
+//        for (Entity enemy : es) {
+//            if (bulletNum > ConfigData.MAX_BULLET_AMOUNT) {
+//                break;
+//            }
+//            Point2D ep = enemy.getPosition();
+//            //判断是否在射程之内 ; TODO 用 enemy.distanceBBox(tower) 这样判断其实更精确
+//            if (ep.distance(plantPosition) <= bulletData.range()) {
+//                flag = true;
+//                bulletNum++;
+//                shootBullet(enemy);
+//            }
+//        }
+//        if (flag) {
+//            shootTimer.capture();
+//        }
+//    }
+
+
 
 }
