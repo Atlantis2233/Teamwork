@@ -60,7 +60,7 @@ public class ShootComponent extends Component {
     private void shootBullet(Entity enemy) {
         Point2D dir = new Point2D(1,0); //发射子弹方向，可调
         FXGL.spawn("bullet", new SpawnData(
-                entity.getCenter().subtract(0, bulletData.height())) //生成子弹的位置，可调
+                entity.getCenter().subtract(0, bulletData.height()*2.5)) //生成子弹的位置，可调
                 .put("bulletData", bulletData)
                 .put("dir", dir)
         );

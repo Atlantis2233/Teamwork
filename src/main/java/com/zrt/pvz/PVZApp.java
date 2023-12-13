@@ -35,7 +35,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
-
+import java.io.*;
 import java.util.*;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
@@ -55,6 +55,7 @@ public class PVZApp extends GameApplication {
      */
     public static int START_LEVEL = 1;
     public static Entity emptyView;
+    public Entity home;
     private static String plantName;
     public static Point2D point2D;
     public static Texture texture;
@@ -80,14 +81,14 @@ public class PVZApp extends GameApplication {
 
     private LazyValue<LevelEndScene> levelEndSceneLazyValue =
             new LazyValue<>(LevelEndScene::new);
-
+    private List<String>users=new ArrayList<>();
 
     private static final List<Point2D> bornPoints= Arrays.asList(
-            new Point2D(850, 30),
-            new Point2D(850, 115),
-            new Point2D(850, 200),
-            new Point2D(850, 285),
-            new Point2D(850, 370)
+            new Point2D(850, 80),
+            new Point2D(850, 165),
+            new Point2D(850, 250),
+            new Point2D(850, 335),
+            new Point2D(850, 420)
     ); //用来记录僵尸出生点的数据，可调，方便使用行号初始化僵尸出现
     private TimerAction spawnEnemyTimerAction;  //生成僵尸的定时器
     @Override
@@ -102,6 +103,7 @@ public class PVZApp extends GameApplication {
 
             @Override
             public FXGLMenu newMainMenu() {
+                //读取文件看当前用户是谁
                 return new MainMenu();
             }
 
@@ -127,6 +129,28 @@ public class PVZApp extends GameApplication {
         super.onPreInit();
     }
 
+    // 将List对象序列化并写入文件
+    private static void serializeList(List<?> list, String fileName) {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            outputStream.writeObject(list);
+            System.out.println("List对象已序列化并写入文件");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 从文件中读取序列化的List对象
+    private static List<?> deserializeList(String fileName) {
+        List<?> deserializedList = new ArrayList<>();
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
+            deserializedList = (List<?>) inputStream.readObject();
+            System.out.println("从文件中反序列化List对象");
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return deserializedList;
+    }
+
     public void setLastZombieDiePoint(Point2D lastZombieDiePoint) {
         this.lastZombieDiePoint = lastZombieDiePoint;
     }
@@ -140,7 +164,7 @@ public class PVZApp extends GameApplication {
         FXGL.getInput().addEventHandler(MouseEvent.MOUSE_MOVED, e -> {
             plantName = FXGL.gets("selectedPlantName");
             //如果没有选择植物.那么返回
-            if (plantName.isEmpty()) {
+            if (plantName.isEmpty()||plantName.equals("build")){
                 return;
             }
             //如果选择了植物,那么移动的时候,动态显示位置
@@ -184,7 +208,7 @@ public class PVZApp extends GameApplication {
                 shovelCanBuilder=false;
                 return;
             }
-            if (plantName.isEmpty() || !canBuilder) {
+            if ((plantName.isEmpty()||plantName.equals("build")) || !canBuilder) {
                 return;
             }
             //如果选择了植物, 那么建造植物
@@ -298,7 +322,7 @@ public class PVZApp extends GameApplication {
             plant.addComponent(new ProduceSunshineComponent());
         }
         FXGL.inc("sunshine", -plantData.cost());
-        FXGL.set("selectedPlantName", "");
+        FXGL.set("selectedPlantName", "build");//指示建造了植物，用来判断CD开始
         Toggle selectedToggle = plantBtnGroup.getSelectedToggle();
         if (selectedToggle != null) {
             selectedToggle.setSelected(false);
@@ -332,7 +356,7 @@ public class PVZApp extends GameApplication {
                 ,EntityType.PLANTPREVIEW,EntityType.SUNSHINE
                 ,EntityType.WEEDER,EntityType.ZOMBIE
         ).forEach(Entity::removeFromWorld);
-
+        home=spawn("home",75,0);
         emptyView=spawn("emptyView",0,FXGL.getAppHeight()/2);
         getGameScene().getViewport().bindToEntity(emptyView,
                 0,FXGL.getAppHeight()/2);
@@ -539,7 +563,7 @@ public class PVZApp extends GameApplication {
             @Override
             protected void onCollisionBegin(Entity bullet, Entity zombie) {
                 ZombieComponent zombieComponent = zombie.getComponent(ZombieComponent.class);
-                if (zombieComponent.isDead()) {
+                if (zombieComponent.isDead() || Math.abs(bullet.getY()-zombie.getY())>5) {
                     lastZombieDiePoint=zombie.getPosition();
                     return;
                 }
@@ -552,13 +576,14 @@ public class PVZApp extends GameApplication {
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLANT, EntityType.ZOMBIE) {
             @Override
             protected void onCollisionBegin(Entity plant, Entity zombie) {
-                PlantComponent plantComponent=plant.getComponent(PlantComponent.class);
-                ZombieComponent zombieComponent = zombie.getComponent(ZombieComponent.class);
-                plantComponent.attacked(zombie.getObject("zombieData"));
-                if(plantComponent.isDead()){
-                    zombieComponent.unAttack();
+                int plantrow=plant.getComponent(PositionComponent.class).getRow();
+                int zombierow=zombie.getComponent(PositionComponent.class).getRow();
+                if(plantrow==zombierow){
+                    PlantComponent plantComponent=plant.getComponent(PlantComponent.class);
+                    ZombieComponent zombieComponent = zombie.getComponent(ZombieComponent.class);
+                    plantComponent.attacked(zombie.getObject("zombieData"));
+                    zombieComponent.attack();
                 }
-                zombieComponent.attack();
             }
 
             @Override
@@ -566,7 +591,9 @@ public class PVZApp extends GameApplication {
                 PlantComponent plantComponent=plant.getComponent(PlantComponent.class);
                 ZombieComponent zombieComponent = zombie.getComponent(ZombieComponent.class);
                 plantComponent.unAttacked();
-                zombieComponent.unAttack();
+                if(!zombieComponent.isDead()){
+                    zombieComponent.unAttack();
+                }
             }
         });
 
@@ -610,6 +637,37 @@ public class PVZApp extends GameApplication {
 
             }
         });
+
+        //僵尸进屋
+        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.HOME, EntityType.ZOMBIE){
+            @Override
+            protected void onCollisionBegin(Entity home, Entity zombie){
+                Point2D point2D1=new Point2D(12,FXGL.getAppHeight()/2);
+                Point2D point2D2=new Point2D(170,FXGL.getAppHeight()/2);
+                emptyView=spawn("emptyView",170,FXGL.getAppHeight()/2);
+                getGameScene().getViewport().bindToEntity(emptyView,
+                        0,FXGL.getAppHeight()/2);
+                emptyView.getComponent(MoveComponent.class).moveFromTo(point2D2,point2D1,2.5);
+                zombie.setY(FXGL.getAppHeight()/2+30);
+                zombie.getBoundingBoxComponent().clearHitBoxes();
+                FXGL.runOnce(() ->{
+                    FXGL.getGameController().pauseEngine();
+                    texture = texture("ui/loseGame/EatingYourHead.png");
+                    texture.setScaleX(1.506);
+                    texture.setScaleY(1.070);
+                    Entity entity= entityBuilder()
+                            .at(125,75)
+                            .view(texture)
+                            .buildAndAttach();
+                    ScaleTransition st=new ScaleTransition(Duration.seconds(2), texture);
+                    st.setFromX(0.5);
+                    st.setToX(1);
+                    st.setFromY(0.5);
+                    st.setToY(1);
+                    st.play();
+                }, Duration.seconds(0.5));
+            }
+        });
     }
 
     public Image getRewardPlantImage() {
@@ -640,7 +698,16 @@ public class PVZApp extends GameApplication {
         //生成地图
         spawn("map",new SpawnData().put("levelData",levelData));
         //销毁空视角让其停下
-        emptyView.addComponent(new ExpireCleanComponent(Duration.seconds(4.75)));
+        Point2D point2D1=new Point2D(emptyView.getX(),FXGL.getAppHeight()/2);
+        Point2D point2D2=new Point2D(emptyView.getX()+465,FXGL.getAppHeight()/2);
+        Point2D point2D3=new Point2D(emptyView.getX()+170,FXGL.getAppHeight()/2);
+        FXGL.runOnce(() ->{
+            emptyView.getComponent(MoveComponent.class).moveFromTo(point2D1,point2D2,2.5);
+        }, Duration.seconds(2.8));
+        FXGL.runOnce(() ->{
+            emptyView.getComponent(MoveComponent.class).moveFromTo(point2D2,point2D3,2.5);
+        }, Duration.seconds(6.5));
+        emptyView.addComponent(new ExpireCleanComponent(Duration.seconds(8.5)));
 
         //生成一开始用于展示本关僵尸的僵尸
 

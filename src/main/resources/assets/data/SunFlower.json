@@ -6,6 +6,7 @@
   "height": 74,
   "cost": 50,
   "attackRate": 10.0,
+  "CD": 5,
   "components": [
     "ProduceSunshineComponent"
   ],

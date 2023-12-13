@@ -23,35 +23,64 @@ import javafx.util.Duration;
 public class PlantButtonComponent extends Component {
     private final ToggleButton btn;
     private PlantData plantData;
-
+    private Rectangle rectangle,rectangleBG;
+    private double height=60,weight=47;
+    private int CD;//要加入data
+    private double startTime,elapsedTime;
+    private boolean cooling=true,afford=false;
+    private int cost;
     public PlantButtonComponent() {
         btn = new ToggleButton();
         btn.setToggleGroup(FXGL.<PVZApp>getAppCast().getPlantBtnGroup());
-        btn.setPrefSize(45, 60);
+        btn.setPrefSize(weight, height);
     }
 
     @Override
     public void onAdded() {
+        startTime=FXGL.getGameTimer().getNow();
         //挡板变暗效果
         Color transparentBlack = Color.web("#00000090");
-        Rectangle rectangle=new Rectangle(45,60,transparentBlack);
+        Color transparentGrey = Color.web("#00000099");
+        rectangle=new Rectangle(weight,height,transparentBlack);
+        rectangleBG=new Rectangle(weight,height,transparentGrey);
         rectangle.setVisible(false);
+        rectangleBG.setVisible(false);
         entity.getViewComponent().addChild(rectangle);
-
+        entity.getViewComponent().addChild(rectangleBG);
         btn.setStyle("-fx-background-color: #0000;");
         this.plantData = entity.getObject("plantData");
         entity.getViewComponent().addChild(btn);
+        cost= plantData.cost();
+        CD=plantData.CD();
 //        btn.setDisable(FXGL.geti("sunhine") < towerData.cost());
 //        FXGL.getip("sunshine").addListener((ob, ov, nv) -> {
 //            btn.setDisable(FXGL.geti("sunshine") < towerData.cost());
 //        });
 
         btn.selectedProperty().addListener((ob, ov, nv) -> {
-            FXGL.set("selectedPlantName", nv ? plantData.name() : "");
-            if (nv) {
+            if(cost>FXGL.geti("sunshine"))
+                afford=false;
+            else
+                afford=true;
+            if(!FXGL.gets("selectedPlantName").equals("build")&&!cooling&&afford)
+                FXGL.set("selectedPlantName", nv ? plantData.name() : "");
+            if (nv&&afford) {
                 rectangle.setVisible(true);
+                rectangleBG.setVisible(true);
             } else {
-                rectangle.setVisible(false);
+                if(FXGL.gets("selectedPlantName").equals("build"))
+                {
+                    rectangle.setVisible(true);
+                    rectangleBG.setVisible(true);
+                    startTime=FXGL.getGameTimer().getNow();
+                    cooling=true;
+                    FXGL.set("selectedPlantName","");
+                }
+                else if(!cooling){
+                    rectangle.setVisible(false);
+                    rectangleBG.setVisible(false);
+                }
+
             }
         });
         //鼠标移入时显示植物详情。。。
@@ -62,6 +91,35 @@ public class PlantButtonComponent extends Component {
         entity.getViewComponent().addEventHandler(MouseEvent.MOUSE_EXITED, e -> {
             //FXGL.<TowerDefenseApp>getAppCast().hideDetailPane();
         });
-
+    }
+    @Override
+    public void onUpdate(double tpf) {
+        if(cost>FXGL.geti("sunshine")){
+            afford=false;
+            rectangleBG.setVisible(true);
+        }
+        else{
+            afford=true;
+            rectangleBG.setVisible(false);
+        }
+        if(cooling)
+        {
+            elapsedTime=FXGL.getGameTimer().getNow()-startTime;
+            if(elapsedTime>CD)
+            {
+                rectangle.setVisible(false);
+                if(afford)
+                    rectangleBG.setVisible(false);
+                rectangle.setHeight(height);
+                cooling=false;
+            }
+            else
+            {
+                rectangle.setVisible(true);
+                rectangleBG.setVisible(true);
+                rectangle.setHeight(height-height*elapsedTime/CD);
+            }
+        }
     }
 }
+

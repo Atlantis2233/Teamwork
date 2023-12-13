@@ -6,6 +6,7 @@
   "height": 73,
   "cost": 50,
   "attackRate": 24.0,
+  "CD": 10,
   "components": [
     "ShootComponent"
   ],

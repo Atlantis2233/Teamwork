@@ -29,13 +29,17 @@ public class MainMenu extends FXGLMenu {
         Texture puzzle=texture("ui/mainMenu/puzzle.png",260,110);
         ImageButton adventure=new ImageButton("mainMenu/adventure(1)", 310, 130,
                 this::startNewGame);
+        ImageButton exist=new ImageButton("mainMenu/exist", 59, 26,
+                this::exist);
         smallGame.setLayoutY(150);
         smallGame.setLayoutX(380);
         puzzle.setLayoutY(230);
         puzzle.setLayoutX(383);
         adventure.setLayoutY(70);
         adventure.setLayoutX(380);
-        getContentRoot().getChildren().addAll(iv, smallGame,puzzle,adventure);
+        exist.setLayoutY(455);
+        exist.setLayoutX(668);
+        getContentRoot().getChildren().addAll(iv, smallGame,puzzle,adventure,exist);
     }
 
     @Override
@@ -59,5 +63,8 @@ public class MainMenu extends FXGLMenu {
         Pane pane=new Pane(at);
         getContentRoot().getChildren().addAll(at);
         getController().startNewGame();
+    }
+    public void exist(){
+        getController().exit();
     }
 }

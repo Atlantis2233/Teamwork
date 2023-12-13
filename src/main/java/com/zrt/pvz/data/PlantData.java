@@ -15,6 +15,7 @@ public record PlantData(
 	double attackRate,
 	int height,
 	int hp,
+	int CD,
 	List<String> components
 ) {
 }

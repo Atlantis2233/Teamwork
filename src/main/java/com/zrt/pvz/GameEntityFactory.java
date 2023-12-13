@@ -54,8 +54,8 @@ public class GameEntityFactory implements EntityFactory {
     @Spawns("emptyView")
     public Entity newEmptyView(SpawnData data){
         return FXGL.entityBuilder(data)
-                .with(new LiftComponent().
-                        xAxisDistanceDuration(400,Duration.seconds(3)))
+                //.with(new LiftComponent().xAxisDistanceDuration(400,Duration.seconds(3)))
+                .with(new MoveComponent())
                 .build();
     }
 
@@ -99,13 +99,16 @@ public class GameEntityFactory implements EntityFactory {
     public Entity newChosenBg(SpawnData data){
         Texture chosenBgTexture = FXGL.texture("ui/choose/chosenBg.png",400,80);
         double y= data.getY();
-        tt = new TranslateTransition(Duration.seconds(0.5), chosenBgTexture);
+        tt = new TranslateTransition(Duration.seconds(0.3), chosenBgTexture);
         tt.setFromY(y-48);
         tt.setToY(y);
         tt.play();
         Label sunshine=new Label("0");
-        sunshine.setLayoutX(20);
-        sunshine.setLayoutY(60);
+        tt = new TranslateTransition(Duration.seconds(0.3), sunshine);
+        tt.setFromY(15);
+        tt.setToY(60);
+        tt.play();
+        sunshine.setLayoutX(25);
         Font font=Font.loadFont(getClass().getResource("/fonts/fzyh.ttf").toExternalForm(), 15);
         sunshine.setFont(font);
         sunshine.textProperty().bind(FXGL.getip("sunshine").asString());
@@ -120,7 +123,11 @@ public class GameEntityFactory implements EntityFactory {
     public Entity newPlantButton(SpawnData data){
         PlantData plantData=data.get("plantData");
         Texture texture = FXGL.texture("ui/choose/"+plantData.name()+".png",45,60);
-
+        double y= data.getY();
+        tt = new TranslateTransition(Duration.seconds(0.3),texture);
+        tt.setFromY(y-55);
+        tt.setToY(y-10);
+        tt.play();
         return entityBuilder(data)
                 .with(new IrremovableComponent())
                 .view(texture)
@@ -161,7 +168,7 @@ public class GameEntityFactory implements EntityFactory {
 //        Texture texture=new Texture(FXGL.image(plantData.icon()));
         return FXGL.entityBuilder(data)
                 .type(EntityType.PLANT)
-                .bbox(BoundingShape.box(plantData.width(), plantData.height()))
+                .bbox(BoundingShape.box(plantData.width(),plantData.height()))
                 .collidable()
                 .with(new PositionComponent(data.get("row"),data.get("column")))
                 .with(new PlantComponent())
@@ -199,7 +206,7 @@ public class GameEntityFactory implements EntityFactory {
                 .with(new TimeComponent())
                 .with(new EffectComponent())
                 .collidable()
-                .bbox(BoundingShape.box(zombieData.getWidth(), zombieData.getHeight()))
+                .bbox(BoundingShape.box(zombieData.getWidth()*0.25, zombieData.getHeight()*0.5))
                 .with(new PositionComponent(data.get("row"),10))
                 .with(new ZombieComponent())
                 .build();
@@ -226,6 +233,8 @@ public class GameEntityFactory implements EntityFactory {
     public Entity newPlantPreview(SpawnData data){
         PlantData plantData = data.get("plantData");
         Texture texture=FXGL.texture(plantData.icon());
+        texture.setScaleX(0.9);
+        texture.setScaleY(0.9);
         texture.setOpacity(0.5);
         return entityBuilder(data)
                 .type(EntityType.PLANTPREVIEW)
@@ -258,6 +267,15 @@ public class GameEntityFactory implements EntityFactory {
                 .type(EntityType.SUNSHINECOLLECT)
                 .zIndex(Integer.MAX_VALUE)
                 .bbox(BoundingShape.box(10,10))
+                .collidable()
+                .build();
+    }
+
+    @Spawns("home")
+    public Entity newhome(SpawnData data){
+        return entityBuilder(data)
+                .type(EntityType.HOME)
+                .bbox(BoundingShape.box(1,533))
                 .collidable()
                 .build();
     }

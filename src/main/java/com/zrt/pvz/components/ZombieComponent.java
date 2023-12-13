@@ -33,6 +33,7 @@ public class ZombieComponent extends Component {
     private AnimatedTexture texture;
     private AnimationChannel animWalkRight, animWalkLeft,  animDie,animAttack;
     private boolean dead;
+    private boolean attack;
     private ProgressBar hpBar;
     private Texture slowDownTexture;
     private Point2D nextWaypoint=new Point2D(-1,0);
@@ -53,7 +54,16 @@ public class ZombieComponent extends Component {
         app.setLastZombieDiePoint(entity.getPosition());
         entity.getViewComponent().removeChild(hpBar);
         entity.getBoundingBoxComponent().clearHitBoxes();
-        texture.playAnimationChannel(animDie);
+        if(!attack){
+            texture.setTranslateY(-5);
+            texture.setTranslateX(-60);
+            texture.playAnimationChannel(animDie);
+        }
+        else if(attack){
+            texture.setTranslateY(-10);
+            texture.setTranslateX(-50);
+            texture.playAnimationChannel(animDie);
+        }
         texture.setOnCycleFinished(() -> entity.removeFromWorld());
     }
 
@@ -61,6 +71,8 @@ public class ZombieComponent extends Component {
     public void onAdded() {
         zombieData = entity.getObject("zombieData");
         moveSpeed = zombieData.getMoveSpeed();
+        moveSpeedTemp = moveSpeed;
+        attack = false;
         addHpComponentView(zombieData);
         List<AnimationData> animationData = zombieData.getAnimationData();
         for (AnimationData at : animationData) {
@@ -77,6 +89,9 @@ public class ZombieComponent extends Component {
             }
         }
         texture = new AnimatedTexture(animWalkLeft);
+        texture.setScaleX(0.9);
+        texture.setScaleY(0.9);
+        texture.setTranslateY(-50);
         entity.getViewComponent().addChild(texture);
 //        slowDownTexture = FXGL.texture("buffer/slow.png", entity.getWidth(), entity.getHeight());
 //        slowDownTexture.setVisible(false);
@@ -113,7 +128,8 @@ public class ZombieComponent extends Component {
 
     @Override
     public void onUpdate(double tpf) {
-        if (dead) {
+        if (hp.isZero()) {
+            dead = true;
             return;
         }
 //        boolean b = entity.getComponent(EffectComponent.class).hasEffect(SlowTimeEffect.class);
@@ -153,12 +169,13 @@ public class ZombieComponent extends Component {
     }
 
     public void attack(){
-        moveSpeedTemp = moveSpeed;
+        attack = true;
         moveSpeed = 0;
         texture.loopAnimationChannel(animAttack);
     }
 
     public void unAttack(){
+        attack = false;
         moveSpeed = moveSpeedTemp;
         texture.loopAnimationChannel(animWalkLeft);
     }
@@ -179,7 +196,7 @@ public class ZombieComponent extends Component {
         hpBar.setWidth(40);
         hpBar.setTranslateX((zombieData.getWidth() - 40) / 2.0);
         hpBar.setHeight(7);
-        hpBar.setTranslateY(-5);
+        hpBar.setTranslateY(-50);
         hpBar.setMaxValue(maxHp);
         hpBar.setCurrentValue(maxHp);
         hpBar.currentValueProperty().bind(hp.valueProperty());
