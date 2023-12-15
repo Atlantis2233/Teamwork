@@ -1,18 +1,29 @@
 package com.zrt.pvz.ui;
 
+import com.almasb.fxgl.animation.Interpolators;
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.MenuType;
+import com.almasb.fxgl.core.util.LazyValue;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.dsl.components.ExpireCleanComponent;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import com.almasb.fxgl.texture.Texture;
+import com.zrt.pvz.data.UserData;
 import javafx.animation.PauseTransition;
+import javafx.animation.TranslateTransition;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
+
+import java.util.List;
+
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 /**
@@ -21,9 +32,16 @@ import static com.almasb.fxgl.dsl.FXGL.*;
  * @date 2023/11/22 13:20
  */
 public class MainMenu extends FXGLMenu {
+    private TranslateTransition userBoardtt;
+    private TranslateTransition changeUsertt;
+    private final Pane defaultPane;
+    private static Text level;
+    private static Text name;
+    private  List<String> users;
 
-    public MainMenu() {
+    public MainMenu(UserData userData, List<String> user) {
         super(MenuType.MAIN_MENU);
+        users=user;
         ImageView iv = new ImageView(FXGL.image("ui/mainMenu/bg.png",FXGL.getAppWidth(),FXGL.getAppHeight()));
         Texture smallGame= texture("ui/mainMenu/smallgame.png",300,112);
         Texture puzzle=texture("ui/mainMenu/puzzle.png",260,110);
@@ -39,16 +57,72 @@ public class MainMenu extends FXGLMenu {
         adventure.setLayoutX(380);
         exist.setLayoutY(455);
         exist.setLayoutX(668);
-        getContentRoot().getChildren().addAll(iv, smallGame,puzzle,adventure,exist);
+
+        //用户名
+        name = new Text(users.get(0)+"!");
+        Font font=Font.loadFont(getClass().getResource("/fonts/fzcq.ttf").toExternalForm(), 30);
+        name.setFont(font);
+        name.setFill(Color.web("#FFFE91"));
+        name.setTranslateX(130);
+        name.setTranslateY(120);
+        name.setVisible(false);
+
+        //关卡
+        Text episode = new Text("1");
+        episode.setFont(Font.font("Arial", FontWeight.NORMAL, 15));
+        episode.setFill(Color.WHITE);
+        episode.setTranslateX(570);
+        episode.setTranslateY(200);
+        level = new Text(Integer.toString(userData.getLevel()));
+        level.setFont(Font.font("Arial", FontWeight.NORMAL, 15));
+        level.setFill(Color.WHITE);
+        level.setTranslateX(600);
+        level.setTranslateY(200);
+
+        //左上角的用户身份以及切换用户按钮
+        Texture userBoard=new Texture(FXGL.image("ui/mainMenu/userBoard.png"));
+        ImageButton changeUser=new ImageButton("mainMenu/changeUser", 291, 71,
+                this::putChangeUserScene);
+        userBoardtt=new TranslateTransition(Duration.seconds(1.0),userBoard);
+        changeUsertt=new TranslateTransition(Duration.seconds(1.0),changeUser);
+        userBoardtt.setFromX(20);// 动画位置，可调
+        userBoardtt.setToX(20);
+        userBoardtt.setFromY(-150);
+        userBoardtt.setToY(0);
+        changeUsertt.setFromX(20);// 动画位置，可调
+        changeUsertt.setToX(20);
+        changeUsertt.setFromY(-150);
+        changeUsertt.setToY(150);
+        userBoardtt.setInterpolator(Interpolators.ELASTIC.EASE_OUT());
+        changeUsertt.setInterpolator(Interpolators.ELASTIC.EASE_OUT());
+        userBoardtt.setOnFinished(e->{name.setVisible(true);});
+
+        defaultPane=new Pane(iv, smallGame,puzzle,adventure,exist,userBoard,changeUser,name,episode);
+        getContentRoot().getChildren().setAll(defaultPane,level);
     }
 
     @Override
     public void onCreate() {
+        getContentRoot().getChildren().setAll(defaultPane,level);
         FXGL.loopBGM("mainMenu.wav");
+        userBoardtt.play();
+        changeUsertt.play();
     }
 
     @Override
     protected void onUpdate(double tpf) {
+    }
+
+    public void putChangeUserScene(){
+        FXGL.getSceneService().pushSubScene(new ChangeUserDialog(users));
+    }
+
+    public void updateLevel(int newlevel){
+        level.setText(Integer.toString(newlevel));
+    }
+
+    public void updateUser(String user){
+        name.setText(user);
     }
 
     public void startNewGame() {

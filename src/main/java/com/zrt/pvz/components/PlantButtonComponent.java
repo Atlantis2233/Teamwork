@@ -1,10 +1,12 @@
 package com.zrt.pvz.components;
 
 import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import com.almasb.fxgl.texture.Texture;
+import com.zrt.pvz.EntityType;
 import com.zrt.pvz.PVZApp;
 import com.zrt.pvz.data.PlantData;
 import javafx.geometry.Pos;
@@ -14,6 +16,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+
+import java.util.List;
 
 /**
  * @author 曾瑞庭
@@ -77,6 +81,10 @@ public class PlantButtonComponent extends Component {
                     FXGL.set("selectedPlantName","");
                 }
                 else if(!cooling){
+                    List<Entity> plantsPreview = FXGL.getGameWorld().getEntitiesByType(EntityType.PLANTPREVIEW);
+                    for(Entity entity:plantsPreview){
+                        entity.removeFromWorld();
+                    }
                     rectangle.setVisible(false);
                     rectangleBG.setVisible(false);
                 }

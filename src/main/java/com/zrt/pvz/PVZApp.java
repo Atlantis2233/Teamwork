@@ -82,7 +82,9 @@ public class PVZApp extends GameApplication {
     private LazyValue<LevelEndScene> levelEndSceneLazyValue =
             new LazyValue<>(LevelEndScene::new);
     private List<String>users=new ArrayList<>();
-
+    private UserData userData;
+    private TimerAction saveUserDataTimerAction;// 定时保存的定时器
+    private MainMenu mainMenu;
     private static final List<Point2D> bornPoints= Arrays.asList(
             new Point2D(850, 80),
             new Point2D(850, 165),
@@ -104,7 +106,17 @@ public class PVZApp extends GameApplication {
             @Override
             public FXGLMenu newMainMenu() {
                 //读取文件看当前用户是谁
-                return new MainMenu();
+                users=deserializeList("src/main/resources/data/Users.ser");
+                String filePath = "src/main/resources/data/data/"+users.get(0)+"Data.ser";
+                userData=deserializeUserData(filePath);
+
+                if(userData==null){
+                    userData=new UserData(users.get(0),1);
+                    serializeUserData(userData,filePath);
+                }
+                //START_LEVEL= userData.getLevel();
+                mainMenu=new MainMenu(userData,users);
+                return mainMenu;
             }
 
             @Override
@@ -129,6 +141,22 @@ public class PVZApp extends GameApplication {
         super.onPreInit();
     }
 
+    public void addUser(String user){
+        users.add(0,user);
+        serializeList(users,"src/main/resources/data/Users.ser");
+        String filePath = "src/main/resources/data/data/"+user+"Data.ser";
+        userData=new UserData(user,1);
+        serializeUserData(userData,filePath);
+        mainMenu.updateUser(user);
+        mainMenu.updateLevel(1);
+    }
+    public void deleteUser(int index){
+        if(users.get(index)!=null){
+            users.remove(index);
+            serializeList(users,"src/main/resources/data/Users.ser");
+        }
+    }
+
     // 将List对象序列化并写入文件
     private static void serializeList(List<?> list, String fileName) {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
@@ -140,15 +168,49 @@ public class PVZApp extends GameApplication {
     }
 
     // 从文件中读取序列化的List对象
-    private static List<?> deserializeList(String fileName) {
-        List<?> deserializedList = new ArrayList<>();
+    private static List<String> deserializeList(String fileName) {
+        List<String> deserializedList = new ArrayList<>();
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
-            deserializedList = (List<?>) inputStream.readObject();
+            deserializedList = (List<String>) inputStream.readObject();
             System.out.println("从文件中反序列化List对象");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return deserializedList;
+    }
+
+    // 将UserData对象序列化并写入文件
+    private static void serializeUserData(UserData userData, String filePath) {
+        try {
+            File file = new File(filePath);
+            if (!file.exists()) {
+                file.getParentFile().mkdirs(); // 创建文件夹路径
+                file.createNewFile(); // 创建文件
+            }
+            ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file));
+            outputStream.writeObject(userData);
+            outputStream.close();
+            System.out.println("UserData对象已序列化并写入文件");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 从文件中读取序列化的UserData对象
+    private static UserData deserializeUserData(String filePath) {
+        UserData deserializedUserData = null;
+        try {
+            File file = new File(filePath);
+            if (file.exists()) {
+                ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(file));
+                deserializedUserData = (UserData) inputStream.readObject();
+                inputStream.close();
+                System.out.println("从文件中反序列化UserData对象");
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return deserializedUserData;
     }
 
     public void setLastZombieDiePoint(Point2D lastZombieDiePoint) {
@@ -344,8 +406,18 @@ public class PVZApp extends GameApplication {
     @Override
     protected void initGame() {
         getGameWorld().addEntityFactory(new GameEntityFactory());
-
+        //定时保存定时器
+        saveUserDataTimerAction = run(() -> {
+            saveUserData();
+        }, Duration.seconds(5.0));//每隔五秒保存一次
         buildAndStartLevel();
+    }
+
+    //保存进度
+    public void saveUserData(){
+        userData.setLevel(FXGL.geti("level"));
+        String filePath = "src/main/resources/data/data/"+userData.getName()+"Data.ser";
+        serializeUserData(userData,filePath);
     }
 
     public void buildAndStartLevel(){
@@ -437,6 +509,8 @@ public class PVZApp extends GameApplication {
         } else {
             FXGL.set("level", 1);
         }
+        saveUserData();
+        mainMenu.updateLevel(FXGL.geti("level"));
         //加载关卡
         buildAndStartLevel();
     }
