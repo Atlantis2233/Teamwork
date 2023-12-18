@@ -9,6 +9,7 @@ import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import com.almasb.fxgl.texture.Texture;
+import com.almasb.fxgl.time.LocalTimer;
 import com.almasb.fxgl.ui.ProgressBar;
 import com.zrt.pvz.PVZApp;
 import com.zrt.pvz.data.*;
@@ -17,11 +18,11 @@ import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import javafx.scene.effect.ColorAdjust;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.util.Pair;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author zrt
@@ -31,38 +32,53 @@ import java.util.List;
  */
 public class ZombieComponent extends Component {
     private AnimatedTexture texture;
-    private AnimationChannel animWalkRight, animWalkLeft,  animDie,animAttack;
+    private Map<String,AnimationChannel> animMap = new HashMap<>();
     private boolean dead;
-    private boolean attack;
+    private boolean attack,boom,kill;
+    private LocalTimer killTimer;
+    private Duration beforeKilledDuration;
     private ProgressBar hpBar;
     private Texture slowDownTexture;
     private Point2D nextWaypoint=new Point2D(-1,0);
+    private int type = 0;
     private int index = 0;
     private int moveSpeed;
     private HealthIntComponent hp;
     private ZombieData zombieData;
     private int moveSpeedTemp;
+    private SimpleDoubleProperty progress;
+    private double lastTime=5;//可改
 
     public boolean isDead() {
         return dead;
     }
 
     public void setDead(boolean dead) {
+        moveSpeed = 0;
         this.dead = dead;
         FXGL.inc("kill", 1);
         PVZApp app=(PVZApp)FXGL.getApp();
         app.setLastZombieDiePoint(entity.getPosition());
         entity.getViewComponent().removeChild(hpBar);
         entity.getBoundingBoxComponent().clearHitBoxes();
+        if(kill){
+            entity.removeFromWorld();
+        }
         if(!attack){
             texture.setTranslateY(-5);
             texture.setTranslateX(-60);
-            texture.playAnimationChannel(animDie);
         }
         else if(attack){
             texture.setTranslateY(-10);
             texture.setTranslateX(-50);
-            texture.playAnimationChannel(animDie);
+        }
+        if(boom){
+            texture.setTranslateY(-43);
+            texture.setTranslateX(-22);
+            texture.playAnimationChannel(animMap.get("boomDie"));
+        }
+        else {
+            texture.playAnimationChannel(animMap.get("die"));
         }
         texture.setOnCycleFinished(() -> entity.removeFromWorld());
     }
@@ -73,22 +89,14 @@ public class ZombieComponent extends Component {
         moveSpeed = zombieData.getMoveSpeed();
         moveSpeedTemp = moveSpeed;
         attack = false;
+        boom = false;
+        kill = false;
         addHpComponentView(zombieData);
         List<AnimationData> animationData = zombieData.getAnimationData();
         for (AnimationData at : animationData) {
-            if (at.status().equalsIgnoreCase("right")) {
-                animWalkRight = initAc(at);
-            } else if (at.status().equalsIgnoreCase("left")) {
-                animWalkLeft = initAc(at);
-            }
-             else if (at.status().equalsIgnoreCase("die")) {
-                animDie = initAc(at);
-            }
-            else if (at.status().equalsIgnoreCase("attack")) {
-                animAttack = initAc(at);
-            }
+            animMap.put(at.status(),initAc(at));
         }
-        texture = new AnimatedTexture(animWalkLeft);
+        texture = new AnimatedTexture(animMap.get("left"));
         texture.setScaleX(0.9);
         texture.setScaleY(0.9);
         texture.setTranslateY(-50);
@@ -101,7 +109,7 @@ public class ZombieComponent extends Component {
     }
 
     private void walkAnim() {
-        texture.loopAnimationChannel(animWalkLeft);
+        texture.loopAnimationChannel(animMap.get("left"));
 
 //        String dir = pointInfos.get(index).getValue();
 //        if ("left".equals(dir)) {
@@ -128,9 +136,17 @@ public class ZombieComponent extends Component {
 
     @Override
     public void onUpdate(double tpf) {
+        if(kill && killTimer.elapsed(beforeKilledDuration)){
+            setDead(true);
+        }
         if (hp.isZero()) {
             dead = true;
             return;
+        }
+        if(progress!=null){
+            progress.set(progress.get()+tpf);
+            if(progress.get()>0.42*lastTime)
+                updateBrightness(0);
         }
 //        boolean b = entity.getComponent(EffectComponent.class).hasEffect(SlowTimeEffect.class);
 //        slowDownTexture.setVisible(b);
@@ -158,7 +174,9 @@ public class ZombieComponent extends Component {
         String effectName = bulletData.effectData().name();
         //减速
         if (effectName.equalsIgnoreCase(ConfigData.EFFECT_SLOW_DOWN)) {
-            entity.getComponent(EffectComponent.class).startEffect(new SlowTimeEffect(0.4, Duration.seconds(5)));
+            entity.getComponent(EffectComponent.class).startEffect(new SlowTimeEffect(0.4, Duration.seconds(lastTime)));
+            progress=new SimpleDoubleProperty();
+            updateBrightness(-7);
         }
 
         hp.damage(damage);
@@ -168,16 +186,48 @@ public class ZombieComponent extends Component {
         }
     }
 
+    public void boomAttacked(BombData bombData){
+        int damage = bombData.attackDamage();
+        if(damage>=hp.getValue()){
+            boom = true;
+            setDead(true);
+        }
+    }
+
     public void attack(){
         attack = true;
         moveSpeed = 0;
-        texture.loopAnimationChannel(animAttack);
+        texture.loopAnimationChannel(animMap.get("attack"));
     }
 
     public void unAttack(){
         attack = false;
         moveSpeed = moveSpeedTemp;
-        texture.loopAnimationChannel(animWalkLeft);
+        texture.loopAnimationChannel(animMap.get("left"));
+    }
+
+    public void trigger(TriggerData triggerData){
+        if(triggerData.effect().equals("kill")){
+            kill=true;
+            beforeKilledDuration = Duration.seconds(triggerData.animDuration());
+            killTimer = FXGL.newLocalTimer();
+            killTimer.capture();
+        }
+    }
+
+    public void changeStatus(int type){
+        if(this.type==type)return;
+        this.type=type;
+        animMap.replace("right",animMap.get("right"+type));
+        animMap.replace("left",animMap.get("left"+type));
+        animMap.replace("attack",animMap.get("attack"+type));
+        if(attack)attack();
+        else unAttack();
+
+    }
+
+    public HealthIntComponent getHp() {
+        return hp;
     }
 
     private AnimationChannel initAc(AnimationData at) {
@@ -212,5 +262,13 @@ public class ZombieComponent extends Component {
         });
         entity.getViewComponent().addChild(hpBar);
         entity.addComponent(hp);
+    }
+    private void updateBrightness(double Hue) {
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setHue(Hue);
+        colorAdjust.setBrightness(Hue/40);
+        if(entity!=null){
+            entity.getViewComponent().getChildren().get(1).setEffect(colorAdjust);
+        }
     }
 }

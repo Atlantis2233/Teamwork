@@ -12,10 +12,16 @@ public record PlantData(
 	String icon,
 	int width,
 	BulletData bulletData,
+	BombData bombData,
+	TriggerData triggerData,
+	StatusData statusData,
 	double attackRate,
 	int height,
 	int hp,
 	int CD,
+	int offsetX,
+	int offsetY,
+	double shootInterval,
 	List<String> components
 ) {
 }

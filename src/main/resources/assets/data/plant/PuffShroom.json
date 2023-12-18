@@ -1,0 +1,48 @@
+{
+  "name": "PuffShroom",
+  "icon": "plant/PuffShroom/PuffShroom.png",
+  "hp": 150,
+  "width": 40,
+  "height": 66,
+  "offsetX": -5,
+  "offsetY": 0,
+  "cost": 0,
+  "attackRate": 1.4,
+  "CD": 5,
+  "components": [
+    "ShootComponent",
+    "ShroomComponent"
+  ],
+  "animationData": [{
+    "status": "normal",
+    "imageName": "plant/PuffShroom/PuffShroom/PuffShroom_%d.png",
+    "width": 40,
+    "height": 66,
+    "channelDuration": 1.4,
+    "FrameNumber": 14
+  },
+    {
+      "status": "sleep",
+      "imageName": "plant/PuffShroom/PuffShroomSleep/PuffShroomSleep_%d.png",
+      "width": 40,
+      "height": 66,
+      "channelDuration": 1.7,
+      "FrameNumber": 17
+    }
+  ],
+  "bulletData": {
+    "imageName": "plant/PuffShroom/Puff.png",
+    "width": 25,
+    "height": 15,
+    "offsetY": -20,
+    "attackDamage": 10,
+    "range": 500,
+    "speed": 250,
+    "effectData": {
+      "name": "群攻",
+      "imgName": "tower/arrow/effect.png",
+      "desc": "群攻: 同时攻击多个敌人",
+      "descEn": "Group Attack."
+    }
+  }
+}

@@ -96,7 +96,7 @@ public class ProduceSunshineComponent extends Component {
         produceTimer.capture();
     }
 
-    private void spawnSunshine(){
+    public void spawnSunshine(){
         reverseAnimation=true;
         Point2D point2D=new Point2D(FXGLMath.random(entity.getX()-10,entity.getX()+30)//生成阳光的范围，可调
                 , entity.getY()+ entity.getHeight()/2);

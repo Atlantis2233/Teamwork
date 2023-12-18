@@ -1,0 +1,58 @@
+{
+  "hp": 600,
+  "reward": 30,
+  "moveSpeed": 10,
+  "width": 98,
+  "height": 130,
+  "preview": "zombie/BucketheadZombie/BucketheadZombie.png",
+  "attackDamage": 100,
+  "damageDuration": 1.0,
+  "bboxData": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 43
+  },
+  "animationData": [
+    {
+      "status": "right",
+      "imageName": "zombie/BucketheadZombie/BucketheadZombie/BucketheadZombie_%d.png",
+      "width": 96,
+      "height": 143,
+      "channelDuration": 3.0,
+      "FrameNumber": 14
+    },
+    {
+      "status": "left",
+      "imageName": "zombie/BucketheadZombie/BucketheadZombie/BucketheadZombie_%d.png",
+      "width": 96,
+      "height": 143,
+      "channelDuration": 3.0,
+      "FrameNumber": 14
+    },
+    {
+      "status": "die",
+      "imageName": "zombie/NormalZombie/ZombieDie/ZombieDie_%d.png",
+      "width": 166,
+      "height": 88,
+      "channelDuration": 4.0,
+      "FrameNumber": 10
+    },
+    {
+      "status": "attack",
+      "imageName": "zombie/BucketheadZombie/BucketheadZombieAttack/BucketheadZombieAttack_%d.png",
+      "width": 111,
+      "height": 144,
+      "channelDuration": 6.0,
+      "FrameNumber": 10
+    },
+    {
+      "status": "show",
+      "imageName": "zombie/BucketheadZombie/BucketheadZombieAttack/BucketheadZombieAttack_%d.png",
+      "width": 111,
+      "height": 144,
+      "channelDuration": 6.0,
+      "FrameNumber": 10
+    }
+  ]
+}

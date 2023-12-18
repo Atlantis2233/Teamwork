@@ -35,13 +35,15 @@ public class GameMenu extends FXGLMenu {
         ImageButton MainMenu=new ImageButton("gameMenu/mainMenu", 209, 47,
                 this::goToMainMenu);
 
-        Return.setLayoutY(10);
-        Return.setLayoutX(300);
-        Restart.setLayoutY(230);
-        Restart.setLayoutX(383);
-        MainMenu.setLayoutY(70);
-        MainMenu.setLayoutX(380);
+        Return.setLayoutY(400);
+        Return.setLayoutX(200);
+        Restart.setLayoutY(280);
+        Restart.setLayoutX(270);
+        MainMenu.setLayoutY(335);
+        MainMenu.setLayoutX(270);
         StackPane pane = new StackPane(iv);
+        pane.setLayoutX(170);
+        pane.setLayoutY(20);
         getContentRoot().getChildren().addAll(pane,Return,MainMenu,Restart);
     }
 

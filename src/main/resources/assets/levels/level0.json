@@ -1,0 +1,16 @@
+{
+  "name": "特殊关卡",
+  "map": "map/map1.jpg",
+  "type": "day",
+  "zombieMap": {
+    "NormalZombie":40,
+    "ConeheadZombie": 30
+  },
+  "plants": ["SunFlower","PeaShooter","WallNut"],
+  "produceSunshineInterval": 12.5,
+  "interval": 10.0,
+  "amount": 2,
+  "waves": [60.0],
+  "width": 1232,
+  "reward": "WallNut"
+}

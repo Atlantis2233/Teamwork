@@ -1,0 +1,38 @@
+{
+  "name": "RepeaterPea",
+  "icon": "plant/RepeaterPea/RepeaterPea.png",
+  "hp": 400,
+  "width": 71,
+  "height": 71,
+  "cost": 200,
+  "attackRate": 1.4,
+  "shootInterval": 0.18,
+  "CD": 5,
+  "components": [
+    "ShootComponent"
+  ],
+  "animationData": [{
+    "status": "normal",
+    "imageName": "plant/RepeaterPea/RepeaterPea_%d.png",
+    "width": 71,
+    "height": 71,
+    "channelDuration": 1.4,
+    "FrameNumber": 13
+  }],
+  "bulletData": {
+    "imageName": "plant/RepeaterPea/PeaNormal.png",
+    "width": 25,
+    "height": 15,
+    "attackDamage": 20,
+    "range": 1000,
+    "speed": 400,
+    "number": 2,
+    "line": 1,
+    "effectData": {
+      "name": "群攻",
+      "imgName": "tower/arrow/effect.png",
+      "desc": "群攻: 同时攻击多个敌人",
+      "descEn": "Group Attack."
+    }
+  }
+}

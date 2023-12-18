@@ -24,6 +24,8 @@ public class ShootComponent extends Component {
     private Point2D plantPosition;
     private int row;
     private int column;
+    private int bulletShootOrder;
+    private Duration shootInterval;
 
     @Override
     public void onAdded() {
@@ -32,6 +34,7 @@ public class ShootComponent extends Component {
         column=entity.getComponent(PositionComponent.class).getColumn();
         plantPosition = entity.getPosition();
         attackRate = Duration.seconds(plantData.attackRate());
+        shootInterval=Duration.seconds(plantData.shootInterval());
         bulletData = plantData.bulletData();
         shootTimer = FXGL.newLocalTimer();
         shootTimer.capture();
@@ -39,19 +42,29 @@ public class ShootComponent extends Component {
 
     @Override
     public void onUpdate(double tpf) {
+        if(bulletShootOrder<bulletData.number())
+        {
+            if(shootTimer.elapsed(shootInterval)) {
+                attack();
+            }
+        }
         if (!shootTimer.elapsed(attackRate)) {
             return;
         }
+        bulletShootOrder=0;
         attack();
     }
 
-    private void attack() {
+    public void attack() {
         FXGL.getGameWorld().getClosestEntity(entity,
                         e -> e.isType(EntityType.ZOMBIE)
-                                && e.getComponent(PositionComponent.class).getRow()==row
+                                && (e.getComponent(PositionComponent.class).getRow()==row
+                                ||e.getComponent(PositionComponent.class).getRow()==row-bulletData.line()/2
+                                ||e.getComponent(PositionComponent.class).getRow()==row+bulletData.line()/2)
                                 && e.getPosition().distance(plantPosition) < bulletData.range()
                 )
                 .ifPresent(enemy -> {
+                    bulletShootOrder++;
                     shootBullet(enemy);
                     shootTimer.capture();
                 });
@@ -60,7 +73,7 @@ public class ShootComponent extends Component {
     private void shootBullet(Entity enemy) {
         Point2D dir = new Point2D(1,0); //发射子弹方向，可调
         FXGL.spawn("bullet", new SpawnData(
-                entity.getCenter().subtract(0, bulletData.height()*2.5)) //生成子弹的位置，可调
+                entity.getCenter().subtract(0, bulletData.height()+bulletData.offsetY())) //生成子弹的位置，可调
                 .put("bulletData", bulletData)
                 .put("dir", dir)
         );

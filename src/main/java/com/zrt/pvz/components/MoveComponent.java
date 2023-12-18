@@ -7,6 +7,7 @@ package com.zrt.pvz.components;
  */
 
 import com.almasb.fxgl.core.math.Vec2;
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.component.Component;
 import javafx.geometry.Point2D;
 
@@ -24,9 +25,11 @@ public class MoveComponent extends Component {
     private Point2D endPoint=new Point2D(0,0);
     private final Point2D mulPointX=new Point2D(1,0);
     private final Point2D mulPointY=new Point2D(0,1);
+    private boolean isRebound=false; //判断是否需要反弹
+    private double transPosX=100.0; //初始偏移量
     @Override
     public void onUpdate(double tpf) {
-        //System.out.println(String.format("当前状态下  x速度为=[%f]， Y速度为=[%f] ",speedX,speedY) );
+
         if (speedX != 0d) {
             Point2D velocity = mulPointX
                     .multiply(speedX);
@@ -46,16 +49,29 @@ public class MoveComponent extends Component {
 //                    .mulLocal(speedY);
 //            entity.translate(dir);
         }
-        speed=speedX*speedX+speedY*speedY;
-        if(endPoint.distance(entity.getPosition()) < speed){
-            stopX();
-            stopY();
+        if(isRebound){
+            // 检测边界碰撞,加一个初始偏移量
+            if (entity.getX() <= 0+transPosX || entity.getX() >= FXGL.getAppWidth() - entity.getWidth()+transPosX) {
+                // 如果碰到左右边界，反转水平速度方向
+                speedX=-speedX;
+            }
+            if (entity.getY() <= 0 || entity.getY() >= FXGL.getAppHeight() - entity.getHeight()) {
+                // 如果碰到上下边界，反转垂直速度方向
+                speedY=-speedY;
+            }
         }
-        if (!speedXAdd) {
-            slowDownSpeed(true);
-        }
-        if (!speedYAdd) {
-            slowDownSpeed(false);
+        else{
+            speed=speedX*speedX+speedY*speedY;
+            if(endPoint.distance(entity.getPosition()) < speed){
+                stopX();
+                stopY();
+            }
+            if (!speedXAdd) {
+                slowDownSpeed(true);
+            }
+            if (!speedYAdd) {
+                slowDownSpeed(false);
+            }
         }
     }
 
@@ -138,6 +154,7 @@ public class MoveComponent extends Component {
     }
 
     public void moveFromTo(Point2D start, Point2D end, Duration time){
+        isRebound=false;
         endPoint=end;
         speedX=(end.getX()-start.getX())/end.distance(start)/(double)time.toSeconds();
         speedY=(end.getY()-start.getY())/end.distance(start)/(double)time.toSeconds();
@@ -146,6 +163,7 @@ public class MoveComponent extends Component {
     }
 
     public void moveFromTo(Point2D start, Point2D end, double speedValue){
+        isRebound=false;
         endPoint=end;
         speedX=(end.getX()-start.getX())/end.distance(start)*speedValue;
         speedY=(end.getY()-start.getY())/end.distance(start)*speedValue;
@@ -153,6 +171,19 @@ public class MoveComponent extends Component {
         speedYAdd=true;
     }
 
+    //带反弹的运动，这里设定endPoint远一点，防止到达
+    public void moveFromToRebound(Point2D start, Point2D end, double speedValue){
+        endPoint=end.multiply(10);
+        speedX=(end.getX()-start.getX())/end.distance(start)*speedValue;
+        speedY=(end.getY()-start.getY())/end.distance(start)*speedValue;
+        speedXAdd=true;
+        speedYAdd=true;
+        isRebound=true;
+    }
+
+    public void setRebound(boolean rebound) {
+        isRebound = rebound;
+    }
 
     public double getSpeedX() {
         return speedX;

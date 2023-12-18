@@ -1,15 +1,19 @@
 {
   "name": "关卡 1-1",
   "map": "map/map1.jpg",
+  "type": "day",
   "zombieMap": {
     "NormalZombie":40,
     "ConeheadZombie": 30
   },
-  "plants": ["SunFlower","PeaShooter"],
+  "plants": ["SunFlower","PeaShooter","WallNut","CherryBomb","PotatoMine","Chomper","Puffshroom","SnowPea","RepeaterPea"],
   "produceSunshineInterval": 12.5,
   "interval": 10.0,
   "amount": 2,
-  "waves": [60.0],
+  "waves": [60.0,30.0],
+  "waveZombieNumber": [10,10],
   "width": 1232,
-  "reward": "WallNut"
+  "reward": "WallNut",
+  "rewardPlantIntroduction": "阻挡僵尸并保护您的其他植物",
+  "rewardPlantIntroductionName": "坚果墙"
 }

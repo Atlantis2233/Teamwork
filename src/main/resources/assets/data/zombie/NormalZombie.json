@@ -1,0 +1,66 @@
+{
+  "hp": 200,
+  "reward": 30,
+  "moveSpeed": 10,
+  "width": 98,
+  "height": 130,
+  "preview": "zombie/NormalZombie/NormalZombie.png",
+  "attackDamage": 100,
+  "damageDuration": 1.0,
+  "bboxData": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 43
+  },
+  "animationData": [
+    {
+      "status": "show",
+      "imageName": "zombie/NormalZombie/ZombieShow/ZombieShow_%d.png",
+      "width": 98,
+      "height": 130,
+      "channelDuration": 3.0,
+      "FrameNumber": 5
+    },
+    {
+      "status": "right",
+      "imageName": "zombie/NormalZombie/Zombie/Zombie_%d.png",
+      "width": 98,
+      "height": 130,
+      "channelDuration": 3.0,
+      "FrameNumber": 22
+    },
+    {
+      "status": "left",
+      "imageName": "zombie/NormalZombie/Zombie/Zombie_%d.png",
+      "width": 98,
+      "height": 130,
+      "channelDuration": 3.0,
+      "FrameNumber": 22
+    },
+    {
+      "status": "die",
+      "imageName": "zombie/NormalZombie/ZombieDie/ZombieDie_%d.png",
+      "width": 166,
+      "height": 88,
+      "channelDuration": 4.0,
+      "FrameNumber": 10
+    },
+    {
+      "status": "boomDie",
+      "imageName": "zombie/NormalZombie/BoomDie/BoomDie_%d.png",
+      "width": 114,
+      "height": 126,
+      "channelDuration": 4.0,
+      "FrameNumber": 20
+    },
+    {
+      "status": "attack",
+      "imageName": "zombie/NormalZombie/ZombieAttack/ZombieAttack_%d.png",
+      "width": 98,
+      "height": 125,
+      "channelDuration": 6.0,
+      "FrameNumber": 21
+    }
+  ]
+}

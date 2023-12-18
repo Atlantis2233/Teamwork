@@ -1,0 +1,27 @@
+{
+  "name": "SunFlower",
+  "icon": "plant/SunFlower/SunFlower.png",
+  "hp": 400,
+  "width": 73,
+  "height": 74,
+  "offsetX": -1,
+  "offsetY": 0,
+  "cost": 50,
+  "attackRate": 10.0,
+  "CD": 5,
+  "components": [
+    "ProduceSunshineComponent"
+  ],
+  "animationData": [{
+    "status": "normal",
+    "imageName": "plant/SunFlower/SunFlower/SunFlower_%d.png",
+    "width": 73,
+    "height": 74,
+    "channelDuration": 2.0,
+    "FrameNumber": 18
+  }],
+  "bulletData": {
+    "attackDamage": 20,
+    "speed": 400
+  }
+}

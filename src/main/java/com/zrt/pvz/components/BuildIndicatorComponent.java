@@ -53,6 +53,9 @@ public class BuildIndicatorComponent extends Component {
         if(plantName.equals("shovel")){
             texture.setImage(FXGL.image("shovel/shovel.png"));
         }
+        else if(plantName.equals("powerBeat")){
+            texture.setImage(FXGL.image("powerBeat/powerBeat.png"));
+        }
         else{
             texture.setImage(FXGL.image("plant/"+plantName+"/"+plantName+".png"));
         }

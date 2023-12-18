@@ -10,6 +10,9 @@ public record BulletData(
 	int range,
 	int speed,
 	int height,
-	int attackDamage
+	int offsetY,
+	int attackDamage,
+	int number,
+	int line
 ) {
 }

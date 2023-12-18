@@ -1,0 +1,33 @@
+{
+  "name": "CherryBomb",
+  "icon": "plant/CherryBomb/CherryBomb.png",
+  "hp": 114514,
+  "width": 101,
+  "height": 73,
+  "offsetX": -15,
+  "offsetY": 0,
+  "cost": 150,
+  "attackRate": 10.0,
+  "CD": 15,
+  "components": [
+    "BombComponent"
+  ],
+  "animationData": [{
+    "status": "normal",
+    "imageName": "plant/CherryBomb/CherryBomb_%d.png",
+    "width": 101,
+    "height": 73,
+    "channelDuration": 0.8,
+    "FrameNumber": 7
+  }],
+  "bombData": {
+    "imageName": "plant/CherryBomb/CherryBombExplode.png",
+    "width": 240,
+    "height": 250,
+    "offsetX": 125,
+    "offsetY": 135,
+    "attackDamage": 5000,
+    "prepareDuration": 0.8,
+    "boomDuration": 0.2
+  }
+}

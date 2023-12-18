@@ -9,6 +9,7 @@ import java.util.Map;
 public record LevelData(
 	int amount, //总数量
 	String name, // 关卡名称
+	String type, //天气
 	Map<String, Integer> zombieMap, //僵尸种类及其权重
 	double interval, //产生僵尸的间隔
 	double produceSunshineInterval,//生成阳光间隔
@@ -16,6 +17,9 @@ public record LevelData(
 	String reward,
 	String map, //地图
 	List<Double> waves, //波次
-	int width //地图长度
+	int width, //地图长度
+	List<Integer> waveZombieNumber,
+	String rewardPlantIntroduction, //植物的相关介绍
+	String rewardPlantIntroductionName //植物介绍时的中文名
 ) {
 }

@@ -9,6 +9,7 @@ import com.almasb.fxgl.dsl.components.ExpireCleanComponent;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import com.almasb.fxgl.texture.Texture;
+import com.zrt.pvz.PVZApp;
 import com.zrt.pvz.data.UserData;
 import javafx.animation.PauseTransition;
 import javafx.animation.TranslateTransition;
@@ -43,8 +44,10 @@ public class MainMenu extends FXGLMenu {
         super(MenuType.MAIN_MENU);
         users=user;
         ImageView iv = new ImageView(FXGL.image("ui/mainMenu/bg.png",FXGL.getAppWidth(),FXGL.getAppHeight()));
-        Texture smallGame= texture("ui/mainMenu/smallgame.png",300,112);
+        //Texture smallGame= texture("ui/mainMenu/smallgame1.png",300,112);
         Texture puzzle=texture("ui/mainMenu/puzzle.png",260,110);
+        ImageButton smallGame=new ImageButton("mainMenu/smallGame", 300, 112,
+                this::StartAmusementGame);
         ImageButton adventure=new ImageButton("mainMenu/adventure(1)", 310, 130,
                 this::startNewGame);
         ImageButton exist=new ImageButton("mainMenu/exist", 59, 26,
@@ -71,13 +74,13 @@ public class MainMenu extends FXGLMenu {
         Text episode = new Text("1");
         episode.setFont(Font.font("Arial", FontWeight.NORMAL, 15));
         episode.setFill(Color.WHITE);
-        episode.setTranslateX(570);
-        episode.setTranslateY(200);
+        episode.setTranslateX(521);
+        episode.setTranslateY(161);
         level = new Text(Integer.toString(userData.getLevel()));
         level.setFont(Font.font("Arial", FontWeight.NORMAL, 15));
         level.setFill(Color.WHITE);
-        level.setTranslateX(600);
-        level.setTranslateY(200);
+        level.setTranslateX(545);
+        level.setTranslateY(165);
 
         //左上角的用户身份以及切换用户按钮
         Texture userBoard=new Texture(FXGL.image("ui/mainMenu/userBoard.png"));
@@ -127,7 +130,6 @@ public class MainMenu extends FXGLMenu {
 
     public void startNewGame() {
         Image image=FXGL.image("ui/mainMenu/ZombieHand.png");
-
         AnimatedTexture at=new AnimatedTexture(new AnimationChannel(image
                 , Duration.seconds(1.5),7));
         at.setOnRotationFinished(event->{
@@ -136,8 +138,19 @@ public class MainMenu extends FXGLMenu {
         at.play();
         Pane pane=new Pane(at);
         getContentRoot().getChildren().addAll(at);
+
+        PVZApp pvzApp=(PVZApp) FXGL.getApp();
+        pvzApp.setSpecialLevel(false);
         getController().startNewGame();
     }
+
+    public void StartAmusementGame(){
+        PVZApp pvzApp=(PVZApp) FXGL.getApp();
+        pvzApp.setSpecialLevel(true);
+        getController().startNewGame();
+    }
+
+
     public void exist(){
         getController().exit();
     }

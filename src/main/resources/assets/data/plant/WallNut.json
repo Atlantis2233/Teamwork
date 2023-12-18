@@ -1,0 +1,22 @@
+{
+  "name": "WallNut",
+  "icon": "plant/WallNut/WallNut.png",
+  "hp": 2000,
+  "width": 65,
+  "height": 73,
+  "offsetX": 0,
+  "offsetY": 0,
+  "cost": 50,
+  "attackRate": 24.0,
+  "CD": 10,
+  "components": [
+  ],
+  "animationData": [{
+    "status": "normal",
+    "imageName": "plant/WallNut/WallNut/WallNut_%d.png",
+    "width": 65,
+    "height": 73,
+    "channelDuration": 1.5,
+    "FrameNumber": 16
+  }]
+}

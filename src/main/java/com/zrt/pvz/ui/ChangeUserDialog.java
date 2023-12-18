@@ -29,7 +29,10 @@ import static com.almasb.fxgl.dsl.FXGL.texture;
 public class ChangeUserDialog extends SubScene {
     private ListView<String> listView;
     private ObservableList<String> observableDataList;
+    private String selectedUser;
     public ChangeUserDialog(List<String> users) {
+        selectedUser=users.get(0); //初始默认设置为第一个
+
         ImageView iv = new ImageView(FXGL.image("ui/changeUserDialog/dialog.png",408,492));
         iv.setFitWidth(408);
         iv.setFitHeight(492);
@@ -39,20 +42,20 @@ public class ChangeUserDialog extends SubScene {
         ImageButton delete=new ImageButton("changeUserDialog/delete", 164, 50,
                 this::Delete);
         ImageButton ok=new ImageButton("changeUserDialog/ok", 166, 50,
-                this::ReturnMainMenu);
+                this::ChangeUser);
         ImageButton cancel=new ImageButton("changeUserDialog/cancel", 164, 50,
                 this::ReturnMainMenu);
         iv.setTranslateX((FXGL.getAppWidth()-iv.getFitWidth())/2);
         iv.setTranslateY((FXGL.getAppHeight()-iv.getFitHeight())/2);
         //调整位置，可调
-        rename.setLayoutX(250);
-        rename.setLayoutY(350);
-        delete.setLayoutX(400);
-        delete.setLayoutY(350);
-        ok.setLayoutX(250);
-        ok.setLayoutY(400);
-        cancel.setLayoutX(400);
-        cancel.setLayoutY(400);
+        rename.setLayoutX(200);
+        rename.setLayoutY(400);
+        ok.setLayoutX(200);
+        ok.setLayoutY(450);
+        delete.setLayoutX(377);
+        delete.setLayoutY(400);
+        cancel.setLayoutX(377);
+        cancel.setLayoutY(450);
 
         //用户信息，这里只显示文字，设置按钮并不能弹窗改变，后续再写
         observableDataList = FXCollections.observableArrayList(users);
@@ -69,13 +72,11 @@ public class ChangeUserDialog extends SubScene {
         listView.setCellFactory(param -> new CustomListCell());
 
         listView.setOnMouseClicked(event -> {
-            String selectedUser = listView.getSelectionModel().getSelectedItem();
+            selectedUser = listView.getSelectionModel().getSelectedItem();
             if (selectedUser != null) {
                 if(selectedUser.equals("(建立一位新的用户)")){
                     CreateNewUser();
                 }
-                System.out.println("用户点击了：" + selectedUser);
-                // 在这里执行你的逻辑操作
             }
         });
         // 添加 "(建立一位新的用户)" 到列表末尾
@@ -84,15 +85,25 @@ public class ChangeUserDialog extends SubScene {
         usersVBox.getChildren().add(listView);
         //位置，可调
         usersVBox.setPrefHeight(150);
-        usersVBox.setLayoutY(150);
-        usersVBox.setLayoutX(200);
+        usersVBox.setLayoutY(185);
+        usersVBox.setLayoutX(250);
 
         getContentRoot().getChildren().setAll(iv,rename,delete,ok,cancel,usersVBox);
     }
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
+
     //重命名对话框，记得修改（还没写）
     public void Rename(){
-        System.out.println("Rename");
+        FXGL.getSceneService().pushSubScene(new ReNameDialog(selectedUser));
+    }
+
+    public void Rename(String newName){
+        observableDataList.set(observableDataList.indexOf(selectedUser),newName);
+        selectedUser=newName;
     }
 
     //删除用户，也没写对话框，但可以删除
@@ -111,6 +122,14 @@ public class ChangeUserDialog extends SubScene {
     //创建新用户
     public void CreateNewUser(){
         FXGL.getSceneService().pushSubScene(new CreateNewUser());
+    }
+
+    public void ChangeUser(){
+        if(!selectedUser.equals(observableDataList.get(0))){
+            PVZApp pvzApp=(PVZApp) FXGL.getApp();
+            pvzApp.ChangeUser(selectedUser);
+        }
+        FXGL.getSceneService().popSubScene();
     }
 
     // 自定义 ListCell 以放置按钮

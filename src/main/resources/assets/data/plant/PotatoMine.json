@@ -1,0 +1,63 @@
+{
+  "name": "PotatoMine",
+  "icon": "plant/PotatoMine/PotatoMine.png",
+  "hp": 114514,
+  "width": 75,
+  "height": 55,
+  "offsetX": -5,
+  "offsetY": 0,
+  "cost": 25,
+  "attackRate": 10.0,
+  "CD": 10,
+  "components": [
+    "BombComponent",
+    "TriggerComponent"
+  ],
+  "animationData": [
+    {
+      "status": "unprepared",
+      "imageName": "plant/PotatoMine/PotatoMineInit/PotatoMineInit_0.png",
+      "width": 75,
+      "height": 55,
+      "channelDuration": 0.1,
+      "FrameNumber": 1
+    },
+    {
+      "status": "prepared",
+      "imageName": "plant/PotatoMine/PotatoMine/PotatoMine_%d.png",
+      "width": 75,
+      "height": 55,
+      "channelDuration": 1.2,
+      "FrameNumber": 8
+    },
+    {
+      "status": "beingTriggered",
+      "imageName": "plant/PotatoMine/PotatoMineExplode/PotatoMineExplode_0.png",
+      "width": 105,
+      "height": 55,
+      "channelDuration": 0.5,
+      "FrameNumber": 1
+    }
+  ],
+  "bombData": {
+    "imageName": "plant/PotatoMine/PotatoMineExplode/explodeTxt.png",
+    "width": 150,
+    "height": 90,
+    "offsetX": 75,
+    "offsetY": 55,
+    "attackDamage": 5000,
+    "prepareDuration": 0,
+    "boomDuration": 0.1
+  },
+  "triggerData": {
+    "width": 80,
+    "height": 55,
+    "offsetX": 40,
+    "offsetY": 27,
+    "isReusable": false,
+    "effect": "bomb",
+    "prepareDuration": 8.0,
+    "CD": 114,
+    "animDuration": 0.2
+  }
+}

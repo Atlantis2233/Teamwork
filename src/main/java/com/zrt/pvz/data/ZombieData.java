@@ -12,9 +12,12 @@ public class ZombieData {
 	private int hp;
 	private int width;
 	private BboxData bboxData;
+	private BombData bombData;
+	private StatusData statusData;
 	private int height;
 	private int attackDamage;
 	private double damageDuration;
+	private List<String> components;
 
 	public int getAttackDamage() {
 		return attackDamage;
@@ -62,6 +65,18 @@ public class ZombieData {
 
 	public BboxData getBboxData(){
 		return bboxData;
+	}
+
+	public BombData getBombData() {
+		return bombData;
+	}
+
+	public StatusData getStatusData() {
+		return statusData;
+	}
+
+	public List<String> getComponents() {
+		return components;
 	}
 
 	public int getHeight(){

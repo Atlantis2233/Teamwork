@@ -1,5 +1,6 @@
 package com.zrt.pvz;
 
+import com.almasb.fxgl.dsl.EntityBuilder;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.dsl.components.*;
 import com.almasb.fxgl.dsl.views.ScrollingBackgroundView;
@@ -14,7 +15,10 @@ import com.zrt.pvz.components.*;
 import com.zrt.pvz.data.*;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Orientation;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -22,6 +26,7 @@ import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.almasb.fxgl.dsl.FXGL.entityBuilder;
 
@@ -35,8 +40,9 @@ public class GameEntityFactory implements EntityFactory {
     private static AnimationChannel ac;
     private static AnimatedTexture at;
     private static TranslateTransition tt;
-
     private static ArrayList<Image> imageArrayList=new ArrayList<>();
+
+    private static PlantData imitatorData=FXGL.getAssetLoader().loadJSON("data/plant/Imitator.json", PlantData.class).get();
 
     //地图背景
     @Spawns("map")
@@ -54,6 +60,7 @@ public class GameEntityFactory implements EntityFactory {
     @Spawns("emptyView")
     public Entity newEmptyView(SpawnData data){
         return FXGL.entityBuilder(data)
+                .type(EntityType.EMPTYVIEW)
                 //.with(new LiftComponent().xAxisDistanceDuration(400,Duration.seconds(3)))
                 .with(new MoveComponent())
                 .build();
@@ -61,20 +68,23 @@ public class GameEntityFactory implements EntityFactory {
 
     @Spawns("startZombieShow")
     public Entity newStartZombieShow(SpawnData data){
+        ZombieData zombieData = data.get("zombieData");
+        List<AnimationData> animationData = zombieData.getAnimationData();
         imageArrayList.clear();
-        for(int i=0;i<5;i++){
-            imageArrayList.add(FXGL.image(String.format("zombie/NormalZombie/ZombieShow/ZombieShow_%d.png",i)));
+        for (AnimationData a : animationData){
+            if (a.status().equalsIgnoreCase("show")) {
+                for(int i=0;i<a.FrameNumber();i++){
+                    imageArrayList.add(FXGL.image(String.format(a.imageName(),i)));
+                }
+                ac = new AnimationChannel(imageArrayList,Duration.seconds(a.channelDuration()));
+            }
         }
-        for(int i=4;i>=0;i--){
-            imageArrayList.add(FXGL.image(String.format("zombie/NormalZombie/ZombieShow/ZombieShow_%d.png",i)));
-        }
-        ac=new AnimationChannel(imageArrayList,Duration.seconds(0.8));
         at=new AnimatedTexture(ac);
         at.loop();
-
         return FXGL.entityBuilder(data)
+                .type(EntityType.CHOSENBG)
                 .view(at)
-                .with(new ExpireCleanComponent(Duration.seconds(10)))
+                //.with(new ExpireCleanComponent(Duration.seconds(10)))
                 .build();
     }
 
@@ -114,8 +124,17 @@ public class GameEntityFactory implements EntityFactory {
         sunshine.textProperty().bind(FXGL.getip("sunshine").asString());
 
         return FXGL.entityBuilder(data)
+                .type(EntityType.CHOSENBG)
                 .view(chosenBgTexture)
                 .view(sunshine)
+                .build();
+    }
+    @Spawns("chooseplant")
+    public Entity newChooseplant(SpawnData data){
+        Texture chooseplantTexture = FXGL.texture("ui/choose/ChoosePlant.png",450,530);
+        return FXGL.entityBuilder(data)
+                .type(EntityType.CHOSENBG)
+                .view(chooseplantTexture)
                 .build();
     }
 
@@ -123,6 +142,55 @@ public class GameEntityFactory implements EntityFactory {
     public Entity newPlantButton(SpawnData data){
         PlantData plantData=data.get("plantData");
         Texture texture = FXGL.texture("ui/choose/"+plantData.name()+".png",45,60);
+        double y= data.getY();
+        tt = new TranslateTransition(Duration.seconds(0.3),texture);
+        tt.setFromY(y-55);
+        tt.setToY(y-10);
+        tt.play();
+        return entityBuilder(data)
+                .with(new IrremovableComponent())
+                .view(texture)
+                .with(new PlantButtonComponent())
+                .build();
+    }
+    @Spawns("chooseButton")
+    public Entity newChooseButton(SpawnData data){
+        PlantData plantData=data.get("plantData");
+        Texture texture = FXGL.texture("ui/choose/"+plantData.name()+".png",45,60);
+        return entityBuilder(data)
+                .type(EntityType.CHOOSEBUTTON)
+                .view(texture)
+                .with(new ChooseButtonComponent())
+                .build();
+    }
+    @Spawns("textureButton")
+    public Entity newTextureButton(SpawnData data){
+        PlantData plantData=data.get("plantData");
+        Texture texture = FXGL.texture("ui/choose/"+plantData.name()+".png",45,60);
+        return entityBuilder(data)
+                .type(EntityType.TEXTUREBUTTON)
+                .view(texture)
+                .with(new ChooseButtonComponent())
+                .build();
+    }
+
+    @Spawns("imitatorPlantButton")
+    public Entity newimitatorPlantButton(SpawnData data){
+        PlantData plantData=data.get("plantData");
+        //把图片变成灰阶
+        Texture texture = FXGL.texture("ui/choose/"+plantData.name()+".png",45,60);
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setSaturation(-1);
+        texture.setEffect(colorAdjust);
+        //修改PlantData
+        PlantData newPlantData=new PlantData(plantData.cost(),imitatorData.animationData()
+                ,imitatorData.name(),imitatorData.icon(), imitatorData.width()
+                , imitatorData.bulletData(),imitatorData.bombData(),imitatorData.triggerData(),
+                imitatorData.statusData(),imitatorData.attackRate(), imitatorData.height(),
+                imitatorData.hp(),imitatorData.CD(),imitatorData.offsetX()
+                , imitatorData.offsetY(),imitatorData.shootInterval(),imitatorData.components());
+        data.put("plantData",newPlantData);
+
         double y= data.getY();
         tt = new TranslateTransition(Duration.seconds(0.3),texture);
         tt.setFromY(y-55);
@@ -172,6 +240,7 @@ public class GameEntityFactory implements EntityFactory {
                 .collidable()
                 .with(new PositionComponent(data.get("row"),data.get("column")))
                 .with(new PlantComponent())
+                .with(new BuffComponent())
                 .build();
     }
     
@@ -188,6 +257,46 @@ public class GameEntityFactory implements EntityFactory {
                         bulletData.speed()))
                 .with(new OffscreenCleanComponent())
                 .with(new BulletComponent())
+                .build();
+    }
+
+    @Spawns("bomb")
+    public Entity newBomb(SpawnData data){
+        BombData bombData = data.get("bombData");
+        Texture texture=FXGL.texture(bombData.imageName());
+        texture.setScaleX(0.5);
+        texture.setScaleY(0.5);
+        texture.setTranslateY(20);
+        /*Canvas canvas = new Canvas(bombData.width(),bombData.height());
+        GraphicsContext g2d = canvas.getGraphicsContext2D();
+        g2d.setFill(Color.web("#FFFFFF"));
+        g2d.fillRect(0,0,bombData.width(),bombData.height());*/
+
+        return FXGL.entityBuilder(data)
+                .type(EntityType.BOMB)
+                .collidable()
+                .view(bombData.imageName())
+                //.view(canvas)
+                .bbox(BoundingShape.box(bombData.width(),bombData.height()))
+                .with(new BombComponent())
+                .build();
+    }
+
+    @Spawns("trigger")
+    public Entity newTrigger(SpawnData data){
+        TriggerData triggerData = data.get("triggerData");
+
+        /*Canvas canvas = new Canvas(triggerData.width(),triggerData.height());
+        GraphicsContext g2d = canvas.getGraphicsContext2D();
+        g2d.setFill(Color.web("#FFFFFF"));
+        g2d.fillRect(0,0,triggerData.width(),triggerData.height());*/
+
+        return FXGL.entityBuilder(data)
+                .type(EntityType.TRIGGER)
+                .collidable()
+                //.view(canvas)
+                .bbox(BoundingShape.box(triggerData.width(),triggerData.height()))
+                .with(new TriggerComponent())
                 .build();
     }
 
@@ -290,15 +399,67 @@ public class GameEntityFactory implements EntityFactory {
                 .build();
     }
 
+    @Spawns("powerBeatBg")
+    public Entity newPowerBeatBg(SpawnData data){
+        Texture texture=FXGL.texture("powerBeat/powerBeatBg(2).png",120,40);
+        return entityBuilder(data)
+                .type(EntityType.POWERBEATCOLLECT)
+                .with(new IrremovableComponent())
+                .view(texture)
+                .with(new PowerBeatButtonComponent())
+                .zIndex(Integer.MAX_VALUE)
+                .bbox(BoundingShape.box(10,10))
+                .collidable()
+                .build();
+    }
+
+    @Spawns("powerBeat")
+    public Entity newPowerBeat(SpawnData data){
+        return entityBuilder(data)
+                .with(new PowerBeatComponent())
+                .with(new ExpireCleanComponent(Duration.seconds(10))) //自动清除
+                .build();
+    }
+    
+    @Spawns("movePowerBeat")
+    public Entity newMovePowerBeat(SpawnData data){
+        imageArrayList.clear();
+        for(int i=0;i<7;i++){
+            imageArrayList.add(FXGL.image(String.format("powerBeat/powerBeat_%d.png",i)));
+        }
+        ac=new AnimationChannel(imageArrayList,Duration.seconds(1.0));
+        at=new AnimatedTexture(ac);
+        at.loop();
+        return entityBuilder(data)
+                .type(EntityType.MOVEPOWERBEAT)
+                .viewWithBBox(at)
+                .zIndex(Integer.MAX_VALUE-1)
+                .collidable()
+                .with(new MoveComponent())
+                .with(new ExpireCleanComponent(Duration.seconds(20.0)))
+                .build();
+    }
+
     @Spawns("reward")
     public Entity newReward(SpawnData data){
         PlantData plantData=data.get("plantData");
         Texture texture = FXGL.texture("ui/choose/"+plantData.name()+".png",45,60);
 
-        return entityBuilder(data)
+        Entity entity=entityBuilder(data)
                 .view(texture)
                 .with(new MoveComponent())
                 .with(new RewardComponent())
                 .build();
+        return entity;
+    }
+
+    @Spawns("gameProgressBar")
+    public Entity newGameProgressBar(SpawnData data){
+        LevelData levelData=data.get("levelData");
+        Entity entity=FXGL.entityBuilder(data)
+                .with(new GameProgressBarComponent())
+                .zIndex(Integer.MAX_VALUE)
+                .build();
+        return entity;
     }
 }

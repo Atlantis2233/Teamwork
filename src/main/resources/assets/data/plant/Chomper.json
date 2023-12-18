@@ -1,0 +1,53 @@
+{
+  "name": "Chomper",
+  "icon": "plant/Chomper/Chomper.png",
+  "hp": 400,
+  "width": 117,
+  "height": 103,
+  "offsetX": 10,
+  "offsetY": -15,
+  "cost": 150,
+  "attackRate": 10.0,
+  "shootInterval": 0.18,
+  "CD": 10,
+  "components": [
+    "TriggerComponent"
+  ],
+  "animationData": [
+    {
+      "status": "unprepared",
+      "imageName": "plant/Chomper/ChomperDigest/ChomperDigest_%d.png",
+      "width": 120,
+      "height": 104,
+      "channelDuration": 0.6,
+      "FrameNumber": 6
+    },
+    {
+      "status": "prepared",
+      "imageName": "plant/Chomper/Chomper/Chomper_%d.png",
+      "width": 120,
+      "height": 104,
+      "channelDuration": 1.5,
+      "FrameNumber": 13
+    },
+    {
+      "status": "beingTriggered",
+      "imageName": "plant/Chomper/ChomperAttack/ChomperAttack_%d.png",
+      "width": 120,
+      "height": 104,
+      "channelDuration": 0.9,
+      "FrameNumber": 9
+    }
+  ],
+  "triggerData": {
+    "width": 165,
+    "height": 60,
+    "offsetX": 65,
+    "offsetY": 15,
+    "isReusable": true,
+    "effect": "kill",
+    "prepareDuration": 0.0,
+    "CD": 12.5,
+    "animDuration": 0.2
+  }
+}

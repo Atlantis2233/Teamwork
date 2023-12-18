@@ -20,7 +20,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author LeeWyatt
@@ -29,11 +31,12 @@ import java.util.List;
  */
 public class PlantComponent extends Component {
 
-    private AnimationChannel ac;
+    private Map<String,AnimationChannel> animMap = new HashMap<>();
     private AnimatedTexture at;
     private PlantData plantData;
     private String plantName;
     private Point2D plantPosition;
+    private int type = 0;
     private int row;
     private int column;
     private LocalTimer timer;  //用来控制持续掉血的计时器
@@ -51,20 +54,16 @@ public class PlantComponent extends Component {
         plantName = plantData.name();
         row=entity.getComponent(PositionComponent.class).getRow();
         column=entity.getComponent(PositionComponent.class).getColumn();
-        ArrayList<Image> imageArrayList=new ArrayList<>();
-        List<AnimationData> animationData = plantData.animationData();
-        for (AnimationData ad : animationData) {
-            if (ad.status().equalsIgnoreCase("normal")) {
-                for(int i=0;i<ad.FrameNumber();i++){
-                    imageArrayList.add(FXGL.image(String.format(ad.imageName(),i)));
-                }
-                ac=new AnimationChannel(imageArrayList,Duration.seconds(ad.channelDuration()));
-                at=new AnimatedTexture(ac);
+        if(!plantData.components().contains("TriggerComponent") && !plantData.components().contains("ShroomComponent")){
+            List<AnimationData> animationData = plantData.animationData();
+            for (AnimationData ad : animationData) {
+                animMap.put(ad.status(),initAc(ad));
             }
+            at=new AnimatedTexture(animMap.get("normal"));
+            plantPosition = entity.getPosition();
+            entity.getViewComponent().addChild(at);
+            at.loopAnimationChannel(animMap.get("normal"));
         }
-        plantPosition = entity.getPosition();
-        entity.getViewComponent().addChild(at);
-        at.loop();
 
     }
 
@@ -77,7 +76,7 @@ public class PlantComponent extends Component {
             }
             if (hp.isZero()) {
                 dead = true;
-                entity.removeFromWorld();
+                PVZApp.removePlant(entity);
             }
         }
 
@@ -97,34 +96,31 @@ public class PlantComponent extends Component {
         this.attacked=false;
     }
 
+    public void changeStatus(int type){
+        if(this.type==type)return;
+        this.type=type;
+        animMap.replace("normal",animMap.get("normal"+type));
+        at.loopAnimationChannel(animMap.get("normal"));
+    }
+
+    private AnimationChannel initAc(AnimationData at) {
+        ArrayList<Image> imageArrayList=new ArrayList<>();
+        for(int i=0;i<at.FrameNumber();i++){
+            imageArrayList.add(FXGL.image(String.format(at.imageName(),i)));
+        }
+        return new AnimationChannel(imageArrayList,Duration.seconds(at.channelDuration()));
+    }
+
     public boolean isDead(){
         return dead;
     }
 
+    public HealthIntComponent getHp() {
+        return hp;
+    }
 
-
-
-//    private void arrowTowerAttack() {
-//        List<Entity> es = FXGL.getGameWorld().getEntitiesByType(EntityType.PLANT);
-//        int bulletNum = 0;
-//        boolean flag = false;
-//        for (Entity enemy : es) {
-//            if (bulletNum > ConfigData.MAX_BULLET_AMOUNT) {
-//                break;
-//            }
-//            Point2D ep = enemy.getPosition();
-//            //判断是否在射程之内 ; TODO 用 enemy.distanceBBox(tower) 这样判断其实更精确
-//            if (ep.distance(plantPosition) <= bulletData.range()) {
-//                flag = true;
-//                bulletNum++;
-//                shootBullet(enemy);
-//            }
-//        }
-//        if (flag) {
-//            shootTimer.capture();
-//        }
-//    }
-
-
+    public void SetHp(int multi){
+        hp=new HealthIntComponent(plantData.hp()*multi);
+    }
 
 }

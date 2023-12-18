@@ -42,8 +42,8 @@ public class LevelEndScene extends SubScene {
         getContentRoot().getChildren().add(whiteScreen);
 
         FadeTransition whiteScreenFade = new FadeTransition(Duration.seconds(5), whiteScreen);
-        whiteScreenFade.setFromValue(1.0);
-        whiteScreenFade.setToValue(0.0);
+        whiteScreenFade.setFromValue(0.0);
+        whiteScreenFade.setToValue(1.0);
         whiteScreenFade.setOnFinished(event -> {
             // 在屏幕变白动画完成后执行的操作，例如切换到下一个场景
             // 这里是示例，实际应用需要替换成你的场景切换逻辑

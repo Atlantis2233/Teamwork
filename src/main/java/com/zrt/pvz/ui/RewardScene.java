@@ -17,6 +17,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 /**
  * @author 曾瑞庭
@@ -28,14 +31,41 @@ public class RewardScene extends SubScene {
     private static final int APP_HEIGHT = FXGL.getAppHeight();
 
     public RewardScene() {
+        PVZApp app = (PVZApp) (FXGL.getApp());
         // 背景图片
         ImageView background = new ImageView(FXGL.image("ui/levelEnd/RewardBg.jpg"));
         background.setFitWidth(APP_WIDTH);
         background.setFitHeight(APP_HEIGHT);
         getContentRoot().getChildren().add(background);
 
+        //你得到一株新植物！
+        Text text=new Text("你得到一株新植物！");
+        Font font=Font.loadFont(getClass().getResource("/fonts/fzjz.ttf").toExternalForm(), 25);
+        text.setFont(font);
+        text.setFill(Color.web("#D49E2B"));
+        text.setTranslateX(275);
+        text.setTranslateY(53);
+        getContentRoot().getChildren().add(text);
+
+        //introductionName
+        Text introductionName=new Text(app.getRewardPlantIntroductionName());
+        Font introductionNameFont=Font.loadFont(getClass().getResource("/fonts/fzjz.ttf").toExternalForm(), 20);
+        introductionName.setFont(introductionNameFont);
+        introductionName.setFill(Color.web("#D39D2A"));
+        introductionName.setTranslateX(340);
+        introductionName.setTranslateY(290);
+        getContentRoot().getChildren().add(introductionName);
+
+        //introduction
+        Text introduction=new Text(app.getRewardPlantIntroduction());
+        Font introductionFont=Font.loadFont(getClass().getResource("/fonts/fzcq.ttf").toExternalForm(), 15);
+        introduction.setFont(introductionFont);
+        introduction.setFill(Color.web("#31385C"));
+        introduction.setTranslateX(250);
+        introduction.setTranslateY(333);
+        getContentRoot().getChildren().add(introduction);
+
         // 中央的图片
-        PVZApp app = (PVZApp) (FXGL.getApp());
         ImageView plantImageView = new ImageView(app.getRewardPlantImage());
         plantImageView.setFitWidth(75); //大小，可调
         plantImageView.setFitHeight(100);
@@ -53,9 +83,9 @@ public class RewardScene extends SubScene {
             FXGL.getGameController().gotoMainMenu();
         });
         //按钮位置，可调
-        continueBtn.setLayoutY(400);
-        continueBtn.setLayoutX((APP_WIDTH - continueBtn.getWidth()) / 2.0);
-        mainMenuBtn.setLayoutX(700);
+        continueBtn.setLayoutY(440);
+        continueBtn.setLayoutX((APP_WIDTH - continueBtn.getWidth()) / 2.0-80);
+        mainMenuBtn.setLayoutX(630);
         mainMenuBtn.setLayoutY(10);
         getContentRoot().getChildren().add(mainMenuBtn);
         getContentRoot().getChildren().add(continueBtn);
