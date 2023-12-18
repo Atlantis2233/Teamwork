@@ -8,6 +8,7 @@ import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import com.almasb.fxgl.time.LocalTimer;
 import com.zrt.pvz.EntityType;
+import com.zrt.pvz.PVZApp;
 import com.zrt.pvz.data.AnimationData;
 import com.zrt.pvz.data.PlantData;
 import com.zrt.pvz.data.TriggerData;
@@ -122,12 +123,12 @@ public class TriggerComponent extends Component {
             texture.playAnimationChannel(animBeingTriggered);
             if(triggerData.effect().equals("bomb")){
                 entity.addComponent(new BombComponent());
-                texture.setOnCycleFinished(()->entity.removeFromWorld());
+                texture.setOnCycleFinished(()->PVZApp.removePlant(entity));
             }
             else if(triggerData.effect().equals("kill")){
 
                 if(!isReusable){
-                    texture.setOnCycleFinished(()->entity.removeFromWorld());
+                    texture.setOnCycleFinished(()-> PVZApp.removePlant(entity));
                 }
                 else {
                     texture.setOnCycleFinished(()->setUnprepared());

@@ -43,6 +43,6 @@ public class PowerBeatComponent extends Component {
             entity.getViewComponent().clearChildren();
             entity.getViewComponent().addChild(at);
             at.play();
-        },Duration.seconds(5.0));
+        },Duration.seconds(2.0));
     }
 }

@@ -1,4 +1,5 @@
 {
+  "name": "BucketheadZombie",
   "hp": 600,
   "reward": 30,
   "moveSpeed": 10,
@@ -56,6 +57,14 @@
       "height": 88,
       "channelDuration": 4.0,
       "FrameNumber": 10
+    },
+    {
+      "status": "boomDie",
+      "imageName": "zombie/NormalZombie/BoomDie/BoomDie_%d.png",
+      "width": 114,
+      "height": 126,
+      "channelDuration": 4.0,
+      "FrameNumber": 20
     },
     {
       "status": "attack",

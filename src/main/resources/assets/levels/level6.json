@@ -5,7 +5,7 @@
   "zombieMap": {
     "NormalZombie":40,
     "ConeheadZombie": 40,
-    "BuckeheadZombie": 20
+    "BucketheadZombie": 20
   },
   "plants": ["SunFlower","PeaShooter","CherryBomb"
   ,"WallNut","PotatoMine","SnowPea","Chomper"],

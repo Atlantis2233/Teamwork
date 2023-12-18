@@ -6,6 +6,7 @@ import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.time.LocalTimer;
 import com.zrt.pvz.EntityType;
+import com.zrt.pvz.PVZApp;
 import com.zrt.pvz.data.BombData;
 import com.zrt.pvz.data.PlantData;
 import com.zrt.pvz.data.ZombieData;
@@ -67,7 +68,16 @@ public class BombComponent extends Component {
                 .put("bombData",bombData)
         );
         if(!plantData.components().contains("TriggerComponent")){
-            entity.removeFromWorld();
+            if(plantData.name().equals("DoomShroom")) {
+                System.out.println("find DoomShroom");
+                FXGL.spawn("crater", new SpawnData(entity.getCenter().subtract(bombData.offsetX(), bombData.offsetY()))
+                        .put("row", entity.getComponent(PositionComponent.class).getRow())
+                        .put("column", entity.getComponent(PositionComponent.class).getColumn())
+                );
+                entity.removeFromWorld();
+            }
+            else
+                PVZApp.removePlant(entity);
         }
     }
 
@@ -75,6 +85,5 @@ public class BombComponent extends Component {
         if(entity.isActive()){
             entity.removeFromWorld();
         }
-
     }
 }

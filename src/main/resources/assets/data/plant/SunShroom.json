@@ -1,0 +1,46 @@
+{
+  "name": "SunShroom",
+  "icon": "plant/SunShroom/SunShroom.png",
+  "hp": 150,
+  "width": 59,
+  "height": 61,
+  "offsetX": -8,
+  "offsetY": -8,
+  "cost": 25,
+  "attackRate": 10.0,
+  "CD": 5,
+  "components": [
+    "ProduceSunshineComponent",
+    "ShroomComponent"
+  ],
+  "animationData": [{
+    "status": "normal",
+    "imageName": "plant/SunShroom/SunShroom/SunShroom_%d.png",
+    "width": 59,
+    "height": 61,
+    "channelDuration": 1.0,
+    "FrameNumber": 10
+  },
+    {
+      "status": "sleep",
+      "imageName": "plant/SunShroom/SunShroomSleep/SunShroomSleep_%d.png",
+      "width": 59,
+      "height": 61,
+      "channelDuration": 1.5,
+      "FrameNumber": 13
+    },
+    {
+      "status": "big",
+      "imageName": "plant/SunShroom/SunShroomBig/SunShroomBig_%d.png",
+      "width": 59,
+      "height": 61,
+      "channelDuration": 1.0,
+      "FrameNumber": 10
+    }
+  ],
+  "statusData": {
+    "type": "time",
+    "numOfChange": 1,
+    "changeCondition": [5]
+  }
+}

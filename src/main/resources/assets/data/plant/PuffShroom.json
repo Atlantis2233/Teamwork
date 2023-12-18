@@ -31,7 +31,7 @@
     }
   ],
   "bulletData": {
-    "imageName": "plant/PuffShroom/Puff.png",
+    "imageName": "plant/PuffShroom/Puff/Puff_%d.png",
     "width": 25,
     "height": 15,
     "offsetX": 0,

@@ -96,6 +96,7 @@ public class PVZApp extends GameApplication {
     public static HashMap<String,Integer> GamePlantMap=new HashMap<String,Integer>();
     public static HashMap<String,Integer> RecentGamePlantMap=new HashMap<String,Integer>();
     public int ChoosePlantnum=0;
+    public int Choosecontrol=0;
     private static boolean[][] isPlantBuilded; //是否有植物种在上面
     private static final List<Point2D> bornPoints= Arrays.asList(
             new Point2D(850, 80),
@@ -106,7 +107,8 @@ public class PVZApp extends GameApplication {
     ); //用来记录僵尸出生点的数据，可调，方便使用行号初始化僵尸出现
     private TimerAction spawnEnemyTimerAction;  //生成僵尸的定时器
     public ImageButton startgame;
-    Entity progressBar;  //每一关都要有一个progressBar，此处统一指示并在每一关前删除
+    private Entity progressBar;  //每一关都要有一个progressBar，此处统一指示并在每一关前删除
+    private boolean firstZombie=true;
     @Override
     protected void initSettings(GameSettings settings) {
         settings.setTitle("Plants Vs Zombies");
@@ -341,11 +343,9 @@ public class PVZApp extends GameApplication {
                 }
                 if(selectedPlant!=null){
                     spawn("powerBeat",selectedPlant.getPosition());
-                    FXGL.runOnce(()->{
-                        BuffComponent buffComponent=(BuffComponent)
-                                selectedPlant.getComponent(BuffComponent.class);
-                        buffComponent.CastSkill();
-                    },Duration.seconds(5.0));//多少秒后起效果，可调
+                    BuffComponent buffComponent=(BuffComponent)
+                            selectedPlant.getComponent(BuffComponent.class);
+                    buffComponent.CastSkillDelay();
                 }
                 FXGL.set("selectedPlantName", "");
                 Toggle selectedToggle = plantBtnGroup.getSelectedToggle();
@@ -511,7 +511,7 @@ public class PVZApp extends GameApplication {
         if(plantData.components().contains("TriggerComponent")){
             plant.addComponent(new TriggerComponent());
         }
-        else if(plantData.components().contains("BombComponent")){
+        else if(plantData.components().contains("BombComponent")&&!plantData.components().contains("ShroomComponent")){
             plant.addComponent(new BombComponent());
         }
         if(plantData.components().contains("ShroomComponent")){
@@ -674,6 +674,8 @@ public class PVZApp extends GameApplication {
         FXGL.set("sunshine", 1000);
         //设置初始能量豆数量
         FXGL.set("powerBeat", 2);
+        //设置第一只僵尸的判定
+        firstZombie=true;
     }
 
     /**
@@ -790,7 +792,13 @@ public class PVZApp extends GameApplication {
                         new SpawnData(point2Dtmp)
                                 .put("zombieData", zombieData)
                                 .put("row",tmp));
-
+                if(firstZombie) {
+                    firstZombie=false;
+                    //关卡进度条
+                    point2D=new Point2D(705,510);
+                    progressBar=spawn("gameProgressBar",new SpawnData(point2D)
+                            .put("levelData",levelData));
+                }
             }, Duration.seconds(levelData.interval()),levelData.amount());//僵尸生成时间，可调，建议后期与阳光生成时间等关卡变量调成一些统一的变量
         }, Duration.seconds(10)); //延迟时间（延迟多久后僵尸开始生成，可调）
 
@@ -813,7 +821,8 @@ public class PVZApp extends GameApplication {
                 if (plantData == null) {
                     return;
                 }
-                point2D=new Point2D(mapPoint.getCenter().getX()-plantData.width()/2,mapPoint.getCenter().getY()-plantData.height()/2);
+                point2D=new Point2D(mapPoint.getCenter().getX()-plantData.width()/2+plantData.offsetX(),
+                        mapPoint.getCenter().getY()-plantData.height()/2+plantData.offsetY());
                 plantPreview=spawn("plantPreview",new SpawnData(point2D)
                         .put("plantData", plantData)
                         .put("row",mapPoint.getComponent(PositionComponent.class).getRow())
@@ -882,13 +891,17 @@ public class PVZApp extends GameApplication {
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.BULLET, EntityType.ZOMBIE) {
             @Override
             protected void onCollisionBegin(Entity bullet, Entity zombie) {
+                System.out.println(bullet.getViewComponent().getChildren());
                 ZombieComponent zombieComponent = zombie.getComponent(ZombieComponent.class);
                 if (zombieComponent.isDead()) {
                     lastZombieDiePoint=zombie.getPosition();
                     return;
                 }
-                zombieComponent.attacked(bullet.getObject("bulletData"));
-                bullet.removeFromWorld();
+                BulletData bulletData=(BulletData) bullet.getObject("bulletData");
+                zombieComponent.attacked(bulletData);
+                if(bulletData.delay()==0){
+                    bullet.removeFromWorld();
+                }
             }
         });
 
@@ -938,7 +951,7 @@ public class PVZApp extends GameApplication {
             protected void onCollisionEnd(Entity plant, Entity zombie) {
                 if(plant.hasComponent(PlantComponent.class)){
                     PlantComponent plantComponent=plant.getComponent(PlantComponent.class);
-                    plantComponent.unAttacked();
+                    plantComponent.unAttacked(zombie.getObject("zombieData"));
                 }
                 ZombieComponent zombieComponent = zombie.getComponent(ZombieComponent.class);
                 if(!zombieComponent.isDead()){
@@ -1104,10 +1117,18 @@ public class PVZApp extends GameApplication {
             spawn("chosenBg",point2D);
             point2D=new Point2D(475,80);
             spawn("chooseplant",point2D);
-            point2D=new Point2D(484,110);// 可调
+            point2D=new Point2D(494,110);// 可调
+            Point2D point2Dtmp=point2D;
+            int num=0;
             for(String entry: levelData.plants()){
+                num++;
                 spawn("chooseButton",new SpawnData(point2D).put("plantData", loadPlantData(entry)));
-                point2D=point2D.add(45,0);
+                point2D=point2D.add(48,0);
+                if(num>=8){
+                    point2D=point2Dtmp.add(0,65);
+                    point2Dtmp=point2D;
+                    num=0;
+                }
             }
             startgame=new ImageButton("choose/startgame", 160, 45,
                     this::Gamestart);
@@ -1182,9 +1203,11 @@ public class PVZApp extends GameApplication {
         for(Entity entity:choosebuttons){
             ToggleButton btn=entity.getComponent(ChooseButtonComponent.class).btn;
             btn.setOnMouseClicked(mouseEvent ->{
+                if(Choosecontrol>=6)return;
                 String plantName = FXGL.gets("choosePlantName");
                 boolean exist=GamePlantMap.containsKey(plantName);
                 if(!exist){
+                    Choosecontrol++;
                     ChoosePlantnum++;
                     GamePlantMap.put(plantName,ChoosePlantnum);
                     entity.getComponent(ChooseButtonComponent.class).darken();
@@ -1199,6 +1222,7 @@ public class PVZApp extends GameApplication {
             btn.setOnMouseClicked(mouseEvent -> {
                 String plantName = FXGL.gets("choosePlantName");
                 GamePlantMap.remove(plantName);
+                Choosecontrol--;
                 List<Entity> c=getGameWorld().getEntitiesByType(EntityType.CHOOSEBUTTON);
                 for(Entity entity1:c){
                     if(entity1.getComponent(ChooseButtonComponent.class).getName().equals(plantName)){
@@ -1218,7 +1242,7 @@ public class PVZApp extends GameApplication {
         plantlist.sort(Comparator.comparingInt(Map.Entry::getValue));
         for(Map.Entry<String,Integer> entry : plantlist){
             spawn("textureButton",new SpawnData(point2D).put("plantData", loadPlantData(entry.getKey())));
-            point2D=point2D.add(55,0);
+            point2D=point2D.add(50,0);
         }
         RecentGamePlantMap.clear();
         RecentGamePlantMap.putAll(GamePlantMap);
@@ -1298,10 +1322,6 @@ public class PVZApp extends GameApplication {
                 st2.play();
                 st2.setOnFinished(event2-> {
                     entity3.removeFromWorld();
-                    //关卡进度条
-                    point2D=new Point2D(705,510);
-                    progressBar=spawn("gameProgressBar",new SpawnData(point2D)
-                            .put("levelData",levelData));
                 });
             });
         });
@@ -1317,6 +1337,10 @@ public class PVZApp extends GameApplication {
         PlantData plantData = FXGL.getAssetLoader().loadJSON("data/plant/" + tName + ".json", PlantData.class).get();
         plantMap.put(plantData.name(), plantData);
         return plantData;
+    }
+    public static void setIsPlantBuilded(int row,int column){
+        isPlantBuilded[row][column]=true;
+        System.out.println(" isPlantBuilded"+row+" "+column+"is true");
     }
     public LevelData getLevelData(){
         return this.levelData;

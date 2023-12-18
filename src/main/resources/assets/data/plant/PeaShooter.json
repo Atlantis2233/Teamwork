@@ -15,14 +15,14 @@
   ],
   "animationData": [{
     "status": "normal",
-    "imageName": "plant/PeaShooter/PeaShooter_%d.png",
+    "imageName": "plant/PeaShooter/PeaShooter/PeaShooter_%d.png",
     "width": 71,
     "height": 71,
     "channelDuration": 1.4,
     "FrameNumber": 13
   }],
   "bulletData": {
-    "imageName": "plant/PeaShooter/PeaNormal.png",
+    "imageName": "plant/PeaShooter/PeaNormal/PeaNormal_%d.png",
     "width": 25,
     "height": 15,
     "offsetX": 0,

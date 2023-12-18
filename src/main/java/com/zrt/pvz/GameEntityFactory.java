@@ -264,9 +264,12 @@ public class GameEntityFactory implements EntityFactory {
     public Entity newBomb(SpawnData data){
         BombData bombData = data.get("bombData");
         Texture texture=FXGL.texture(bombData.imageName());
-        texture.setScaleX(0.5);
-        texture.setScaleY(0.5);
-        texture.setTranslateY(20);
+        if(bombData.imageName().equals("plant/DoomShroom/DoomShroomExplode.png")) {
+            texture.setLayoutX(50);
+            texture.setLayoutY(-20);
+        }
+        else
+            texture.setTranslateY(20);
         /*Canvas canvas = new Canvas(bombData.width(),bombData.height());
         GraphicsContext g2d = canvas.getGraphicsContext2D();
         g2d.setFill(Color.web("#FFFFFF"));
@@ -275,7 +278,7 @@ public class GameEntityFactory implements EntityFactory {
         return FXGL.entityBuilder(data)
                 .type(EntityType.BOMB)
                 .collidable()
-                .view(bombData.imageName())
+                .view(texture)
                 //.view(canvas)
                 .bbox(BoundingShape.box(bombData.width(),bombData.height()))
                 .with(new BombComponent())
@@ -309,7 +312,7 @@ public class GameEntityFactory implements EntityFactory {
     @Spawns("zombie")
     public Entity newZombie(SpawnData data) {
         ZombieData zombieData = data.get("zombieData");
-        return FXGL.entityBuilder(data)
+        EntityBuilder entityBuilder =FXGL.entityBuilder(data)
                 .type(EntityType.ZOMBIE)
                 //减速特效,需要时间组件
                 .with(new TimeComponent())
@@ -318,7 +321,10 @@ public class GameEntityFactory implements EntityFactory {
                 .bbox(BoundingShape.box(zombieData.getWidth()*0.25, zombieData.getHeight()*0.5))
                 .with(new PositionComponent(data.get("row"),10))
                 .with(new ZombieComponent())
-                .build();
+                .with(new MoveComponent());
+        if(zombieData.getComponents().contains("StatusChangeComponent"))
+            entityBuilder.with(new StatusChangeComponent());
+        return entityBuilder.build();
     }
 
 
@@ -417,7 +423,7 @@ public class GameEntityFactory implements EntityFactory {
     public Entity newPowerBeat(SpawnData data){
         return entityBuilder(data)
                 .with(new PowerBeatComponent())
-                .with(new ExpireCleanComponent(Duration.seconds(10))) //自动清除
+                .with(new ExpireCleanComponent(Duration.seconds(6))) //自动清除
                 .build();
     }
     
@@ -461,5 +467,14 @@ public class GameEntityFactory implements EntityFactory {
                 .zIndex(Integer.MAX_VALUE)
                 .build();
         return entity;
+    }
+
+
+    @Spawns("crater")
+    public Entity newCrater(SpawnData data){
+        return FXGL.entityBuilder(data)
+                .with(new PositionComponent(data.get("row"),data.get("column")))
+                .with(new CraterComponment())
+                .build();
     }
 }

@@ -52,6 +52,7 @@ public class RewardComponent extends Component {
             for(int i=0;i<4;i++){
                 lockFlag[i]=true;
             }
+            FXGL.play("winmusic.mp3");
             showReward();
         });
 

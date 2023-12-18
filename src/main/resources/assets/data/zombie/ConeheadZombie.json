@@ -1,4 +1,5 @@
 {
+  "name": "ConeheadZombie",
   "hp": 400,
   "reward": 30,
   "moveSpeed": 10,

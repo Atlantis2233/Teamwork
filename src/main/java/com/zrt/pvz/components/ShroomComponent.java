@@ -4,71 +4,115 @@ import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
+import com.almasb.fxgl.time.LocalTimer;
 import com.zrt.pvz.PVZApp;
 import com.zrt.pvz.data.AnimationData;
 import com.zrt.pvz.data.PlantData;
+import com.zrt.pvz.data.StatusData;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 /**
  * @author 曾瑞庭
  * @Description:
  * @date 2023/12/18 18:21
  */
 public class ShroomComponent extends Component {
-    private AnimationChannel animNormal,animSleep;
-
+    private Map<String,AnimationChannel> animMap = new HashMap<>();
+    //private AnimationChannel animNormal,animSleep;
     private AnimatedTexture at;
     private PlantData plantData;
     private Point2D plantPosition;
     private boolean coffee=false;
+    private String type;
+    private String plantname;
+    private StatusData statusData;
+    private Duration prepareDuration;
+    private LocalTimer timer;
+    private boolean cangrow=false;
     @Override
     public void onAdded(){
         plantData = entity.getObject("plantData");
+        plantname = plantData.name();
         List<AnimationData> animationData = plantData.animationData();
         for(AnimationData ad:animationData){
-            if(ad.status().equalsIgnoreCase("normal")){
+            animMap.put(ad.status(),initAc(ad));
+            /*if(ad.status().equalsIgnoreCase("normal")){
                 animNormal = initAc(ad);
             }
             else if(ad.status().equalsIgnoreCase("sleep")){
                 animSleep = initAc(ad);
-            }
+            }*/
         }
         PVZApp pvzApp=(PVZApp) FXGL.getApp();
         if(pvzApp.getLevelData().type().equals("night")){
-            at=new AnimatedTexture(animNormal);
+            this.type="normal";
+            at=new AnimatedTexture(animMap.get("normal"));
             plantPosition = entity.getPosition();
             entity.getViewComponent().addChild(at);
-            at.loopAnimationChannel(animNormal);
-            if(plantData.components().contains("ShootComponent")){
-                entity.addComponent(new ShootComponent());
+            shroomappear(type);
+            if(plantData.components().contains("BombComponent")){
+                entity.addComponent(new BombComponent());
+                System.out.println("add BombComponment");
             }
         }
         else if(pvzApp.getLevelData().type().equals("day")){
-            at=new AnimatedTexture(animSleep);
+            this.type="sleep";
+            at=new AnimatedTexture(animMap.get("sleep"));
             plantPosition = entity.getPosition();
             entity.getViewComponent().addChild(at);
-            at.loopAnimationChannel(animSleep);
+            shroomappear(type);
+        }
+        if(plantname.equals("SunShroom")){
+            cangrow = true;
+            statusData=plantData.statusData();
+            prepareDuration = Duration.seconds(statusData.changeCondition().get(0));
+            timer = FXGL.newLocalTimer();
+            timer.capture();
         }
     }
     public void onUpdate(double tpf){
         if(coffee){
-            at.loopAnimationChannel(animNormal);
-            if(plantData.components().contains("ShootComponent")){
-                entity.addComponent(new ShootComponent());
-            }
+            type="normal";
+            shroomappear(type);
             coffee=false;
+        }
+        if(cangrow){
+            if(timer.elapsed(prepareDuration)){
+                System.out.println(2);
+                changeStatus("big");
+                cangrow=false;
+            }
         }
     }
     private AnimationChannel initAc(AnimationData at) {
         ArrayList<Image> imageArrayList=new ArrayList<>();
         for(int i=0;i<at.FrameNumber();i++){
-            imageArrayList.add(FXGL.image(String.format(at.imageName(),i)));
+            imageArrayList.add(FXGL.image(String.format(at.imageName(),i),at.width(),at.height()));
         }
         return new AnimationChannel(imageArrayList, Duration.seconds(at.channelDuration()));
     }
-
+    public void changeStatus(String type){
+        if(this.type.equals(type))return;
+        this.type=type;
+        animMap.replace("normal",animMap.get(type));
+        at.loopAnimationChannel(animMap.get("normal"));
+    }
+    public void shroomappear(String type){
+        if(type.equals("sleep")){
+            at.loopAnimationChannel(animMap.get("sleep"));
+        }
+        else if(type.equals("normal")){
+            at.loopAnimationChannel(animMap.get("normal"));
+            if(plantData.components().contains("ShootComponent")){
+                entity.addComponent(new ShootComponent());
+            }
+        }
+    }
 }

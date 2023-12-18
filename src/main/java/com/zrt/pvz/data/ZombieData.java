@@ -5,6 +5,7 @@ import java.util.List;
  * 敌人元数据,与json数据对应
  */
 public class ZombieData {
+	private String name;
 	private int reward;
 	private String preview;
 	private int moveSpeed;
@@ -18,6 +19,14 @@ public class ZombieData {
 	private int attackDamage;
 	private double damageDuration;
 	private List<String> components;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public int getAttackDamage() {
 		return attackDamage;

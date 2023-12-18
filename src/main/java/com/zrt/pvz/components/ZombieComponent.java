@@ -191,6 +191,7 @@ public class ZombieComponent extends Component {
         if(damage>=hp.getValue()){
             boom = true;
             setDead(true);
+            hp.setValue(0);
         }
     }
 
@@ -221,6 +222,10 @@ public class ZombieComponent extends Component {
         animMap.replace("right",animMap.get("right"+type));
         animMap.replace("left",animMap.get("left"+type));
         animMap.replace("attack",animMap.get("attack"+type));
+        if(zombieData.getName().equals("NewspaperZombie")){
+            zombieData.setDamageDuration(zombieData.getDamageDuration()/2);
+            moveSpeedTemp=moveSpeedTemp*3;
+        }
         if(attack)attack();
         else unAttack();
 

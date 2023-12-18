@@ -7,7 +7,7 @@
   "offsetX": 8,
   "offsetY": 0,
   "cost": 0,
-  "attackRate": 1.1,
+  "attackRate": 1.8,
   "CD": 7.5,
   "components": [
     "ShootComponent",

@@ -73,6 +73,7 @@ public class PlantComponent extends Component {
             if (timer.elapsed(damageDuration)) {
                 hp.damage(attackedDamage);
                 timer.capture();
+                System.out.println(1);
             }
             if (hp.isZero()) {
                 dead = true;
@@ -83,17 +84,24 @@ public class PlantComponent extends Component {
     }
 
     public void attacked(ZombieData zombieData){
-        timer.capture();
-        this.attackedDamage=zombieData.getAttackDamage();
-        this.damageDuration=Duration.seconds(zombieData.getDamageDuration());
-        this.attacked=true;
+        if(attacked){
+            this.attackedDamage+=zombieData.getAttackDamage();
+        }
+        else{
+            timer.capture();
+            this.attackedDamage=zombieData.getAttackDamage();
+            this.damageDuration=Duration.seconds(zombieData.getDamageDuration());
+            this.attacked=true;
+        }
     }
 
 
-    public void unAttacked(){
-        this.attackedDamage=0;
-        this.damageDuration=Duration.ZERO;
-        this.attacked=false;
+    public void unAttacked(ZombieData zombieData){
+        this.attackedDamage-=zombieData.getAttackDamage();
+        if(attackedDamage==0){
+            this.damageDuration=Duration.ZERO;
+            this.attacked=false;
+        }
     }
 
     public void changeStatus(int type){

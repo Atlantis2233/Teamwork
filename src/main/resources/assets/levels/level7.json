@@ -1,14 +1,14 @@
 {
   "name": "关卡 1-7",
   "map": "map/map1.jpg",
-  "type": "day",
+  "type": "night",
   "zombieMap": {
     "NormalZombie":40,
     "ConeheadZombie": 40,
-    "BuckeheadZombie": 20
+    "BucketheadZombie": 20
   },
   "plants": ["SunFlower","PeaShooter","CherryBomb"
-  ,"WallNut","PotatoMine","SnowPea","Chomper","Repeater"],
+  ,"WallNut","PotatoMine","SnowPea","Chomper","RepeaterPea"],
   "produceSunshineInterval": 12.5,
   "interval": 7.5,
   "amount": 70,

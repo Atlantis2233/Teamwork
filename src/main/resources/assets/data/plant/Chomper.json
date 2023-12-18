@@ -49,5 +49,13 @@
     "prepareDuration": 0.0,
     "CD": 12.5,
     "animDuration": 0.2
+  },
+  "bulletData": {
+    "FrameNumber": 1,
+    "attackDamage": 20,
+    "range": 200,
+    "speed": 400,
+    "number": 1,
+    "line": 1
   }
 }

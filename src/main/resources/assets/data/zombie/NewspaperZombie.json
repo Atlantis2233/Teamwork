@@ -1,0 +1,99 @@
+{
+  "name": "NewspaperZombie",
+  "hp": 600,
+  "reward": 30,
+  "moveSpeed": 10,
+  "width": 117,
+  "height": 143,
+  "preview": "zombie/NewspaperZombie/NewspaperZombie/NewspaperZombie.png",
+  "attackDamage": 100,
+  "damageDuration": 1.0,
+  "components": [
+    "StatusChangeComponent"
+  ],
+  "bboxData": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 43
+  },
+  "animationData": [
+    {
+      "status": "show",
+      "imageName": "zombie/NewspaperZombie/NewspaperZombieShow/NewspaperZombie_%d.png",
+      "width": 117,
+      "height": 143,
+      "channelDuration": 3.0,
+      "FrameNumber": 5
+    },
+    {
+      "status": "right",
+      "imageName": "zombie/NewspaperZombie/NewspaperZombie/NewspaperZombie_%d.png",
+      "width": 117,
+      "height": 143,
+      "channelDuration": 3.0,
+      "FrameNumber": 19
+    },
+    {
+      "status": "right1",
+      "imageName": "zombie/NewspaperZombie/NewspaperZombieNoPaper/NewspaperZombieNoPaper_%d.png",
+      "width": 113,
+      "height": 149,
+      "channelDuration": 2.0,
+      "FrameNumber": 14
+    },
+    {
+      "status": "left",
+      "imageName": "zombie/NewspaperZombie/NewspaperZombie/NewspaperZombie_%d.png",
+      "width": 117,
+      "height": 143,
+      "channelDuration": 3.0,
+      "FrameNumber": 19
+    },
+    {
+      "status": "left1",
+      "imageName": "zombie/NewspaperZombie/NewspaperZombieNoPaper/NewspaperZombieNoPaper_%d.png",
+      "width": 113,
+      "height": 149,
+      "channelDuration": 2.0,
+      "FrameNumber": 14
+    },
+    {
+      "status": "die",
+      "imageName": "zombie/NewspaperZombie/NewspaperZombieDie/NewspaperZombieDie_%d.png",
+      "width": 140,
+      "height": 118,
+      "channelDuration": 4.0,
+      "FrameNumber": 11
+    },
+    {
+      "status": "boomDie",
+      "imageName": "zombie/NormalZombie/BoomDie/BoomDie_%d.png",
+      "width": 114,
+      "height": 126,
+      "channelDuration": 4.0,
+      "FrameNumber": 20
+    },
+    {
+      "status": "attack",
+      "imageName": "zombie/NewspaperZombie/NewspaperZombieAttack/NewspaperZombieAttack_%d.png",
+      "width": 121,
+      "height": 153,
+      "channelDuration": 5.0,
+      "FrameNumber": 8
+    },
+    {
+      "status": "attack1",
+      "imageName": "zombie/NewspaperZombie/NewspaperZombieNoPaperAttack/NewspaperZombieNoPaperAttack_%d.png",
+      "width": 117,
+      "height": 153,
+      "channelDuration": 3.0,
+      "FrameNumber": 7
+    }
+  ],
+  "statusData": {
+    "type": "hp",
+    "numOfChange": 1,
+    "changeCondition": [0.5]
+  }
+}

@@ -1,4 +1,5 @@
 {
+  "name": "NormalZombie",
   "hp": 200,
   "reward": 30,
   "moveSpeed": 10,
