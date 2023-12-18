@@ -7,6 +7,9 @@
   "preview": "zombie/ConeheadZombie/ConeheadZombie/ConeheadZombie.png",
   "attackDamage": 100,
   "damageDuration": 1.0,
+  "components": [
+    "StatusChangeComponent"
+  ],
   "bboxData": {
     "x": 0,
     "y": 0,
@@ -31,12 +34,28 @@
       "FrameNumber": 21
     },
     {
+      "status": "right1",
+      "imageName": "zombie/NormalZombie/Zombie/Zombie_%d.png",
+      "width": 98,
+      "height": 130,
+      "channelDuration": 3.0,
+      "FrameNumber": 22
+    },
+    {
       "status": "left",
       "imageName": "zombie/ConeheadZombie/ConeheadZombie/ConeheadZombie_%d.png",
       "width": 84,
       "height": 140,
       "channelDuration": 3.0,
       "FrameNumber": 21
+    },
+    {
+      "status": "left1",
+      "imageName": "zombie/NormalZombie/Zombie/Zombie_%d.png",
+      "width": 98,
+      "height": 130,
+      "channelDuration": 3.0,
+      "FrameNumber": 22
     },
     {
       "status": "die",
@@ -61,6 +80,19 @@
       "height": 144,
       "channelDuration": 6.0,
       "FrameNumber": 11
+    },
+    {
+      "status": "attack1",
+      "imageName": "zombie/NormalZombie/ZombieAttack/ZombieAttack_%d.png",
+      "width": 98,
+      "height": 125,
+      "channelDuration": 6.0,
+      "FrameNumber": 21
     }
-  ]
+  ],
+  "statusData": {
+    "type": "hp",
+    "numOfChange": 1,
+    "changeCondition": [0.4]
+  }
 }

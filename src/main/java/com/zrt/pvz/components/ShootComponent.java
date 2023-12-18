@@ -1,6 +1,7 @@
 package com.zrt.pvz.components;
 
 import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.dsl.components.ExpireCleanComponent;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.component.Component;
@@ -72,10 +73,14 @@ public class ShootComponent extends Component {
 
     private void shootBullet(Entity enemy) {
         Point2D dir = new Point2D(1,0); //发射子弹方向，可调
-        FXGL.spawn("bullet", new SpawnData(
-                entity.getCenter().subtract(0, bulletData.height()+bulletData.offsetY())) //生成子弹的位置，可调
+        int delay=plantData.bulletData().delay();
+        Entity bullet= FXGL.spawn("bullet", new SpawnData(
+                entity.getCenter().subtract(bulletData.offsetX(), bulletData.height()+bulletData.offsetY())) //生成子弹的位置，可调
                 .put("bulletData", bulletData)
                 .put("dir", dir)
         );
+        if(delay>0){
+            bullet.addComponent(new ExpireCleanComponent(Duration.seconds(delay)));
+        }
     }
 }

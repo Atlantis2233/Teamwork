@@ -40,13 +40,21 @@ public class BuffComponent extends Component {
             ShootComponent shootComponent=(ShootComponent) entity.getComponent(ShootComponent.class);
             FXGL.run(()->{
                 shootComponent.attack();
-            }, Duration.seconds(0.15),10);
+            }, Duration.seconds(0.12),10);
         }
         //坚果墙，恢复满血，并血量上限翻倍，可调
         else if(plantData.name().equals("WallNut")){
             PlantComponent plantComponent=(PlantComponent) entity.getComponent(PlantComponent.class);
             plantComponent.SetHp(2);
-            Texture texture= FXGL.texture("plant/WallNut/InfiNut.png",65,73);
+            Texture texture= FXGL.texture("plant/WallNut/InfiNut.png",65,80);
+            entity.getViewComponent().clearChildren();
+            entity.getViewComponent().addChild(texture);
+        }
+        //坚果墙，恢复满血，并血量上限翻倍，可调
+        else if(plantData.name().equals("WallNut")){
+            PlantComponent plantComponent=(PlantComponent) entity.getComponent(PlantComponent.class);
+            plantComponent.SetHp(2);
+            Texture texture= FXGL.texture("plant/WallNut/InfiNut.png",65,80);
             entity.getViewComponent().clearChildren();
             entity.getViewComponent().addChild(texture);
         }

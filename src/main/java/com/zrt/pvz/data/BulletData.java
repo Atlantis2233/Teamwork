@@ -10,7 +10,11 @@ public record BulletData(
 	int range,
 	int speed,
 	int height,
+	int offsetX,
 	int offsetY,
+	int delay,
+	int FrameNumber,
+	double channelDuration,
 	int attackDamage,
 	int number,
 	int line

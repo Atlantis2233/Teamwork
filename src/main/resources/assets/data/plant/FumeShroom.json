@@ -1,0 +1,52 @@
+{
+  "name": "FumeShroom",
+  "icon": "plant/FumeShroom/FumeShroom.png",
+  "hp": 400,
+  "width": 100,
+  "height": 88,
+  "offsetX": 8,
+  "offsetY": 0,
+  "cost": 0,
+  "attackRate": 1.1,
+  "CD": 7.5,
+  "components": [
+    "ShootComponent",
+    "ShroomComponent"
+  ],
+  "animationData": [{
+    "status": "normal",
+    "imageName": "plant/FumeShroom/FumeShroom/FumeShroom_%d.png",
+    "width": 100,
+    "height": 88,
+    "channelDuration": 1.6,
+    "FrameNumber": 16
+  },
+    {
+      "status": "sleep",
+      "imageName": "plant/FumeShroom/FumeShroomSleep/FumeShroomSleep_%d.png",
+      "width": 100,
+      "height": 88,
+      "channelDuration": 1.4,
+      "FrameNumber": 14
+    }
+  ],
+  "bulletData": {
+    "imageName": "plant/FumeShroom/Fume/Fume_%d.png",
+    "width": 300,
+    "height": 50,
+    "offsetX": -30,
+    "offsetY": 0,
+    "attackDamage": 30,
+    "channelDuration": 0.8,
+    "FrameNumber": 8,
+    "range": 300,
+    "speed": 0,
+    "delay": 1.0,
+    "effectData": {
+      "name": "群攻",
+      "imgName": "tower/arrow/effect.png",
+      "desc": "群攻: 同时攻击多个敌人",
+      "descEn": "Group Attack."
+    }
+  }
+}

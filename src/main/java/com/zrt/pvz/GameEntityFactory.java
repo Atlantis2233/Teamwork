@@ -243,15 +243,15 @@ public class GameEntityFactory implements EntityFactory {
                 .with(new BuffComponent())
                 .build();
     }
-    
-    
+
+
     @Spawns("bullet")
     public Entity newBullet(SpawnData data){
         BulletData bulletData = data.get("bulletData");
         return FXGL.entityBuilder(data)
                 .type(EntityType.BULLET)
                 .collidable()
-                .viewWithBBox(bulletData.imageName())
+                .bbox(BoundingShape.box(bulletData.width(),bulletData.height()))
                 .with(new ProjectileComponent(
                         data.get("dir"),
                         bulletData.speed()))
@@ -401,7 +401,7 @@ public class GameEntityFactory implements EntityFactory {
 
     @Spawns("powerBeatBg")
     public Entity newPowerBeatBg(SpawnData data){
-        Texture texture=FXGL.texture("powerBeat/powerBeatBg(2).png",120,40);
+        Texture texture=FXGL.texture("powerBeat/powerBeatBg(2).png",180,60);
         return entityBuilder(data)
                 .type(EntityType.POWERBEATCOLLECT)
                 .with(new IrremovableComponent())

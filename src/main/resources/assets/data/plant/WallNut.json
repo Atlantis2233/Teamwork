@@ -10,13 +10,37 @@
   "attackRate": 24.0,
   "CD": 10,
   "components": [
+    "StatusChangeComponent"
   ],
-  "animationData": [{
-    "status": "normal",
-    "imageName": "plant/WallNut/WallNut/WallNut_%d.png",
-    "width": 65,
-    "height": 73,
-    "channelDuration": 1.5,
-    "FrameNumber": 16
-  }]
+  "animationData": [
+    {
+      "status": "normal",
+      "imageName": "plant/WallNut/WallNut/WallNut_%d.png",
+      "width": 65,
+      "height": 73,
+      "channelDuration": 1.5,
+      "FrameNumber": 16
+    },
+    {
+      "status": "normal1",
+      "imageName": "plant/WallNut/WallNut_cracked1/WallNut_cracked1_%d.png",
+      "width": 65,
+      "height": 73,
+      "channelDuration": 1.2,
+      "FrameNumber": 11
+    },
+    {
+      "status": "normal2",
+      "imageName": "plant/WallNut/WallNut_cracked2/WallNut_cracked2_%d.png",
+      "width": 65,
+      "height": 73,
+      "channelDuration": 1.6,
+      "FrameNumber": 15
+    }
+  ],
+  "statusData": {
+    "type": "hp",
+    "numOfChange": 2,
+    "changeCondition": [0.7,0.3]
+  }
 }

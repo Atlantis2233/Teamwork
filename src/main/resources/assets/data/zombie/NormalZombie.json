@@ -7,6 +7,8 @@
   "preview": "zombie/NormalZombie/NormalZombie.png",
   "attackDamage": 100,
   "damageDuration": 1.0,
+  "components": [
+  ],
   "bboxData": {
     "x": 0,
     "y": 0,

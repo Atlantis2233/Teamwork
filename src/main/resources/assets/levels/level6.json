@@ -1,0 +1,21 @@
+{
+  "name": "关卡 1-6",
+  "map": "map/map1.jpg",
+  "type": "day",
+  "zombieMap": {
+    "NormalZombie":40,
+    "ConeheadZombie": 40,
+    "BuckeheadZombie": 20
+  },
+  "plants": ["SunFlower","PeaShooter","CherryBomb"
+  ,"WallNut","PotatoMine","SnowPea","Chomper"],
+  "produceSunshineInterval": 12.5,
+  "interval": 8.0,
+  "amount": 45,
+  "waves": [120.0,60.0],
+  "waveZombieNumber": [20,10],
+  "width": 1232,
+  "reward": "RepeaterPea",
+  "rewardPlantIntroduction": "一次发射两颗豌豆",
+  "rewardPlantIntroductionName": "双发豌豆"
+}

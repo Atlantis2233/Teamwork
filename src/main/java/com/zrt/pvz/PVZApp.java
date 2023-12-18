@@ -69,7 +69,7 @@ public class PVZApp extends GameApplication {
     private TimerAction spawnPowerBeatTimerAction;// 生成能量豆的定时器
     private Random random=new Random();
     private static Point2D sunshineCollectPoint =new Point2D(200,10);//收集阳光的位置，可调
-    private static Point2D powerBeatCollectPoint =new Point2D(200,500);//收集阳光的位置，可调
+    private static Point2D powerBeatCollectPoint =new Point2D(200,480);//收集能量豆的位置，可调
     private Entity sunshineCollect;
     private Entity powerBeatCollect;
     private Entity selectedPlant=null;
@@ -129,7 +129,6 @@ public class PVZApp extends GameApplication {
                     serializeUserData(userData,filePath);
                 }
                 START_LEVEL= userData.getLevel();
-                START_LEVEL= 1;
                 mainMenu=new MainMenu(userData,users);
                 return mainMenu;
             }
@@ -739,7 +738,7 @@ public class PVZApp extends GameApplication {
                 movePowerBeat.getComponent(MoveComponent.class).moveFromTo(movePowerBeat.getPosition()
                         , powerBeatCollectPoint,2.0);//速度数值也可以调
             });
-        }, Duration.seconds(20));
+        }, Duration.seconds(30));
 
         //生成收集阳光处的碰撞体，这里调整一下坐标，可调
         sunshineCollect=spawn("sunshineCollect",sunshineCollectPoint);

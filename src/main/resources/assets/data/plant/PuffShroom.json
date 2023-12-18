@@ -34,9 +34,12 @@
     "imageName": "plant/PuffShroom/Puff.png",
     "width": 25,
     "height": 15,
+    "offsetX": 0,
     "offsetY": -20,
+    "channelDuration": 0.1,
+    "FrameNumber": 1,
     "attackDamage": 10,
-    "range": 500,
+    "range": 300,
     "speed": 250,
     "effectData": {
       "name": "群攻",

@@ -1,0 +1,19 @@
+{
+  "name": "关卡 1-3",
+  "map": "map/map1.jpg",
+  "type": "day",
+  "zombieMap": {
+    "NormalZombie":40,
+    "ConeheadZombie": 30
+  },
+  "plants": ["SunFlower","PeaShooter","CherryBomb","WallNut"],
+  "produceSunshineInterval": 12.5,
+  "interval": 10.0,
+  "amount": 34,
+  "waves": [120.0,60.0],
+  "waveZombieNumber": [10,10],
+  "width": 1232,
+  "reward": "PotatoMine",
+  "rewardPlantIntroduction": "接触时爆炸，但需要时间武装自己",
+  "rewardPlantIntroductionName": "土豆地雷"
+}

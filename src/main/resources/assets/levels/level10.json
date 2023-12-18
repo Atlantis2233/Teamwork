@@ -1,0 +1,16 @@
+{
+  "name": "关卡 1-2",
+  "map": "map/map2.jpg",
+  "type": "night",
+  "zombieMap": {
+    "NormalZombie":40,
+    "ConeheadZombie": 30
+  },
+  "plants": ["SunFlower","PeaShooter","WallNut","Puffshroom"],
+  "produceSunshineInterval": 10,
+  "interval": 10.0,
+  "amount": 50,
+  "waves": [60.0],
+  "width": 1232,
+  "reward": ""
+}

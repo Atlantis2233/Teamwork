@@ -1,0 +1,20 @@
+{
+  "name": "关卡 1-4",
+  "map": "map/map1.jpg",
+  "type": "day",
+  "zombieMap": {
+    "NormalZombie":40,
+    "ConeheadZombie": 40
+  },
+  "plants": ["SunFlower","PeaShooter","CherryBomb"
+  ,"WallNut","PotatoMine"],
+  "produceSunshineInterval": 12.5,
+  "interval": 9.0,
+  "amount": 40,
+  "waves": [120.0,60.0],
+  "waveZombieNumber": [15,10],
+  "width": 1232,
+  "reward": "SnowPea",
+  "rewardPlantIntroduction": "射出冰冻豌豆，对敌人造成伤害并减速",
+  "rewardPlantIntroductionName": "寒冰射手"
+}
