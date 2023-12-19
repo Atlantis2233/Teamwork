@@ -47,6 +47,7 @@ public class BuffComponent extends Component {
         isStart=false;
         //向日葵，连续产5个阳光，可调
         if(plantData.name().equals("SunFlower")){
+            if(entity==null)return;
             ProduceSunshineComponent produceSunshineComponent=
                     (ProduceSunshineComponent) entity.getComponent(ProduceSunshineComponent.class);
             FXGL.run(()->{
@@ -55,6 +56,7 @@ public class BuffComponent extends Component {
         }
         //豌豆射手，连续射10个子弹，可调
         else if(plantData.name().equals("PeaShooter")){
+            if(entity==null)return;
             ShootComponent shootComponent=(ShootComponent) entity.getComponent(ShootComponent.class);
             FXGL.run(()->{
                 shootComponent.attack();

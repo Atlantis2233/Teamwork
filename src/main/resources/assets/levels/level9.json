@@ -15,7 +15,7 @@
   "waves": [120.0,60.0],
   "waveZombieNumber": [10,10],
   "width": 1232,
-  "reward": "SunShroom",
-  "rewardPlantIntroduction": "一开始生产小阳光，之后生产正常阳光",
-  "rewardPlantIntroductionName": "阳光菇"
+  "reward": "DoomShroom",
+  "rewardPlantIntroduction": "摧毁大片区域，留下一个坑",
+  "rewardPlantIntroductionName": "毁灭菇"
 }

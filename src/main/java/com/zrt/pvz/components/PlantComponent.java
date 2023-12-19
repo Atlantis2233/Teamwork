@@ -73,7 +73,6 @@ public class PlantComponent extends Component {
             if (timer.elapsed(damageDuration)) {
                 hp.damage(attackedDamage);
                 timer.capture();
-                System.out.println(1);
                 FXGL.play("zombieAttack.wav");
             }
             if (hp.isZero()) {

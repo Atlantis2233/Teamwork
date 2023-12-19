@@ -17,6 +17,7 @@ import javafx.util.Duration;
 //修改
 public class BombComponent extends Component {
     private boolean isPlant=false,isZombie=false,isBomb=false;
+    private boolean isCreated = false;
     private LocalTimer bombTimer;
     private Duration prepareDuration,boomDuration;
     private PlantData plantData;
@@ -53,6 +54,7 @@ public class BombComponent extends Component {
             if(!bombTimer.elapsed(prepareDuration)){
                 return;
             }
+            if(!isCreated)
             boom();
         }
         else if(isBomb){
@@ -67,9 +69,9 @@ public class BombComponent extends Component {
         FXGL.spawn("bomb",new SpawnData(entity.getCenter().subtract(bombData.offsetX(), bombData.offsetY()))
                 .put("bombData",bombData)
         );
+        isCreated = true;
         if(!plantData.components().contains("TriggerComponent")){
             if(plantData.name().equals("DoomShroom")) {
-                System.out.println("find DoomShroom");
                 FXGL.spawn("crater", new SpawnData(entity.getCenter().subtract(bombData.offsetX(), bombData.offsetY()))
                         .put("row", entity.getComponent(PositionComponent.class).getRow())
                         .put("column", entity.getComponent(PositionComponent.class).getColumn())

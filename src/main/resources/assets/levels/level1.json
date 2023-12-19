@@ -5,12 +5,12 @@
   "zombieMap": {
     "NormalZombie":40
   },
-  "plants": ["SunFlower","PeaShooter","PuffShroom","SunShroom","FumeShroom"],
+  "plants": ["SunFlower","PeaShooter"],
   "produceSunshineInterval": 12.5,
   "interval": 10.0,
   "amount": 2,
   "waves": [10.0],
-  "waveZombieNumber": [6],
+  "waveZombieNumber": [5],
   "width": 1232,
   "reward": "CherryBomb",
   "rewardPlantIntroduction": "炸毁一个区域内的所有僵尸",

@@ -136,7 +136,7 @@ public class PVZApp extends GameApplication {
                     serializeUserData(userData,filePath);
                 }
                 START_LEVEL= userData.getLevel();
-                START_LEVEL=1;
+                START_LEVEL=10;
                 mainMenu=new MainMenu(userData,users);
                 return mainMenu;
             }
@@ -193,6 +193,7 @@ public class PVZApp extends GameApplication {
             userData=new UserData(users.get(0),1);
             serializeUserData(userData,filePath);
         }
+        START_LEVEL=userData.getLevel();
         mainMenu.updateUser(user);
         mainMenu.updateLevel(userData.getLevel());
     }
@@ -201,6 +202,7 @@ public class PVZApp extends GameApplication {
         if(users.get(index)!=null){
             users.remove(index);
             serializeList(users,"src/main/resources/data/Users.ser");
+            ChangeUser(users.get(0));
         }
     }
 
@@ -327,7 +329,6 @@ public class PVZApp extends GameApplication {
             }
             String plantName = FXGL.gets("selectedPlantName");
             if(plantName.equals("shovel")){
-                //System.out.println(shovelCanBuilder);
                 if(!shovelCanBuilder){
                     return;
                 }
@@ -528,7 +529,6 @@ public class PVZApp extends GameApplication {
             plant.addComponent(new ImitatorComponent());
         }
         if(plantName.equals("Imitator")){
-            System.out.println(ImitatorCost);
             FXGL.inc("sunshine", -ImitatorCost);
         }
         else{

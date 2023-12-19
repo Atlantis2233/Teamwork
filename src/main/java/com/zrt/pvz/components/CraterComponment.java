@@ -24,7 +24,6 @@ public class CraterComponment extends Component {
         texture1.setLayoutY(190);
         entity.getViewComponent().clearChildren();
         entity.getViewComponent().addChild(texture0);
-        System.out.println(status);
         status = 0;
         timer = FXGL.newLocalTimer();
         timer.capture();
@@ -36,7 +35,6 @@ public class CraterComponment extends Component {
             entity.getViewComponent().removeChild(texture0);
             entity.getViewComponent().addChild(texture1);
             status++;
-            System.out.println(status);
             timer.capture();
         }
         if (status == 1 && timer.elapsed(statusRemain) && texture1 != null) {

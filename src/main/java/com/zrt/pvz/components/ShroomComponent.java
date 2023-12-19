@@ -102,7 +102,6 @@ public class ShroomComponent extends Component {
             at.loopAnimationChannel(animMap.get("normal"));
             if(plantData.components().contains("ShootComponent")){
                 entity.addComponent(new ShootComponent());
-                System.out.println(entity.getComponents());
             }
             if(plantData.components().contains("ProduceSunshineComponent")){
                 entity.addComponent(new ProduceSunshineComponent());

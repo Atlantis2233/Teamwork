@@ -18,7 +18,6 @@ public class ReNameDialog extends SubScene {
         root.setStyle("-fx-background-color: lightgray; -fx-padding: 20px;");
 
         TextField inputField = new TextField();
-        System.out.println(oldName);
         inputField.setPromptText(oldName);
 
         Button submitButton = new Button("提交");

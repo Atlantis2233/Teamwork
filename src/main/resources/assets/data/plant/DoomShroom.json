@@ -4,9 +4,9 @@
   "hp": 150,
   "width": 102,
   "height": 91,
-  "offsetX": -100,
-  "offsetY": -100,
-  "cost": 0,
+  "offsetX": -0,
+  "offsetY": 0,
+  "cost": 125,
   "attackRate": 1.4,
   "CD": 5,
   "components": [

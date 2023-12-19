@@ -1,16 +1,23 @@
 {
-  "name": "关卡 1-2",
+  "name": "关卡 2-3",
   "map": "map/map2.jpg",
   "type": "night",
   "zombieMap": {
-    "NormalZombie":40,
-    "ConeheadZombie": 30
+    "NormalZombie":30,
+    "ConeheadZombie": 10,
+    "FootballZombie": 10,
+    "NewspaperZombie": 10
   },
-  "plants": ["SunFlower","PeaShooter","WallNut","Puffshroom"],
-  "produceSunshineInterval": 10,
+  "plants": ["SunFlower","PeaShooter","CherryBomb"
+  ,"WallNut","PotatoMine","SnowPea","Chomper"
+  ,"RepeaterPea","Puffshroom","SunShroom","DoomShroom","FumeShroom"],
+  "produceSunshineInterval": 35.0,
   "interval": 10.0,
-  "amount": 50,
-  "waves": [60.0],
+  "amount": 45,
+  "waves": [120.0,60.0],
+  "waveZombieNumber": [10,10],
   "width": 1232,
-  "reward": ""
+  "reward": "DoomShroom",
+  "rewardPlantIntroduction": "摧毁大片区域，留下一个坑",
+  "rewardPlantIntroductionName": "毁灭菇"
 }
