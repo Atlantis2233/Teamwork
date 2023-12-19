@@ -1,0 +1,43 @@
+{
+  "name": "DoomShroom",
+  "icon": "plant/DoomShroom/DoomShroom.png",
+  "hp": 150,
+  "width": 102,
+  "height": 91,
+  "offsetX": -100,
+  "offsetY": -100,
+  "cost": 0,
+  "attackRate": 1.4,
+  "CD": 5,
+  "components": [
+    "ShroomComponent",
+    "BombComponent"
+  ],
+  "animationData": [{
+    "status": "normal",
+    "imageName": "plant/DoomShroom/DoomShroom/DoomShroom_%d.png",
+    "width": 102,
+    "height": 91,
+    "channelDuration": 1.4,
+    "FrameNumber": 10
+  },
+    {
+      "status": "sleep",
+      "imageName": "plant/DoomShroom/DoomShroomSleep/DoomShroomSleep_%d.png",
+      "width": 102,
+      "height": 91,
+      "channelDuration": 1.7,
+      "FrameNumber": 18
+    }
+  ],
+  "bombData": {
+    "imageName": "plant/DoomShroom/DoomShroomExplode.png",
+    "width": 400,
+    "height": 400,
+    "offsetX": 200,
+    "offsetY": 200,
+    "attackDamage": 5000,
+    "prepareDuration": 0.8,
+    "boomDuration": 0.2
+  }
+}
