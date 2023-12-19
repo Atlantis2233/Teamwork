@@ -37,6 +37,7 @@ public class MainMenu extends FXGLMenu {
     private TranslateTransition changeUsertt;
     private final Pane defaultPane;
     private static Text level;
+    private static Text episode;
     private static Text name;
     private  List<String> users;
 
@@ -48,13 +49,13 @@ public class MainMenu extends FXGLMenu {
         Texture puzzle=texture("ui/mainMenu/puzzle.png",260,110);
         ImageButton smallGame=new ImageButton("mainMenu/smallGame", 300, 112,
                 this::StartAmusementGame);
-        ImageButton adventure=new ImageButton("mainMenu/adventure(1)", 310, 130,
+        ImageButton adventure=new ImageButton("mainMenu/adventure", 310, 118,
                 this::startNewGame);
         ImageButton exist=new ImageButton("mainMenu/exist", 59, 26,
                 this::exist);
-        smallGame.setLayoutY(150);
+        smallGame.setLayoutY(163);
         smallGame.setLayoutX(380);
-        puzzle.setLayoutY(230);
+        puzzle.setLayoutY(240);
         puzzle.setLayoutX(383);
         adventure.setLayoutY(70);
         adventure.setLayoutX(380);
@@ -63,24 +64,26 @@ public class MainMenu extends FXGLMenu {
 
         //用户名
         name = new Text(users.get(0)+"!");
-        Font font=Font.loadFont(getClass().getResource("/fonts/fzcq.ttf").toExternalForm(), 30);
+        Font font=Font.loadFont(getClass().getResource("/fonts/fzcq.ttf").toExternalForm(), 24);
         name.setFont(font);
         name.setFill(Color.web("#FFFE91"));
-        name.setTranslateX(130);
-        name.setTranslateY(120);
+        name.setTranslateX(133);
+        name.setTranslateY(110);
         name.setVisible(false);
 
         //关卡
-        Text episode = new Text("1");
+        episode = new Text("1");
         episode.setFont(Font.font("Arial", FontWeight.NORMAL, 15));
         episode.setFill(Color.WHITE);
         episode.setTranslateX(521);
-        episode.setTranslateY(161);
+        episode.setTranslateY(166);
         level = new Text(Integer.toString(userData.getLevel()));
         level.setFont(Font.font("Arial", FontWeight.NORMAL, 15));
         level.setFill(Color.WHITE);
         level.setTranslateX(545);
-        level.setTranslateY(165);
+        level.setTranslateY(168);
+
+        updateLevel(userData.getLevel());
 
         //左上角的用户身份以及切换用户按钮
         Texture userBoard=new Texture(FXGL.image("ui/mainMenu/userBoard.png"));
@@ -95,7 +98,7 @@ public class MainMenu extends FXGLMenu {
         changeUsertt.setFromX(20);// 动画位置，可调
         changeUsertt.setToX(20);
         changeUsertt.setFromY(-150);
-        changeUsertt.setToY(150);
+        changeUsertt.setToY(140);
         userBoardtt.setInterpolator(Interpolators.ELASTIC.EASE_OUT());
         changeUsertt.setInterpolator(Interpolators.ELASTIC.EASE_OUT());
         userBoardtt.setOnFinished(e->{name.setVisible(true);});
@@ -121,7 +124,14 @@ public class MainMenu extends FXGLMenu {
     }
 
     public void updateLevel(int newlevel){
-        level.setText(Integer.toString(newlevel));
+        if(newlevel>=8){
+            episode.setText("2");
+            level.setText(Integer.toString(newlevel-7));
+        }
+        else{
+            episode.setText("1");
+            level.setText(Integer.toString(newlevel));
+        }
     }
 
     public void updateUser(String user){

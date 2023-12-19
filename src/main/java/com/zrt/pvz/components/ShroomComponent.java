@@ -29,13 +29,13 @@ public class ShroomComponent extends Component {
     private AnimatedTexture at;
     private PlantData plantData;
     private Point2D plantPosition;
-    private boolean coffee=false;
     private String type;
     private String plantname;
     private StatusData statusData;
     private Duration prepareDuration;
     private LocalTimer timer;
     private boolean cangrow=false;
+    private boolean begintimer=false;
     @Override
     public void onAdded(){
         plantData = entity.getObject("plantData");
@@ -43,12 +43,6 @@ public class ShroomComponent extends Component {
         List<AnimationData> animationData = plantData.animationData();
         for(AnimationData ad:animationData){
             animMap.put(ad.status(),initAc(ad));
-            /*if(ad.status().equalsIgnoreCase("normal")){
-                animNormal = initAc(ad);
-            }
-            else if(ad.status().equalsIgnoreCase("sleep")){
-                animSleep = initAc(ad);
-            }*/
         }
         PVZApp pvzApp=(PVZApp) FXGL.getApp();
         if(pvzApp.getLevelData().type().equals("night")){
@@ -57,10 +51,6 @@ public class ShroomComponent extends Component {
             plantPosition = entity.getPosition();
             entity.getViewComponent().addChild(at);
             shroomappear(type);
-            if(plantData.components().contains("BombComponent")){
-                entity.addComponent(new BombComponent());
-                System.out.println("add BombComponment");
-            }
         }
         else if(pvzApp.getLevelData().type().equals("day")){
             this.type="sleep";
@@ -73,21 +63,21 @@ public class ShroomComponent extends Component {
             cangrow = true;
             statusData=plantData.statusData();
             prepareDuration = Duration.seconds(statusData.changeCondition().get(0));
-            timer = FXGL.newLocalTimer();
-            timer.capture();
         }
     }
     public void onUpdate(double tpf){
-        if(coffee){
-            type="normal";
-            shroomappear(type);
-            coffee=false;
-        }
-        if(cangrow){
-            if(timer.elapsed(prepareDuration)){
-                System.out.println(2);
-                changeStatus("big");
-                cangrow=false;
+        if(cangrow&&type.equals("normal")){
+            if(!begintimer){
+                timer = FXGL.newLocalTimer();
+                timer.capture();
+                begintimer=true;
+            }
+            else{
+                if(timer.elapsed(prepareDuration)){
+                    changeStatus("big");
+                    FXGL.play("plantgrow.wav");
+                    cangrow=false;
+                }
             }
         }
     }
@@ -112,7 +102,18 @@ public class ShroomComponent extends Component {
             at.loopAnimationChannel(animMap.get("normal"));
             if(plantData.components().contains("ShootComponent")){
                 entity.addComponent(new ShootComponent());
+                System.out.println(entity.getComponents());
+            }
+            if(plantData.components().contains("ProduceSunshineComponent")){
+                entity.addComponent(new ProduceSunshineComponent());
+            }
+            if(plantData.components().contains("BombComponent")){
+                entity.addComponent(new BombComponent());
             }
         }
+    }
+    public void setCoffee(){
+        type="normal";
+        shroomappear(type);
     }
 }

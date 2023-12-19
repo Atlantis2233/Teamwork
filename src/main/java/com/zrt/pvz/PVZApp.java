@@ -69,7 +69,7 @@ public class PVZApp extends GameApplication {
     private TimerAction spawnPowerBeatTimerAction;// 生成能量豆的定时器
     private Random random=new Random();
     private static Point2D sunshineCollectPoint =new Point2D(200,10);//收集阳光的位置，可调
-    private static Point2D powerBeatCollectPoint =new Point2D(200,480);//收集能量豆的位置，可调
+    private static Point2D powerBeatCollectPoint =new Point2D(150,488);//收集能量豆的位置，可调
     private Entity sunshineCollect;
     private Entity powerBeatCollect;
     private Entity selectedPlant=null;
@@ -84,11 +84,16 @@ public class PVZApp extends GameApplication {
     private Point2D lastZombieDiePoint=new Point2D(500,400);
     private boolean specialLevel=false;  //判断是否是特殊模式
 
-    private List<String> allPlantList=Arrays.asList("SunFlower", "PeaShooter", "WallNut");    //所有植物的list，可调
-    private List<String> allZombieList=Arrays.asList("NormalZombie", "ConeheadZombie"); //所有僵尸的List，可调
+    private List<String> allPlantList=Arrays.asList("SunFlower","PeaShooter","CherryBomb"
+            ,"WallNut","PotatoMine","SnowPea","Chomper"
+            ,"RepeaterPea","PuffShroom","FumeShroom","SunShroom");    //所有植物的list，可调
+    private List<String> allZombieList=Arrays.asList("NormalZombie", "ConeheadZombie"
+            ,"BucketheadZombie","NewspaperZombie"); //所有僵尸的List，可调
     private LazyValue<LevelEndScene> levelEndSceneLazyValue =
             new LazyValue<>(LevelEndScene::new);
     private List<String>users=new ArrayList<>();
+
+    public int ImitatorCost;
     private UserData userData;
     private TimerAction saveUserDataTimerAction;// 定时保存的定时器
     private MainMenu mainMenu;
@@ -115,7 +120,7 @@ public class PVZApp extends GameApplication {
         settings.setVersion("0.0");
         settings.setWidth(750);
         settings.setHeight(533);
-        settings.setAppIcon("logo.jpg");
+        settings.setAppIcon("logo.png");
         settings.setMainMenuEnabled(true);
         settings.setSceneFactory(new SceneFactory() {
 
@@ -131,6 +136,7 @@ public class PVZApp extends GameApplication {
                     serializeUserData(userData,filePath);
                 }
                 START_LEVEL= userData.getLevel();
+                START_LEVEL=1;
                 mainMenu=new MainMenu(userData,users);
                 return mainMenu;
             }
@@ -327,6 +333,7 @@ public class PVZApp extends GameApplication {
                 }
                 if(selectedPlant!=null){
                     removePlant(selectedPlant);
+                    FXGL.play("placed.wav");
                 }
                 FXGL.set("selectedPlantName", "");
                 Toggle selectedToggle = plantBtnGroup.getSelectedToggle();
@@ -342,7 +349,7 @@ public class PVZApp extends GameApplication {
                     return;
                 }
                 if(selectedPlant!=null){
-                    spawn("powerBeat",selectedPlant.getPosition());
+                    spawn("powerBeat",selectedPlant.getPosition().add(20,0));
                     BuffComponent buffComponent=(BuffComponent)
                             selectedPlant.getComponent(BuffComponent.class);
                     buffComponent.CastSkillDelay();
@@ -502,6 +509,58 @@ public class PVZApp extends GameApplication {
         if(plantData.components().contains("ShootComponent") && !plantData.components().contains("ShroomComponent")){
             plant.addComponent(new ShootComponent());
         }
+        if(plantData.components().contains("ProduceSunshineComponent") && !plantData.components().contains("ShroomComponent")){
+            plant.addComponent(new ProduceSunshineComponent());
+        }
+        if(plantData.components().contains("StatusChangeComponent")){
+            plant.addComponent(new StatusChangeComponent());
+        }
+        if(plantData.components().contains("TriggerComponent")){
+            plant.addComponent(new TriggerComponent());
+        }
+        else if(plantData.components().contains("BombComponent")&&!plantData.components().contains("ShroomComponent")){
+            plant.addComponent(new BombComponent());
+        }
+        if(plantData.components().contains("ShroomComponent")){
+            plant.addComponent(new ShroomComponent());
+        }
+        if(plantData.components().contains("ImitatorComponent")){
+            plant.addComponent(new ImitatorComponent());
+        }
+        if(plantName.equals("Imitator")){
+            System.out.println(ImitatorCost);
+            FXGL.inc("sunshine", -ImitatorCost);
+        }
+        else{
+            FXGL.inc("sunshine", -plantData.cost());
+        }
+        FXGL.set("selectedPlantName", "build");//指示建造了植物，用来判断CD开始
+        Toggle selectedToggle = plantBtnGroup.getSelectedToggle();
+        if (selectedToggle != null) {
+            selectedToggle.setSelected(false);
+        }
+        hideIndicator();
+    }
+
+    //模仿者生成植物
+    public void buildPlant(String plantName,Point2D buildPosition,int row,int column) {
+        PlantData plantData = plantMap.get(plantName);
+        if (plantData == null) {
+            return;
+        }
+        double centerx=256+(column)*73;
+        double centery=122+(row)*85;
+        point2D=new Point2D(centerx-plantData.width()/2+plantData.offsetX(),
+                centery-plantData.height()/2+plantData.offsetY());
+        isPlantBuilded[row][column]=true;
+        FXGL.play("placed.wav");
+        Entity plant= FXGL.spawn("plant", new SpawnData(point2D)
+                .put("plantData", plantData)
+                .put("row",row)
+                .put("column",column));
+        if(plantData.components().contains("ShootComponent") && !plantData.components().contains("ShroomComponent")){
+            plant.addComponent(new ShootComponent());
+        }
         if(plantData.components().contains("ProduceSunshineComponent")){
             plant.addComponent(new ProduceSunshineComponent());
         }
@@ -520,46 +579,9 @@ public class PVZApp extends GameApplication {
         if(plantData.components().contains("ImitatorComponent")){
             plant.addComponent(new ImitatorComponent());
         }
-        FXGL.inc("sunshine", -plantData.cost());
-        FXGL.set("selectedPlantName", "build");//指示建造了植物，用来判断CD开始
-        Toggle selectedToggle = plantBtnGroup.getSelectedToggle();
-        if (selectedToggle != null) {
-            selectedToggle.setSelected(false);
-        }
         hideIndicator();
     }
 
-    //模仿者生成植物
-    public void buildPlant(String plantName,Point2D buildPosition,int row,int column) {
-        PlantData plantData = plantMap.get(plantName);
-        if (plantData == null) {
-            return;
-        }
-        double x=buildPosition.getX();
-        double y=buildPosition.getY();
-        isPlantBuilded[row][column]=true;
-        FXGL.play("placed.wav");
-        Entity plant= FXGL.spawn("plant", new SpawnData(x, y)
-                .put("plantData", plantData)
-                .put("row",row)
-                .put("column",column));
-        if(plantData.components().contains("ShootComponent")){
-            plant.addComponent(new ShootComponent());
-        }
-        if(plantData.components().contains("ProduceSunshineComponent")){
-            plant.addComponent(new ProduceSunshineComponent());
-        }
-        if(plantData.components().contains("StatusChangeComponent")){
-            plant.addComponent(new StatusChangeComponent());
-        }
-        if(plantData.components().contains("TriggerComponent")){
-            plant.addComponent(new TriggerComponent());
-        }
-        else if(plantData.components().contains("BombComponent")){
-            plant.addComponent(new BombComponent());
-        }
-        hideIndicator();
-    }
 
     @Override
     protected void initGameVars(Map<String, Object> vars) {
@@ -569,7 +591,7 @@ public class PVZApp extends GameApplication {
         else{
             vars.put("level", START_LEVEL);
         }
-        vars.put("sunshine", 1000);
+        vars.put("sunshine", 50);
         vars.put("powerBeat",2); //能量豆初始数量
         vars.put("kill", 0);
         vars.put("complete", false);
@@ -606,10 +628,14 @@ public class PVZApp extends GameApplication {
                 ,EntityType.POWERBEATCOLLECT,EntityType.MOVEPOWERBEAT
                 ,EntityType.WEEDER,EntityType.ZOMBIE
                 ,EntityType.EMPTYVIEW,EntityType.CHOOSEBUTTON
-                ,EntityType.TEXTUREBUTTON,EntityType.CHOSENBG
+                ,EntityType.TEXTUREBUTTON,EntityType.CHOSENBG,EntityType.REWARD
         ).forEach(Entity::removeFromWorld);
+        if(startgame!=null){
+            FXGL.getGameScene().removeChild(startgame);
+        }
         if(progressBar!=null)//删除上一关progressBar
             getGameWorld().removeEntity(progressBar);
+        Choosecontrol=0; //清除上关影响
         GamePlantMap.clear();
         RecentGamePlantMap.clear();
         home=spawn("home",75,0);
@@ -671,7 +697,7 @@ public class PVZApp extends GameApplication {
         FXGL.set("health", ConfigData.INIT_HP);
         FXGL.set("selectedPlantName", "");
         //设置初始太阳
-        FXGL.set("sunshine", 1000);
+        FXGL.set("sunshine", 50);
         //设置初始能量豆数量
         FXGL.set("powerBeat", 2);
         //设置第一只僵尸的判定
@@ -758,7 +784,8 @@ public class PVZApp extends GameApplication {
                 }
                 sunshine.removeComponent(ExpireCleanComponent.class);
                 sunshine.getComponent(MoveComponent.class).moveFromTo(sunshine.getPosition()
-                        , sunshineCollectPoint,1.5);//速度数值也可以调
+                        , sunshineCollectPoint,4.0);//速度数值也可以调
+                FXGL.play("points.wav");
             });
         }, Duration.seconds(levelData.produceSunshineInterval()));//这个7.5是个大概值，之后可以设置为关卡变量存储，方便调整
     }
@@ -787,6 +814,9 @@ public class PVZApp extends GameApplication {
                 //随机抽取数组的一个坐标
                 int tmp=random.nextInt(5);
                 Point2D point2Dtmp= bornPoints.get(tmp);
+                if(zombieData.getName().equals("FootballZombie")){
+                    point2Dtmp=point2Dtmp.add(0,-20);
+                }
                 //如果可以产生僵尸,那么生成僵尸
                 spawn("zombie",
                         new SpawnData(point2Dtmp)
@@ -799,6 +829,7 @@ public class PVZApp extends GameApplication {
                     progressBar=spawn("gameProgressBar",new SpawnData(point2D)
                             .put("levelData",levelData));
                 }
+                FXGL.play("loadingbar_zombie.wav");
             }, Duration.seconds(levelData.interval()),levelData.amount());//僵尸生成时间，可调，建议后期与阳光生成时间等关卡变量调成一些统一的变量
         }, Duration.seconds(10)); //延迟时间（延迟多久后僵尸开始生成，可调）
 
@@ -837,12 +868,12 @@ public class PVZApp extends GameApplication {
             protected void onCollisionBegin(Entity sunshine, Entity sunshineCollect) {
                 sunshine.getViewComponent().clearChildren();
                 texture=FXGL.texture("plant/SunShine/SunShine_0.png");
-                ScaleTransition st=new ScaleTransition(Duration.seconds(.35)
+                ScaleTransition st=new ScaleTransition(Duration.seconds(0.35)
                         ,texture);
                 st.setToX(0);
                 st.setToY(0);
 
-                FadeTransition ft=new FadeTransition(Duration.seconds(.35)
+                FadeTransition ft=new FadeTransition(Duration.seconds(0.35)
                         ,texture);
                 ft.setToValue(0);
 
@@ -891,7 +922,6 @@ public class PVZApp extends GameApplication {
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.BULLET, EntityType.ZOMBIE) {
             @Override
             protected void onCollisionBegin(Entity bullet, Entity zombie) {
-                System.out.println(bullet.getViewComponent().getChildren());
                 ZombieComponent zombieComponent = zombie.getComponent(ZombieComponent.class);
                 if (zombieComponent.isDead()) {
                     lastZombieDiePoint=zombie.getPosition();
@@ -972,6 +1002,7 @@ public class PVZApp extends GameApplication {
                 }
                 ZombieComponent zombieComponent= zombie.getComponent(ZombieComponent.class);
                 zombieComponent.setDead(true);
+                FXGL.play("weeder.wav");
             }
 
         });
@@ -1035,6 +1066,7 @@ public class PVZApp extends GameApplication {
                 emptyView=spawn("emptyView",170,FXGL.getAppHeight()/2);
                 getGameScene().getViewport().bindToEntity(emptyView,
                         0,FXGL.getAppHeight()/2);
+                FXGL.play("losemusic.wav");
                 emptyView.getComponent(MoveComponent.class).moveFromTo(point2D2,point2D1,2.5);
                 zombie.setY(FXGL.getAppHeight()/2+30);
                 zombie.getBoundingBoxComponent().clearHitBoxes();
@@ -1053,10 +1085,14 @@ public class PVZApp extends GameApplication {
                     st.setFromY(0.5);
                     st.setToY(1);
                     st.play();
+                    st.setOnFinished(event->{
+                        FXGL.play("scream.wav");
+                    });
                 }, Duration.seconds(0.5));
             }
         });
     }
+
 
     public Image getRewardPlantImage() {
         return rewardPlantImage;
@@ -1138,22 +1174,15 @@ public class PVZApp extends GameApplication {
         }, Duration.seconds(5.575));
 
         //生成一开始用于展示本关僵尸的僵尸
-        for(int i=0;i<6;i++){
-            point2D = new Point2D(FXGLMath.random(950.0,1100.0),FXGLMath.random(20.0,450.0));
-            int totalWeight = zombieMap.values().stream().mapToInt(Integer::intValue).sum();
-            int randomNumber = random.nextInt(totalWeight) + 1; // 在总权重范围内生成随机数
-            ZombieData zombieData=null;
-            int cumulativeWeight = 0;
-            for (Map.Entry<String, Integer> entry : zombieMap.entrySet()) {
-                cumulativeWeight += entry.getValue();
-                if (randomNumber <= cumulativeWeight) {
-                    zombieData=zombieDataMap.get(entry.getKey());
-                    break;
-                }
+        for(Map.Entry<String,Integer> entry:zombieMap.entrySet()){
+            int zombieWeight = entry.getValue()/10;
+            ZombieData zombieData=zombieDataMap.get(entry.getKey());
+            for(int i=0;i<zombieWeight;i++){
+                point2D = new Point2D(FXGLMath.random(950.0,1100.0),FXGLMath.random(20.0,450.0));
+                spawn("startZombieShow",
+                        new SpawnData(point2D)
+                                .put("zombieData",zombieData));
             }
-            spawn("startZombieShow",
-                    new SpawnData(point2D)
-                            .put("zombieData",zombieData));
         }
 
         emptyView.setOnNotActive(()->{
@@ -1180,9 +1209,21 @@ public class PVZApp extends GameApplication {
             point2D=new Point2D(255,10);// 可调
             if(FXGL.geti("level")==0){
                 loadPlantData("Imitator");
-                for(String entry: levelData.plants()){
-                    spawn("imitatorPlantButton",new SpawnData(point2D).put("plantData", loadPlantData(entry)));
-                    point2D=point2D.add(50,0);
+                List<Map.Entry<String,Integer>> plantlist = new ArrayList<>(GamePlantMap.entrySet());
+                plantlist.sort((o1, o2) -> {
+                    return Integer.compare(o1.getValue(), o2.getValue());
+                });
+                for(Map.Entry<String,Integer> entry : plantlist){
+                    String Value = entry.getKey();
+                    if(Value.equals("SunFlower")||Value.equals("CherryBomb")){
+                        spawn("plantButton"
+                                ,new SpawnData(point2D).put("plantData", loadPlantData(Value)));
+                    }
+                    else{
+                        spawn("imitatorPlantButton"
+                                ,new SpawnData(point2D).put("plantData", loadPlantData(Value)));
+                    }
+                    point2D=point2D.add(53,0);
                 }
             }
             else{
@@ -1232,6 +1273,11 @@ public class PVZApp extends GameApplication {
             });
         }
     }
+
+    public void setImitatorCost(int imitatorCost) {
+        ImitatorCost = imitatorCost;
+    }
+
     private void updateTextureButtons(){
         List<Entity> texturebuttons = FXGL.getGameWorld().getEntitiesByType(EntityType.TEXTUREBUTTON);
         for(Entity entity:texturebuttons){
@@ -1286,7 +1332,7 @@ public class PVZApp extends GameApplication {
                 .view(texture)
                 .buildAndAttach();
         ScaleTransition st=new ScaleTransition(Duration.seconds(0.5), texture);
-
+        FXGL.play("readysetplant.wav");
         st.setFromX(0.5);
         st.setToX(1);
         st.setFromY(0.5);
@@ -1340,7 +1386,6 @@ public class PVZApp extends GameApplication {
     }
     public static void setIsPlantBuilded(int row,int column){
         isPlantBuilded[row][column]=true;
-        System.out.println(" isPlantBuilded"+row+" "+column+"is true");
     }
     public LevelData getLevelData(){
         return this.levelData;

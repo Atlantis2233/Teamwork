@@ -20,9 +20,13 @@
     "FrameNumber": 13
   }],
   "bulletData": {
-    "imageName": "plant/SnowPea/SnowPea_pea.png",
+    "imageName": "plant/SnowPea/SnowPea_pea%d.png",
     "width": 25,
     "height": 15,
+    "offsetX": 0,
+    "offsetY": 18,
+    "channelDuration": 0.1,
+    "FrameNumber": 1,
     "attackDamage": 20,
     "range": 1000,
     "speed": 400,
@@ -31,7 +35,7 @@
     "effectData": {
       "name": "Slow Down",
       "imgName": "tower/arrow/effect.png",
-      "desc": "群攻: 同时攻击多个敌人",
+      "desc": "冰冻，减速",
       "descEn": "Group Attack."
     }
   }

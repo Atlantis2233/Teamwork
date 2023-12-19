@@ -54,6 +54,7 @@ public class PowerBeatButtonComponent extends Component {
         Texture texture=FXGL.texture("powerBeat/powerBeatBg("+latestPowerBeatNum+").png",180,60);
         entity.getViewComponent().addChild(texture);
         entity.getViewComponent().addChild(btn);
+        entity.getViewComponent().addChild(rechargeBtn);
     }
 
     @Override
@@ -61,8 +62,6 @@ public class PowerBeatButtonComponent extends Component {
         btn.setStyle("-fx-background-color: #0000;");
         entity.getViewComponent().addChild(btn);
         entity.getViewComponent().addChild(rechargeBtn);
-        System.out.println(rechargeBtn.getLayoutX());
-        System.out.println(rechargeBtn.getLayoutY());
 
         btn.selectedProperty().addListener((ob, ov, nv) -> {
             if(FXGL.geti("powerBeat")<=0)return;

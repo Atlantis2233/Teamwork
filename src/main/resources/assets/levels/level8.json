@@ -8,7 +8,7 @@
   "plants": ["SunFlower","PeaShooter","CherryBomb"
   ,"WallNut","PotatoMine","SnowPea","Chomper"
   ,"RepeaterPea","Puffshroom"],
-  "produceSunshineInterval": 25.0,
+  "produceSunshineInterval": 35.0,
   "interval": 10.0,
   "amount": 33,
   "waves": [120.0,60.0],

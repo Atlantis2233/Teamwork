@@ -48,6 +48,7 @@ public class ZombieComponent extends Component {
     private int moveSpeedTemp;
     private SimpleDoubleProperty progress;
     private double lastTime=5;//可改
+    private Random random;
 
     public boolean isDead() {
         return dead;
@@ -70,7 +71,7 @@ public class ZombieComponent extends Component {
         }
         else if(attack){
             texture.setTranslateY(-10);
-            texture.setTranslateX(-50);
+            texture.setTranslateX(-80);
         }
         if(boom){
             texture.setTranslateY(-43);
@@ -100,6 +101,7 @@ public class ZombieComponent extends Component {
         texture.setScaleX(0.9);
         texture.setScaleY(0.9);
         texture.setTranslateY(-50);
+        texture.setTranslateX(-35);
         entity.getViewComponent().addChild(texture);
 //        slowDownTexture = FXGL.texture("buffer/slow.png", entity.getWidth(), entity.getHeight());
 //        slowDownTexture.setVisible(false);
@@ -143,7 +145,7 @@ public class ZombieComponent extends Component {
             dead = true;
             return;
         }
-        if(progress!=null){
+        if(progress!=null&&!dead){
             progress.set(progress.get()+tpf);
             if(progress.get()>0.42*lastTime)
                 updateBrightness(0);
@@ -173,10 +175,22 @@ public class ZombieComponent extends Component {
         int damage = bulletData.attackDamage();
         String effectName = bulletData.effectData().name();
         //减速
-        if (effectName.equalsIgnoreCase(ConfigData.EFFECT_SLOW_DOWN)) {
+        if (effectName.equalsIgnoreCase(ConfigData.EFFECT_SLOW_DOWN)&&!dead) {
             entity.getComponent(EffectComponent.class).startEffect(new SlowTimeEffect(0.4, Duration.seconds(lastTime)));
             progress=new SimpleDoubleProperty();
             updateBrightness(-7);
+        }
+
+        if(zombieData.getName().equals("BucketheadZombie")) {
+            if(random==null){
+                FXGL.play("shieldhit1.wav");
+            }
+            else{
+                FXGL.play("shieldhit"+random.nextInt(2)+".wav");
+            }
+        }
+        else{
+            FXGL.play("splat.wav");
         }
 
         hp.damage(damage);
@@ -191,7 +205,6 @@ public class ZombieComponent extends Component {
         if(damage>=hp.getValue()){
             boom = true;
             setDead(true);
-            hp.setValue(0);
         }
     }
 
@@ -249,7 +262,7 @@ public class ZombieComponent extends Component {
         hpBar = new ProgressBar(false);
         hpBar.setFill(Color.LIGHTGREEN);
         hpBar.setWidth(40);
-        hpBar.setTranslateX((zombieData.getWidth() - 40) / 2.0);
+        hpBar.setTranslateX((zombieData.getWidth() - 40) / 2.0-35);
         hpBar.setHeight(7);
         hpBar.setTranslateY(-50);
         hpBar.setMaxValue(maxHp);

@@ -79,6 +79,12 @@ public class BombComponent extends Component {
             else
                 PVZApp.removePlant(entity);
         }
+        if(plantData.name().equals("PotatoMine"))
+            FXGL.play("potato_mine.wav");
+        if(plantData.name().equals("DoomShroom"))
+            FXGL.play("DoomShroom.wav");
+        if(plantData.name().equals("CherryBomb"))
+            FXGL.play("jalapeno.wav");
     }
 
     private void finished(){

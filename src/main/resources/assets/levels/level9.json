@@ -1,0 +1,21 @@
+{
+  "name": "关卡 2-2",
+  "map": "map/map2.jpg",
+  "type": "night",
+  "zombieMap": {
+    "NormalZombie":40,
+    "ConeheadZombie": 10
+  },
+  "plants": ["SunFlower","PeaShooter","CherryBomb"
+  ,"WallNut","PotatoMine","SnowPea","Chomper"
+  ,"RepeaterPea","Puffshroom","SunShroom"],
+  "produceSunshineInterval": 35.0,
+  "interval": 10.0,
+  "amount": 40,
+  "waves": [120.0,60.0],
+  "waveZombieNumber": [10,10],
+  "width": 1232,
+  "reward": "SunShroom",
+  "rewardPlantIntroduction": "一开始生产小阳光，之后生产正常阳光",
+  "rewardPlantIntroductionName": "阳光菇"
+}

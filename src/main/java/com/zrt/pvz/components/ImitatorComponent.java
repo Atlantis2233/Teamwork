@@ -54,7 +54,7 @@ public class ImitatorComponent extends Component {
             for (AnimationData ad : animationData) {
                 if (ad.status().equalsIgnoreCase("spin")) {
                     for(int i=0;i<ad.FrameNumber();i++){
-                        imageArrayList.add(FXGL.image(String.format(ad.imageName(),i)));
+                        imageArrayList.add(FXGL.image(String.format(ad.imageName(),i), ad.width(), ad.height()));
                     }
                     ac=new AnimationChannel(imageArrayList,Duration.seconds(ad.channelDuration()));
                     at=new AnimatedTexture(ac);
@@ -98,6 +98,7 @@ public class ImitatorComponent extends Component {
             if(random.nextBoolean()){
                 int randomIndex = random.nextInt(allPlantList.size());
                 pvzApp.buildPlant(allPlantList.get(randomIndex),entity.getPosition(),row,column);
+                entity.removeFromWorld();
             }
             else{
                 int randomIndex = random.nextInt(allZombieList.size());
@@ -106,8 +107,9 @@ public class ImitatorComponent extends Component {
                         new SpawnData(entity.getPosition())
                                 .put("zombieData", zombieData)
                                 .put("row",row));
+                PVZApp.removePlant(entity);
             }
-            entity.removeFromWorld();
+
         });
 
     }

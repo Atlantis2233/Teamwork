@@ -187,8 +187,8 @@ public class GameEntityFactory implements EntityFactory {
                 ,imitatorData.name(),imitatorData.icon(), imitatorData.width()
                 , imitatorData.bulletData(),imitatorData.bombData(),imitatorData.triggerData(),
                 imitatorData.statusData(),imitatorData.attackRate(), imitatorData.height(),
-                imitatorData.hp(),imitatorData.CD(),imitatorData.offsetX()
-                , imitatorData.offsetY(),imitatorData.shootInterval(),imitatorData.components());
+                imitatorData.hp(), plantData.CD(), plantData.offsetX()
+                , plantData.offsetY(), imitatorData.shootInterval(),imitatorData.components());
         data.put("plantData",newPlantData);
 
         double y= data.getY();
@@ -413,7 +413,7 @@ public class GameEntityFactory implements EntityFactory {
                 .with(new IrremovableComponent())
                 .view(texture)
                 .with(new PowerBeatButtonComponent())
-                .zIndex(Integer.MAX_VALUE)
+                .zIndex(Integer.MAX_VALUE-200)
                 .bbox(BoundingShape.box(10,10))
                 .collidable()
                 .build();
@@ -439,7 +439,7 @@ public class GameEntityFactory implements EntityFactory {
         return entityBuilder(data)
                 .type(EntityType.MOVEPOWERBEAT)
                 .viewWithBBox(at)
-                .zIndex(Integer.MAX_VALUE-1)
+                .zIndex(Integer.MAX_VALUE-200)
                 .collidable()
                 .with(new MoveComponent())
                 .with(new ExpireCleanComponent(Duration.seconds(20.0)))
@@ -453,8 +453,10 @@ public class GameEntityFactory implements EntityFactory {
 
         Entity entity=entityBuilder(data)
                 .view(texture)
+                .type(EntityType.REWARD)
                 .with(new MoveComponent())
                 .with(new RewardComponent())
+                .zIndex(Integer.MAX_VALUE-100)
                 .build();
         return entity;
     }

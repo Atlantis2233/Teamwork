@@ -1,0 +1,510 @@
+16:09:45.996 [main                     ] DEBUG Logger               - Configured Logger
+16:09:46.030 [main                     ] DEBUG GameApplication      - Logging settings
+Title: Plants Vs Zombies
+Version: 0.0
+Width: 750
+Height: 533
+Fullscreen: false
+Intro: false
+Profiling: false
+Single step:false
+App Mode: DEVELOPER
+Menu Key: ESCAPE
+Stage Style: DECORATED
+Scene Factory: class com.zrt.pvz.PVZApp$1
+
+16:09:47.334 [JavaFX Application Thread] DEBUG FXGLApplication      - Initializing FXGL
+16:09:47.338 [JavaFX Application Thread] INFO  Engine               - FXGL-17.2 (20.08.2022 16.50) on WINDOWS (J:20.0.1 FX:20.0.1)
+16:09:47.338 [JavaFX Application Thread] DEBUG Engine               - JRE Vendor Name: Oracle Corporation
+16:09:47.338 [JavaFX Application Thread] DEBUG Engine               - Running on OS: Windows 11 version 10.0
+16:09:47.338 [JavaFX Application Thread] DEBUG Engine               - Architecture: amd64
+16:09:47.338 [JavaFX Application Thread] INFO  Engine               - Source code and latest versions at: https://github.com/AlmasB/FXGL
+16:09:47.339 [JavaFX Application Thread] INFO  Engine               -       Ask questions and discuss at: https://github.com/AlmasB/FXGL/discussions
+16:09:47.339 [JavaFX Application Thread] INFO  Engine               -              Join the FXGL chat at: https://gitter.im/AlmasB/FXGL
+16:09:47.476 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Creating a JavaFX scene
+16:09:47.537 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Target settings size: 750.0 x 533.0
+16:09:47.537 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scaled scene size:    750.0 x 533.0
+16:09:47.537 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scaled ratio: (1.0, 1.0)
+16:09:47.538 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Set initial scene to GameStartupScene
+16:09:47.540 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Opening main window
+16:09:47.811 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Window border size: (14.79998779296875, 38.20001220703125)
+16:09:47.811 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scaled size: 750.0 x 533.0
+16:09:47.811 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scaled ratio: (1.0, 1.0)
+16:09:47.811 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Scene size: 750.0 x 533.0
+16:09:47.811 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Stage size: 764.7999877929688 x 571.2000122070312
+16:09:47.816 [FXGL Background Thread 1 ] DEBUG Engine               - Initializing environment variables
+16:09:47.849 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - User app class for loading assets: class com.zrt.pvz.PVZApp
+16:09:47.849 [FXGL Background Thread 1 ] DEBUG GameApplicationServi - Applying CSS: fxgl_dark.css
+16:09:47.849 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/dell/.m2/repository/com/github/almasb/fxgl/17.2/fxgl-17.2.jar!/fxglassets/ui/css/fxgl_dark.css
+16:09:47.861 [FXGL Background Thread 1 ] DEBUG GameApplicationServi - Initializing application scenes
+16:09:47.865 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/map/map1LoadingBG.jpg
+16:09:47.930 [FXGL Background Thread 1 ] DEBUG GameWorld            - Game world initialized
+16:09:47.964 [FXGL Background Thread 1 ] DEBUG PhysicsWorld         - Physics world initialized: appHeight=533, physics.ppm=50.0
+16:09:47.965 [FXGL Background Thread 1 ] DEBUG PhysicsWorld         - Using strategy: BRUTE_FORCE
+16:09:47.969 [FXGL Background Thread 1 ] DEBUG GameScene            - Game scene initialized: 750x533
+16:09:47.981 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/mainMenu/bg.png
+16:09:48.035 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/mainMenu/puzzle.png
+16:09:48.056 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/mainMenu/userBoard.png
+16:09:48.073 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/gameMenu/Menu.png
+16:09:48.080 [FXGL Background Thread 1 ] DEBUG GameApplicationServi - Application scenes initialized
+16:09:48.091 [FXGL Background Thread 1 ] DEBUG SystemBundleService  - Loading FXGL system data
+16:09:48.092 [FXGL Background Thread 1 ] DEBUG FileSystemAccess     - Reading from: C:\Users\dell\Desktop\OOP作业\Teamwork\system\fxgl.bundle
+16:09:48.095 [FXGL Background Thread 1 ] DEBUG SystemBundleService  - Bundle FXGL: {}
+16:09:48.095 [FXGL Background Thread 1 ] DEBUG UpdaterService       - Checking for updates
+16:09:48.098 [FXGL Background Thread 4 ] DEBUG FXGLApplication      - Loading fonts
+16:09:48.099 [FXGL Background Thread 1 ] DEBUG FXGLApplication      - Loading default localization
+16:09:48.099 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/dell/.m2/repository/com/github/almasb/fxgl/17.2/fxgl-17.2.jar!/fxglassets/ui/fonts/VarelaRound-Regular.ttf
+16:09:48.099 [FXGL Background Thread 1 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/dell/.m2/repository/com/github/almasb/fxgl/17.2/fxgl-17.2.jar!/fxglassets/languages/english.lang
+16:09:48.135 [FXGL Background Thread 1 ] INFO  FXGLApplication      - FXGL initialization took: 0.318 sec
+16:09:48.137 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/logo.png
+16:09:48.145 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/dell/.m2/repository/com/github/almasb/fxgl/17.2/fxgl-17.2.jar!/fxglassets/textures/fxgl_default_cursor.png
+16:09:48.157 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Screenshot - CTRL+8
+16:09:48.157 [JavaFX Application Thread] DEBUG Input                - Registered new binding: System info dump - CTRL+9
+16:09:48.158 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Restart - CTRL+R
+16:09:48.159 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Toggle Debug Camera - CTRL+7
+16:09:48.165 [JavaFX Application Thread] DEBUG LoopRunner           - Starting loop
+16:09:48.165 [JavaFX Application Thread] DEBUG LoopRunner           - Initializing JavaFX AnimationTimerLoop
+16:09:48.168 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+16:09:48.174 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from GameStartupScene and adding to FXGLMainMenuDummyScene
+16:09:48.174 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - GameStartupScene -> FXGLMainMenuDummyScene
+16:09:48.174 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Push state: MainMenu
+16:09:48.174 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/music/mainMenu.wav
+16:09:48.189 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/dell/.m2/repository/com/github/almasb/fxgl/17.2/fxgl-17.2.jar!/fxglassets/ui/fonts/Abel-Regular.ttf
+16:09:48.191 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/dell/.m2/repository/com/github/almasb/fxgl/17.2/fxgl-17.2.jar!/fxglassets/ui/fonts/TerminalLandMono-Regular.otf
+16:09:48.193 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: jar:file:///C:/Users/dell/.m2/repository/com/github/almasb/fxgl/17.2/fxgl-17.2.jar!/fxglassets/ui/fonts/Courier-Prime.ttf
+16:09:48.318 [JavaFX Application Thread] DEBUG AudioPlayer          - Playing music com.almasb.fxgl.audio.Music@47920312
+16:09:48.319 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+16:09:48.321 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from FXGLMainMenuDummyScene and adding to MainMenu
+16:09:48.322 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - FXGLMainMenuDummyScene -> MainMenu
+16:09:48.351 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/sounds/mainMenuHover.wav
+16:09:48.359 [JavaFX Application Thread] DEBUG FXGLApplication      - Registering font factories with UI factory
+16:09:48.821 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/sounds/select.wav
+16:09:48.824 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/mainMenu/ZombieHand.png
+16:09:48.838 [JavaFX Application Thread] DEBUG GameApplicationServi - Starting new game
+16:09:48.838 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Pop state: MainMenu
+16:09:48.838 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+16:09:48.839 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from MainMenu and adding to FXGLMainMenuDummyScene
+16:09:48.839 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - FXGLMainMenuDummyScene <- MainMenu
+16:09:48.839 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+16:09:48.844 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from FXGLMainMenuDummyScene and adding to GameLoadingScene
+16:09:48.844 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - FXGLMainMenuDummyScene -> GameLoadingScene
+16:09:48.844 [JavaFX Application Thread] DEBUG GameApplicationServi - Clearing previous game
+16:09:48.844 [JavaFX Application Thread] DEBUG GameScene            - Clearing game scene
+16:09:48.844 [JavaFX Application Thread] DEBUG GameWorld            - Clearing game world
+16:09:48.844 [JavaFX Application Thread] DEBUG PhysicsWorld         - Clearing physics world
+16:09:48.847 [FXGL Background Thread 4 ] DEBUG FXGLApplication      - Initializing game
+16:09:48.854 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/Imitator.json
+16:09:49.041 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/levels/level1.json
+16:09:49.050 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/choose/CherryBomb.png
+16:09:49.052 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/map/map1.jpg
+16:09:49.110 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/zombie/NormalZombie.json
+16:09:49.121 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieShow/ZombieShow_0.png
+16:09:49.122 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieShow/ZombieShow_1.png
+16:09:49.123 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieShow/ZombieShow_2.png
+16:09:49.123 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieShow/ZombieShow_3.png
+16:09:49.124 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieShow/ZombieShow_4.png
+16:09:49.135 [FXGL Background Thread 4 ] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/MapPoint.json
+16:09:49.152 [FXGL Background Thread 4 ] INFO  FXGLApplication      - Game initialization took: 0.305 sec
+16:09:49.152 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+16:09:49.155 [JavaFX Application Thread] DEBUG GameApplicationServi - Removing overlay from GameLoadingScene and adding to GameScene
+16:09:49.155 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - GameLoadingScene -> GameScene
+16:09:49.597 [FXGL Background Thread 2 ] INFO  UpdaterService       - Your current version:  17.2
+16:09:49.598 [FXGL Background Thread 2 ] INFO  UpdaterService       - Latest stable version: 17.3
+16:09:51.097 [FXGL Background Thread 3 ] DEBUG Engine               - Logging environment variables
+16:09:51.097 [FXGL Background Thread 3 ] DEBUG Engine               - achievements: []
+16:09:51.098 [FXGL Background Thread 3 ] DEBUG Engine               - actualHeight: 533.0
+16:09:51.098 [FXGL Background Thread 3 ] DEBUG Engine               - actualHeightProperty: ReadOnlyDoubleProperty [value: 533.0]
+16:09:51.098 [FXGL Background Thread 3 ] DEBUG Engine               - actualWidth: 750.0
+16:09:51.098 [FXGL Background Thread 3 ] DEBUG Engine               - actualWidthProperty: ReadOnlyDoubleProperty [value: 750.0]
+16:09:51.098 [FXGL Background Thread 3 ] DEBUG Engine               - appIcon: logo.png
+16:09:51.098 [FXGL Background Thread 3 ] DEBUG Engine               - applicationMode: DEVELOPER
+16:09:51.098 [FXGL Background Thread 3 ] DEBUG Engine               - cSSList: [fxgl_dark.css]
+16:09:51.098 [FXGL Background Thread 3 ] DEBUG Engine               - collisionDetectionStrategy: BRUTE_FORCE
+16:09:51.098 [FXGL Background Thread 3 ] DEBUG Engine               - configClass: Optional.empty
+16:09:51.098 [FXGL Background Thread 3 ] DEBUG Engine               - credits: []
+16:09:51.102 [FXGL Background Thread 3 ] DEBUG Engine               - defaultCursor: CursorInfo(imageName=fxgl_default_cursor.png, hotspotX=7.0, hotspotY=6.0)
+16:09:51.102 [FXGL Background Thread 3 ] DEBUG Engine               - devBBoxColorProperty: ObjectProperty [value: 0xff0000ff]
+16:09:51.102 [FXGL Background Thread 3 ] DEBUG Engine               - devEnableDebugCameraProperty: BooleanProperty [value: false]
+16:09:51.102 [FXGL Background Thread 3 ] DEBUG Engine               - devSensorColorProperty: ObjectProperty [value: 0xffff00ff]
+16:09:51.102 [FXGL Background Thread 3 ] DEBUG Engine               - devShowBBoxProperty: BooleanProperty [value: false]
+16:09:51.102 [FXGL Background Thread 3 ] DEBUG Engine               - devShowPositionProperty: BooleanProperty [value: false]
+16:09:51.102 [FXGL Background Thread 3 ] DEBUG Engine               - enabledMenuItems: []
+16:09:51.102 [FXGL Background Thread 3 ] DEBUG Engine               - engineServices: [class com.almasb.fxgl.app.services.FXGLAssetLoaderService, class com.almasb.fxgl.app.FXGLApplication$GameApplicationService, class com.almasb.fxgl.app.services.FXGLDialogService, class com.almasb.fxgl.app.services.IOTaskExecutorService, class com.almasb.fxgl.io.FileSystemService, class com.almasb.fxgl.localization.LocalizationService, class com.almasb.fxgl.app.services.SystemBundleService, class com.almasb.fxgl.profile.SaveLoadService, class com.almasb.fxgl.ui.FXGLUIFactoryServiceProvider, class com.almasb.fxgl.ui.FXGLDialogFactoryServiceProvider, class com.almasb.fxgl.audio.AudioPlayer, class com.almasb.fxgl.notification.impl.NotificationServiceProvider, class com.almasb.fxgl.achievement.AchievementService, class com.almasb.fxgl.cutscene.CutsceneService, class com.almasb.fxgl.minigames.MiniGameService, class com.almasb.fxgl.net.NetService, class com.almasb.fxgl.app.services.UpdaterService, class com.almasb.fxgl.dev.DevService]
+16:09:51.102 [FXGL Background Thread 3 ] DEBUG Engine               - fontGame: Abel-Regular.ttf
+16:09:51.102 [FXGL Background Thread 3 ] DEBUG Engine               - fontMono: TerminalLandMono-Regular.otf
+16:09:51.102 [FXGL Background Thread 3 ] DEBUG Engine               - fontText: Courier-Prime.ttf
+16:09:51.102 [FXGL Background Thread 3 ] DEBUG Engine               - fontUI: VarelaRound-Regular.ttf
+16:09:51.102 [FXGL Background Thread 3 ] DEBUG Engine               - fullScreen: BooleanProperty [value: false]
+16:09:51.102 [FXGL Background Thread 3 ] DEBUG Engine               - gameDifficulty: MEDIUM
+16:09:51.102 [FXGL Background Thread 3 ] DEBUG Engine               - gameDifficultyProperty: ObjectProperty [value: MEDIUM]
+16:09:51.102 [FXGL Background Thread 3 ] DEBUG Engine               - globalMusicVolume: 0.5
+16:09:51.102 [FXGL Background Thread 3 ] DEBUG Engine               - globalMusicVolumeProperty: DoubleProperty [value: 0.5]
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - globalSoundVolume: 0.5
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - globalSoundVolumeProperty: DoubleProperty [value: 0.5]
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - height: 533
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - is3D: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isAndroid: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isBrowser: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isClickFeedbackEnabled: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isCloseConfirmation: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isDesktop: true
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isDeveloperMenuEnabled: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isEmbedded: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isEntityPreloadEnabled: true
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isExperimentalTiledLargeMap: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isFileSystemWriteAllowed: true
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isFullScreenAllowed: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isFullScreenFromStart: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isGameMenuEnabled: true
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isIOS: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isIntroEnabled: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isLinux: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isMac: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isMainMenuEnabled: true
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isManualResizeEnabled: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isMobile: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isNative: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isPauseMusicWhenMinimized: true
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isPreserveResizeRatio: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isProfilingEnabled: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isScaleAffectedOnResize: true
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isSingleStep: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isUserProfileEnabled: false
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - isWindows: true
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - language: ObjectProperty [value: ENGLISH]
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - menuKey: ESCAPE
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - mouseSensitivity: 0.2
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - notificationViewClass: class com.almasb.fxgl.notification.view.XboxNotificationView
+16:09:51.103 [FXGL Background Thread 3 ] DEBUG Engine               - pixelsPerMeter: 50.0
+16:09:51.104 [FXGL Background Thread 3 ] DEBUG Engine               - platform: WINDOWS
+16:09:51.104 [FXGL Background Thread 3 ] DEBUG Engine               - prefHeightProperty: ReadOnlyDoubleProperty [value: 533.0]
+16:09:51.104 [FXGL Background Thread 3 ] DEBUG Engine               - prefWidthProperty: ReadOnlyDoubleProperty [value: 750.0]
+16:09:51.104 [FXGL Background Thread 3 ] DEBUG Engine               - profileDir: profiles/
+16:09:51.104 [FXGL Background Thread 3 ] DEBUG Engine               - profileName: StringProperty [value: DEFAULT]
+16:09:51.104 [FXGL Background Thread 3 ] DEBUG Engine               - randomSeed: -1
+16:09:51.104 [FXGL Background Thread 3 ] DEBUG Engine               - runtimeInfo: RuntimeInfo(platform=WINDOWS, version=17.2, build=20.08.2022 16.50)
+16:09:51.104 [FXGL Background Thread 3 ] DEBUG Engine               - saveFileExt: sav
+16:09:51.104 [FXGL Background Thread 3 ] DEBUG Engine               - scaledHeightProp$fxgl: DoubleProperty [bound, value: 533.0]
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - scaledWidthProp$fxgl: DoubleProperty [bound, value: 750.0]
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - sceneFactory: com.zrt.pvz.PVZApp$1@4ed7f418
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - secondsIn24h: 60
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - soundMenuBack: menu/back.wav
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - soundMenuPress: menu/press.wav
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - soundMenuSelect: menu/select.wav
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - soundNotification: core/notification.wav
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - stageStyle: DECORATED
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - supportedLanguages: [ENGLISH, FRENCH, GERMAN, HUNGARIAN, RUSSIAN]
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - ticksPerSecond: -1
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - title: Plants Vs Zombies
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - urlGithub: https://github.com/AlmasB/FXGL
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - urlLeaderboard: http://fxgl-top.herokuapp.com/
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - urlPOM: https://raw.githubusercontent.com/AlmasB/FXGL/release/README.md
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - userAppClass: class com.zrt.pvz.PVZApp
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - version: 0.0
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - versionCheckDays: 7
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - width: 750
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - Logging services
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.app.services.FXGLAssetLoaderService
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.app.FXGLApplication$GameApplicationService
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.app.services.FXGLDialogService
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.app.services.IOTaskExecutorService
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.io.FileSystemService
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.localization.LocalizationService
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.app.services.SystemBundleService
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.profile.SaveLoadService
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.ui.FXGLUIFactoryServiceProvider
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.ui.FXGLDialogFactoryServiceProvider
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.audio.AudioPlayer
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.notification.impl.NotificationServiceProvider
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.achievement.AchievementService
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.cutscene.CutsceneService
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.minigames.MiniGameService
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.net.NetService
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.app.services.UpdaterService
+16:09:51.105 [FXGL Background Thread 3 ] DEBUG Engine               - class com.almasb.fxgl.dev.DevService
+16:09:53.440 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/choose/chosenBg.png
+16:09:53.449 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/choose/ChoosePlant.png
+16:09:53.460 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/SunFlower.json
+16:09:53.467 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/choose/SunFlower.png
+16:09:53.472 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/PeaShooter.json
+16:09:53.478 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/choose/PeaShooter.png
+16:09:53.479 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/PuffShroom.json
+16:09:53.483 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/choose/PuffShroom.png
+16:09:53.484 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/SunShroom.json
+16:09:53.489 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/choose/SunShroom.png
+16:09:53.491 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/FumeShroom.json
+16:09:53.495 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/choose/FumeShroom.png
+16:09:54.514 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/PeaShooter.json
+16:09:55.120 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/PeaShooter.json
+16:09:55.124 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/SunShroom.json
+16:09:55.425 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/PeaShooter.json
+16:09:55.429 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/SunShroom.json
+16:09:55.432 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/FumeShroom.json
+16:09:55.825 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/PeaShooter.json
+16:09:55.830 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/SunShroom.json
+16:09:55.834 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/FumeShroom.json
+16:09:55.837 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/PuffShroom.json
+16:09:56.917 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunFlower/SunFlower.png
+16:09:56.919 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/powerBeatBg(2).png
+16:09:56.936 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/zombie/NormalZombie.json
+16:09:59.825 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/weeder/weeder.png
+16:09:59.829 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/prepareText/prepare.png
+16:09:59.833 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/sounds/readysetplant.wav
+16:09:59.836 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/shovel/shovelBg.png
+16:09:59.839 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/PeaShooter.json
+16:09:59.844 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/SunShroom.json
+16:09:59.847 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/FumeShroom.json
+16:09:59.850 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/plant/PuffShroom.json
+16:10:00.336 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/prepareText/puton.png
+16:10:00.840 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/prepareText/plant.png
+16:10:03.714 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/sounds/seedlift.wav
+16:10:03.797 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroom.png
+16:10:04.131 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/sounds/placed.wav
+16:10:04.136 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroom/SunShroom_0.png
+16:10:04.136 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroom/SunShroom_1.png
+16:10:04.136 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroom/SunShroom_2.png
+16:10:04.137 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroom/SunShroom_3.png
+16:10:04.137 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroom/SunShroom_4.png
+16:10:04.138 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroom/SunShroom_5.png
+16:10:04.138 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroom/SunShroom_6.png
+16:10:04.138 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroom/SunShroom_7.png
+16:10:04.141 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroom/SunShroom_8.png
+16:10:04.141 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroom/SunShroom_9.png
+16:10:04.142 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomSleep/SunShroomSleep_0.png
+16:10:04.142 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomSleep/SunShroomSleep_1.png
+16:10:04.142 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomSleep/SunShroomSleep_2.png
+16:10:04.143 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomSleep/SunShroomSleep_3.png
+16:10:04.143 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomSleep/SunShroomSleep_4.png
+16:10:04.143 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomSleep/SunShroomSleep_5.png
+16:10:04.144 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomSleep/SunShroomSleep_6.png
+16:10:04.144 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomSleep/SunShroomSleep_7.png
+16:10:04.144 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomSleep/SunShroomSleep_8.png
+16:10:04.145 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomSleep/SunShroomSleep_9.png
+16:10:04.145 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomSleep/SunShroomSleep_10.png
+16:10:04.145 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomSleep/SunShroomSleep_11.png
+16:10:04.146 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomSleep/SunShroomSleep_12.png
+16:10:04.146 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomBig/SunShroomBig_0.png
+16:10:04.146 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomBig/SunShroomBig_1.png
+16:10:04.147 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomBig/SunShroomBig_2.png
+16:10:04.147 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomBig/SunShroomBig_3.png
+16:10:04.147 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomBig/SunShroomBig_4.png
+16:10:04.148 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomBig/SunShroomBig_5.png
+16:10:04.148 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomBig/SunShroomBig_6.png
+16:10:04.148 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomBig/SunShroomBig_7.png
+16:10:04.149 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomBig/SunShroomBig_8.png
+16:10:04.149 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShroom/SunShroomBig/SunShroomBig_9.png
+16:10:05.016 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroom.png
+16:10:05.499 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroom/PuffShroom_0.png
+16:10:05.499 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroom/PuffShroom_1.png
+16:10:05.500 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroom/PuffShroom_2.png
+16:10:05.500 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroom/PuffShroom_3.png
+16:10:05.501 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroom/PuffShroom_4.png
+16:10:05.501 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroom/PuffShroom_5.png
+16:10:05.501 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroom/PuffShroom_6.png
+16:10:05.502 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroom/PuffShroom_7.png
+16:10:05.502 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroom/PuffShroom_8.png
+16:10:05.502 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroom/PuffShroom_9.png
+16:10:05.503 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroom/PuffShroom_10.png
+16:10:05.503 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroom/PuffShroom_11.png
+16:10:05.503 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroom/PuffShroom_12.png
+16:10:05.504 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroom/PuffShroom_13.png
+16:10:05.504 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroomSleep/PuffShroomSleep_0.png
+16:10:05.504 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroomSleep/PuffShroomSleep_1.png
+16:10:05.505 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroomSleep/PuffShroomSleep_2.png
+16:10:05.505 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroomSleep/PuffShroomSleep_3.png
+16:10:05.505 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroomSleep/PuffShroomSleep_4.png
+16:10:05.506 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroomSleep/PuffShroomSleep_5.png
+16:10:05.506 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroomSleep/PuffShroomSleep_6.png
+16:10:05.506 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroomSleep/PuffShroomSleep_7.png
+16:10:05.507 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroomSleep/PuffShroomSleep_8.png
+16:10:05.507 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroomSleep/PuffShroomSleep_9.png
+16:10:05.507 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroomSleep/PuffShroomSleep_10.png
+16:10:05.507 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroomSleep/PuffShroomSleep_11.png
+16:10:05.508 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroomSleep/PuffShroomSleep_12.png
+16:10:05.508 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroomSleep/PuffShroomSleep_13.png
+16:10:05.508 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroomSleep/PuffShroomSleep_14.png
+16:10:05.509 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroomSleep/PuffShroomSleep_15.png
+16:10:05.509 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/PuffShroom/PuffShroomSleep/PuffShroomSleep_16.png
+16:10:07.430 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_0.png
+16:10:07.431 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_1.png
+16:10:07.431 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_2.png
+16:10:07.432 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_3.png
+16:10:07.432 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_4.png
+16:10:07.432 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_5.png
+16:10:07.433 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_6.png
+16:10:07.433 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_7.png
+16:10:07.433 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_8.png
+16:10:07.434 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_9.png
+16:10:07.434 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_10.png
+16:10:07.434 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_11.png
+16:10:07.434 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_12.png
+16:10:07.436 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_13.png
+16:10:07.436 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_14.png
+16:10:07.436 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_15.png
+16:10:07.437 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_16.png
+16:10:07.437 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_17.png
+16:10:07.437 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_18.png
+16:10:07.437 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_19.png
+16:10:07.438 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_20.png
+16:10:07.438 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_21.png
+16:10:07.438 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_22.png
+16:10:07.439 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_23.png
+16:10:07.439 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_24.png
+16:10:07.439 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_25.png
+16:10:07.439 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_26.png
+16:10:07.439 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_27.png
+16:10:07.439 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/SunShine/SunShine_28.png
+16:10:08.036 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/sounds/points.wav
+16:10:14.935 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_0.png
+16:10:14.935 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_1.png
+16:10:14.936 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_2.png
+16:10:14.936 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_3.png
+16:10:14.937 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_4.png
+16:10:14.937 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_5.png
+16:10:14.938 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_6.png
+16:10:14.938 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_7.png
+16:10:14.938 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_8.png
+16:10:14.939 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_9.png
+16:10:14.939 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_10.png
+16:10:14.940 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_11.png
+16:10:14.940 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_12.png
+16:10:14.941 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_13.png
+16:10:14.941 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_14.png
+16:10:14.941 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_15.png
+16:10:14.942 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_16.png
+16:10:14.942 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_17.png
+16:10:14.943 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_18.png
+16:10:14.943 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_19.png
+16:10:14.944 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_20.png
+16:10:14.944 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/Zombie/Zombie_21.png
+16:10:14.946 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieDie/ZombieDie_0.png
+16:10:14.947 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieDie/ZombieDie_1.png
+16:10:14.947 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieDie/ZombieDie_2.png
+16:10:14.947 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieDie/ZombieDie_3.png
+16:10:14.948 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieDie/ZombieDie_4.png
+16:10:14.948 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieDie/ZombieDie_5.png
+16:10:14.949 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieDie/ZombieDie_6.png
+16:10:14.949 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieDie/ZombieDie_7.png
+16:10:14.949 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieDie/ZombieDie_8.png
+16:10:14.950 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieDie/ZombieDie_9.png
+16:10:14.950 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_0.png
+16:10:14.951 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_1.png
+16:10:14.951 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_2.png
+16:10:14.952 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_3.png
+16:10:14.952 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_4.png
+16:10:14.952 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_5.png
+16:10:14.953 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_6.png
+16:10:14.953 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_7.png
+16:10:14.953 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_8.png
+16:10:14.954 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_9.png
+16:10:14.954 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_10.png
+16:10:14.954 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_11.png
+16:10:14.955 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_12.png
+16:10:14.955 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_13.png
+16:10:14.955 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_14.png
+16:10:14.956 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_15.png
+16:10:14.956 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_16.png
+16:10:14.957 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_17.png
+16:10:14.957 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_18.png
+16:10:14.957 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/BoomDie/BoomDie_19.png
+16:10:14.958 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_0.png
+16:10:14.958 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_1.png
+16:10:14.959 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_2.png
+16:10:14.959 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_3.png
+16:10:14.960 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_4.png
+16:10:14.960 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_5.png
+16:10:14.961 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_6.png
+16:10:14.961 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_7.png
+16:10:14.961 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_8.png
+16:10:14.962 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_9.png
+16:10:14.962 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_10.png
+16:10:14.963 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_11.png
+16:10:14.963 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_12.png
+16:10:14.963 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_13.png
+16:10:14.964 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_14.png
+16:10:14.964 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_15.png
+16:10:14.965 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_16.png
+16:10:14.965 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_17.png
+16:10:14.965 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_18.png
+16:10:14.966 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_19.png
+16:10:14.966 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/zombie/NormalZombie/ZombieAttack/ZombieAttack_20.png
+16:10:14.968 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/progressBar/FlagMeterFull.png
+16:10:14.968 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/progressBar/FlagMeterEmpty.png
+16:10:14.969 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/progressBar/FlagMeterLevelProgress.png
+16:10:14.969 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/progressBar/FlagMeterParts1.png
+16:10:14.971 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/progressBar/FlagMeterParts2.png
+16:10:14.971 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/sounds/siren.wav
+16:10:14.973 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/sounds/loadingbar_zombie.wav
+16:10:20.017 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/powerBeat.png
+16:10:20.726 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/powerBeat_0.png
+16:10:20.726 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/powerBeat_1.png
+16:10:20.726 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/powerBeat_2.png
+16:10:20.727 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/powerBeat_3.png
+16:10:20.727 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/powerBeat_4.png
+16:10:20.727 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/powerBeat_5.png
+16:10:20.727 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/powerBeat_6.png
+16:10:20.730 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/powerBeatBg(1).png
+16:10:22.733 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/Coffeebean_head1.png
+16:10:22.734 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/Coffeebean_head2.png
+16:10:22.734 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/Coffeebean_head3.png
+16:10:22.735 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/Coffeebean_head4.png
+16:10:22.735 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/Coffeebean_head5.png
+16:10:22.736 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/Coffeebean_head6.png
+16:10:22.736 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/Coffeebean_head7.png
+16:10:22.736 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/Coffeebean_head8.png
+16:10:22.737 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/Coffeebean_head9.png
+16:10:22.737 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/Coffeebean_head10.png
+16:10:22.737 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/Coffeebean_head11.png
+16:10:22.740 [JavaFX Application Thread] WARN  Entity               - Cannot add / remove components during updating
+16:10:23.427 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/powerBeat/powerBeatBg(0).png
+16:10:24.924 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/zombie/NormalZombie.json
+16:10:24.943 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/zombie/NormalZombie.json
+16:10:24.952 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/zombie/NormalZombie.json
+16:10:24.960 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/zombie/NormalZombie.json
+16:10:24.968 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/zombie/NormalZombie.json
+16:10:24.977 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading JSON from: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/data/zombie/NormalZombie.json
+16:10:24.990 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/sounds/hugewave.wav
+16:10:24.992 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/progressBar/LargeWave.png
+16:10:25.513 [JavaFX Application Thread] WARN  Entity               - Cannot add / remove components during updating
+16:10:26.997 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/ui/progressBar/FinalWave.png
+16:10:35.089 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroom.png
+16:10:35.740 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroom/FumeShroom_0.png
+16:10:35.742 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroom/FumeShroom_1.png
+16:10:35.743 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroom/FumeShroom_2.png
+16:10:35.744 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroom/FumeShroom_3.png
+16:10:35.745 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroom/FumeShroom_4.png
+16:10:35.745 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroom/FumeShroom_5.png
+16:10:35.746 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroom/FumeShroom_6.png
+16:10:35.746 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroom/FumeShroom_7.png
+16:10:35.747 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroom/FumeShroom_8.png
+16:10:35.748 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroom/FumeShroom_9.png
+16:10:35.749 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroom/FumeShroom_10.png
+16:10:35.749 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroom/FumeShroom_11.png
+16:10:35.750 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroom/FumeShroom_12.png
+16:10:35.751 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroom/FumeShroom_13.png
+16:10:35.751 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroom/FumeShroom_14.png
+16:10:35.752 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroom/FumeShroom_15.png
+16:10:35.753 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroomSleep/FumeShroomSleep_0.png
+16:10:35.753 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroomSleep/FumeShroomSleep_1.png
+16:10:35.754 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroomSleep/FumeShroomSleep_2.png
+16:10:35.754 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroomSleep/FumeShroomSleep_3.png
+16:10:35.755 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroomSleep/FumeShroomSleep_4.png
+16:10:35.755 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroomSleep/FumeShroomSleep_5.png
+16:10:35.756 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroomSleep/FumeShroomSleep_6.png
+16:10:35.757 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroomSleep/FumeShroomSleep_7.png
+16:10:35.758 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroomSleep/FumeShroomSleep_8.png
+16:10:35.760 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroomSleep/FumeShroomSleep_9.png
+16:10:35.760 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroomSleep/FumeShroomSleep_10.png
+16:10:35.761 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroomSleep/FumeShroomSleep_11.png
+16:10:35.762 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroomSleep/FumeShroomSleep_12.png
+16:10:35.762 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/textures/plant/FumeShroom/FumeShroomSleep/FumeShroomSleep_13.png
+16:10:39.032 [JavaFX Application Thread] WARN  Entity               - Cannot add / remove components during updating
+16:10:50.285 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/sounds/plantgrow.wav
+16:10:59.188 [JavaFX Application Thread] DEBUG FXGLAssetLoaderServi - Loading from file system: file:/C:/Users/dell/Desktop/OOP作业/Teamwork/target/classes/assets/sounds/zombieAttack.wav
+16:11:04.710 [JavaFX Application Thread] DEBUG FXGLApplication      - Exiting FXGL
+16:11:04.710 [JavaFX Application Thread] DEBUG LoopRunner           - Stopping loop
+16:11:04.710 [JavaFX Application Thread] DEBUG SystemBundleService  - Saving FXGL system data
+16:11:04.711 [JavaFX Application Thread] DEBUG FileSystemAccess     - Writing to: C:\Users\dell\Desktop\OOP作业\Teamwork\system\fxgl.bundle
+16:11:04.712 [JavaFX Application Thread] DEBUG Async                - Shutting down background threads
+16:11:04.712 [JavaFX Application Thread] DEBUG PrimaryStageWindow   - Closing main window
+16:11:04.735 [JavaFX Application Thread] DEBUG Logger               - Closing Logger

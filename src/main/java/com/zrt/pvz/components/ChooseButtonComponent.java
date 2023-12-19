@@ -38,8 +38,6 @@ public class ChooseButtonComponent extends Component {
                 nv=true;
             }
             FXGL.set("choosePlantName", nv ? plantData.name() : "");
-            System.out.println(nv);
-            System.out.println("Choose Plant Name: " +plantData.name());
         });
     }
     public void darken(){

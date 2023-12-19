@@ -89,6 +89,9 @@ public class RewardComponent extends Component {
         //删除箭头
         entity.getViewComponent().clearChildren();
 
+        //播放音乐
+        FXGL.play("winmusic.wav");
+
         //闪光动画
         Texture texture1 = FXGL.texture("ui/rewardPlant/AwardPickupGlow.png");
         Duration duration1=Duration.seconds(3);

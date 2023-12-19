@@ -2,11 +2,11 @@
   "name": "Imitator",
   "icon": "plant/Imitator/Imitator.png",
   "hp": 400,
-  "width": 66,
-  "height": 97,
+  "width": 57,
+  "height": 82,
   "offsetX": 0,
   "offsetY": 0,
-  "cost": 100,
+  "cost": 0,
   "attackRate": 0,
   "shootInterval": 0,
   "CD": 0,
@@ -16,31 +16,17 @@
   "animationData": [{
     "status": "normal",
     "imageName": "plant/Imitator/Imitator.png",
-    "width": 66,
-    "height": 97,
+    "width": 57,
+    "height": 82,
     "channelDuration": 1.4,
     "FrameNumber": 1
   },{
     "status": "spin",
     "imageName": "plant/Imitator/Imitator_spin%d.png",
-    "width": 66,
-    "height": 97,
+    "width": 57,
+    "height": 82,
     "channelDuration": 0.5,
     "FrameNumber": 6
   }
-  ],
-  "bulletData": {
-    "imageName": "plant/PeaShooter/PeaNormal.png",
-    "width": 25,
-    "height": 15,
-    "attackDamage": 20,
-    "range": 1000,
-    "speed": 400,
-    "effectData": {
-      "name": "群攻",
-      "imgName": "tower/arrow/effect.png",
-      "desc": "群攻: 同时攻击多个敌人",
-      "descEn": "Group Attack."
-    }
-  }
+  ]
 }

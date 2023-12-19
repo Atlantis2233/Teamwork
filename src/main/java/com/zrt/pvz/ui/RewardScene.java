@@ -76,6 +76,7 @@ public class RewardScene extends SubScene {
         //按钮
         ImageButton continueBtn = new ImageButton("levelEnd/NextLevel", 158, 48, () ->{
             FXGL.getSceneService().popSubScene();
+            FXGL.getSceneService().popSubScene();
             FXGL.<PVZApp>getAppCast().continueNextLevel();
         });
         ImageButton mainMenuBtn = new ImageButton("levelEnd/MainMenu", 111, 27, () -> {

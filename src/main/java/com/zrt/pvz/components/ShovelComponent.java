@@ -35,6 +35,7 @@ public class ShovelComponent extends Component {
             if (nv) {
                 entity.getViewComponent().clearChildren();
                 entity.getViewComponent().addChild(FXGL.texture("shovel/withoutShovelBg.png"));
+                FXGL.play("shovel.wav");
                 entity.getViewComponent().addChild(btn);
             } else {
                 entity.getViewComponent().clearChildren();

@@ -1,0 +1,69 @@
+{
+  "name": "FootballZombie",
+  "hp": 800,
+  "reward": 30,
+  "moveSpeed": 18,
+  "width": 154,
+  "height": 160,
+  "preview": "zombie/FootballZombie/FootballZombie/FootballZombie.png",
+  "attackDamage": 100,
+  "damageDuration": 1.0,
+  "components": [
+  ],
+  "bboxData": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 43
+  },
+  "animationData": [
+    {
+      "status": "right",
+      "imageName": "zombie/FootballZombie/FootballZombie/FootballZombie_%d.png",
+      "width": 154,
+      "height": 160,
+      "channelDuration": 3.0,
+      "FrameNumber": 10
+    },
+    {
+      "status": "left",
+      "imageName": "zombie/FootballZombie/FootballZombie/FootballZombie_%d.png",
+      "width": 96,
+      "height": 143,
+      "channelDuration": 3.0,
+      "FrameNumber": 10
+    },
+    {
+      "status": "die",
+      "imageName": "zombie/FootballZombie/FootballZombieDie/FootballZombieDie_%d.png",
+      "width": 236,
+      "height": 170,
+      "channelDuration": 4.0,
+      "FrameNumber": 6
+    },
+    {
+      "status": "boomDie",
+      "imageName": "zombie/NormalZombie/BoomDie/BoomDie_%d.png",
+      "width": 114,
+      "height": 126,
+      "channelDuration": 4.0,
+      "FrameNumber": 20
+    },
+    {
+      "status": "attack",
+      "imageName": "zombie/FootballZombie/FootballZombieAttack/FootballZombieAttack_%d.png",
+      "width": 154,
+      "height": 160,
+      "channelDuration": 6.0,
+      "FrameNumber": 9
+    },
+    {
+      "status": "show",
+      "imageName": "zombie/FootballZombie/FootballZombie/FootballZombie_%d.png",
+      "width": 154,
+      "height": 160,
+      "channelDuration": 3.0,
+      "FrameNumber": 9
+    }
+  ]
+}

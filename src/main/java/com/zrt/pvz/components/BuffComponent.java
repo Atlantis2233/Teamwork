@@ -35,8 +35,11 @@ public class BuffComponent extends Component {
     }
 
     public void CastSkillDelay(){
-        timer.capture();
-        isStart=true;
+//        timer.capture();
+//        isStart=true;
+        FXGL.runOnce(()->{
+            CastSkill();
+        },Duration.seconds(2.0));
     }
 
     //释放技能函数，根据对对应植物编写
@@ -95,6 +98,18 @@ public class BuffComponent extends Component {
                     entity.getViewComponent().removeChild(texture);
                 }
             },Duration.seconds(4.0));
+        }
+        else if(plantData.name().equals("PuffShroom")){
+            ShroomComponent shroomComponent=(ShroomComponent) entity.getComponent(ShroomComponent.class);
+            shroomComponent.setCoffee();
+        }
+        else if(plantData.name().equals("SunShroom")){
+            ShroomComponent shroomComponent=(ShroomComponent) entity.getComponent(ShroomComponent.class);
+            shroomComponent.setCoffee();
+        }
+        else if(plantData.name().equals("FumeShroom")){
+            ShroomComponent shroomComponent=(ShroomComponent) entity.getComponent(ShroomComponent.class);
+            shroomComponent.setCoffee();
         }
     }
 }

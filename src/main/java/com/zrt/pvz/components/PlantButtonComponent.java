@@ -71,6 +71,9 @@ public class PlantButtonComponent extends Component {
             if (nv&&afford) {
                 rectangle.setVisible(true);
                 rectangleBG.setVisible(true);
+                FXGL.play("seedlift.wav");
+                PVZApp pvzApp=(PVZApp) FXGL.getApp();
+                pvzApp.setImitatorCost(plantData.cost());
             } else {
                 if(FXGL.gets("selectedPlantName").equals("build"))
                 {

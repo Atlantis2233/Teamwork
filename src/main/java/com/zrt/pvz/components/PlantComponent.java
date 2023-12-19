@@ -74,6 +74,7 @@ public class PlantComponent extends Component {
                 hp.damage(attackedDamage);
                 timer.capture();
                 System.out.println(1);
+                FXGL.play("zombieAttack.wav");
             }
             if (hp.isZero()) {
                 dead = true;
@@ -114,7 +115,7 @@ public class PlantComponent extends Component {
     private AnimationChannel initAc(AnimationData at) {
         ArrayList<Image> imageArrayList=new ArrayList<>();
         for(int i=0;i<at.FrameNumber();i++){
-            imageArrayList.add(FXGL.image(String.format(at.imageName(),i)));
+            imageArrayList.add(FXGL.image(String.format(at.imageName(),i),at.width(),at.height()));
         }
         return new AnimationChannel(imageArrayList,Duration.seconds(at.channelDuration()));
     }

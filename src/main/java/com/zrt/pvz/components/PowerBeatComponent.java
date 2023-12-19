@@ -36,7 +36,7 @@ public class PowerBeatComponent extends Component {
         FXGL.runOnce(()->{
             imageArrayList=new ArrayList<>();
             for(int i=1;i<=11;i++){
-                imageArrayList.add(FXGL.image(String.format("powerBeat/Coffeebean_head%d.png",i)));
+                imageArrayList.add(FXGL.image(String.format("powerBeat/Coffeebean_head%d.png",i),39,97));
             }
             AnimationChannel ac=new AnimationChannel(imageArrayList, Duration.seconds(1.0));
             AnimatedTexture at=new AnimatedTexture(ac);

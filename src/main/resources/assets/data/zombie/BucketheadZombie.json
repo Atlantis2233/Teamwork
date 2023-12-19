@@ -84,11 +84,11 @@
     },
     {
       "status": "show",
-      "imageName": "zombie/BucketheadZombie/BucketheadZombieAttack/BucketheadZombieAttack_%d.png",
+      "imageName": "zombie/BucketheadZombie/BucketheadZombieShow/BucketheadZombieShow_%d.png",
       "width": 111,
       "height": 144,
-      "channelDuration": 6.0,
-      "FrameNumber": 10
+      "channelDuration": 1.5,
+      "FrameNumber": 5
     }
   ],
   "statusData": {

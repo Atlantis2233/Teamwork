@@ -97,6 +97,7 @@ public class ProduceSunshineComponent extends Component {
     }
 
     public void spawnSunshine(){
+        if(entity==null)return;
         reverseAnimation=true;
         Point2D point2D=new Point2D(FXGLMath.random(entity.getX()-10,entity.getX()+30)//生成阳光的范围，可调
                 , entity.getY()+ entity.getHeight()/2);
@@ -109,7 +110,8 @@ public class ProduceSunshineComponent extends Component {
             }
             sunshine.removeComponent(ExpireCleanComponent.class);
             sunshine.getComponent(MoveComponent.class).moveFromTo(sunshine.getPosition()
-                    , sunshineCollectPoint,1.5);//速度数值也可以调
+                    , sunshineCollectPoint,4.0);//速度数值也可以调
+            FXGL.play("points.wav");
         });
 
     }

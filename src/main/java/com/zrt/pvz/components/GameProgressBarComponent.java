@@ -99,15 +99,25 @@ public class GameProgressBarComponent extends Component {
                     waveFlags[i].setLayoutY(Math.max(-1,(1-nv.doubleValue()/waves.get(i))*10)*10);
                     if(!reachWaveFlags[i]) {
                         reachWaveFlags[i]=true;
-                        for(int j=0;j<5;j++)//确保每一路都有
+                        for(int j=0;j<5;j++){
+                            //确保每一路都有
                             spawnEnemy(j,0);
-                        for(int j=0;j<waveZombieNumber.get(i);j++)//随机生成多个
+                            FXGL.inc("kill",-1);
+                        }
+
+                        for(int j=5;j<waveZombieNumber.get(i);j++){
+                            //随机生成多个
                             spawnEnemy(random.nextInt(5),random.nextInt(20));
+                            FXGL.inc("kill",-1);
+                        }
+
+                        FXGL.play("hugewave.wav");
                         showWarning();
                     }
                 }
             }
         });
+        FXGL.play("siren.wav");
     }
     @Override
     public void onUpdate(double tpf){
@@ -168,6 +178,9 @@ public class GameProgressBarComponent extends Component {
         }
         //随机抽取数组的一个坐标
         Point2D point2Dtmp=new Point2D(bornPoints.get(tmp).getX()+offset, bornPoints.get(tmp).getY());
+        if(zombieData.getName().equals("FootballZombie")){
+            point2Dtmp=point2Dtmp.add(0,-20);
+        }
         //如果可以产生僵尸,那么生成僵尸
         Entity zombie=spawn("zombie",
                 new SpawnData(point2Dtmp)

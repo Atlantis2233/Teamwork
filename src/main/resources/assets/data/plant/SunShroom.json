@@ -41,6 +41,10 @@
   "statusData": {
     "type": "time",
     "numOfChange": 1,
-    "changeCondition": [5]
+    "changeCondition": [25]
+  },
+  "bulletData": {
+    "attackDamage": 20,
+    "speed": 400
   }
 }

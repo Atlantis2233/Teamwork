@@ -6,7 +6,7 @@
   "height": 88,
   "offsetX": 8,
   "offsetY": 0,
-  "cost": 0,
+  "cost": 75,
   "attackRate": 1.8,
   "CD": 7.5,
   "components": [
